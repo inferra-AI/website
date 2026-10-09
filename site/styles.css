@@ -201,3 +201,55 @@ footer.site a { color: var(--muted); }
 
 /* PREVIEW: remove at launch */
 .preview-banner { background: var(--ink); color: var(--bg); text-align: center; font-size: 13px; padding: 8px 16px; }
+
+/* Setup: shared document layout, numbered guide and copy controls */
+.document { max-width: 1000px; padding-top: 72px; padding-bottom: 80px; overflow-wrap: anywhere; }
+.document-head { max-width: 800px; margin-bottom: 40px; }
+.document h1 { font-size: clamp(42px, 6vw, 60px); }
+.document section { padding: 40px 0; }
+.document h2 { font-size: clamp(30px, 4vw, 40px); }
+.document h3 { margin-top: 24px; }
+.document p { max-width: 80ch; }
+.document pre { margin: 16px 0; color: var(--code-text); overflow-wrap: normal; }
+.document code { font-size: .85em; }
+.document pre code { font-size: inherit; }
+.document li { margin-bottom: 12px; }
+.toc { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 32px; font-size: 14px; }
+.copy-button { cursor: pointer; font-family: var(--sans); }
+.nav { position: relative; }
+@media (max-width: 760px) { .document { padding-top: 40px; } .document section { padding: 32px 0; } .document .term { padding: 16px; } }
+@media print { .nav, .preview-banner, footer.site, .copy-button { display: none; } .document { max-width: none; padding: 0; } .document section { padding: 16px 0; } .document pre { white-space: pre-wrap; } .document .table-scroll { overflow: visible; } .document .table { min-width: 0; } }
+
+/* Download: complete checksum values and full installer source */
+.download-assets .checksum { display: block; min-width: 28ch; overflow-wrap: anywhere; }
+.document details { margin: 24px 0; }
+.document summary { color: var(--ink); cursor: pointer; font-weight: 600; }
+
+/* Docs hub: link table uses the shared table and document tokens */
+.document .table a { font-weight: 500; }
+
+/* org.yaml reference: field names wrap within the scrollable table */
+.document .table td:first-child code { overflow-wrap: anywhere; }
+
+/* CLI reference: command examples keep whitespace inside code blocks */
+.document .table th { white-space: nowrap; }
+
+/* Demo: ordered recording outline uses the shared document layout */
+.document ol { padding-left: 24px; }
+
+/* MCP: planned capabilities use the shared comparison table */
+.document .table strong { color: var(--ink); }
+
+/* Security: anchor targets retain space above their headings */
+.document section[id] { scroll-margin-top: 20px; }
+
+/* Privacy: prose uses the shared document typography */
+.document p + p { margin-top: 20px; }
+
+/* 404: shared buttons wrap at narrow widths */
+.document > .btns { margin-top: 32px; }
+
+/* Compare and changelog: placeholder pages retain the shared document layout */
+.document > p { max-width: 80ch; }
+/* Download table: keep OS and architecture names on one line */
+.download-assets td:nth-child(-n+3), .download-assets th { white-space: nowrap; }

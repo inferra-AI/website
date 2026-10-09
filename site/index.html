@@ -12,8 +12,7 @@
 <meta property="og:title" content="Inferra: your GitHub repo is your backend platform">
 <meta property="og:description" content="One file defines production, staging and previews. Databases only your apps can reach. A flat monthly bill.">
 <meta property="og:url" content="https://inferralab.com/">
-<meta property="og:image" content="https://inferralab.com/og.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1220" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -52,7 +51,7 @@
       <li><a href="/docs">Docs</a></li>
       <li><a href="/setup">Setup</a></li>
       <li><a href="/download">Download</a></li>
-      <li><a href="#plans">Pricing</a></li>
+      <li><a href="/#plans">Pricing</a></li>
       <li><a href="/demo">Demo</a></li>
       <li><a href="https://status.inferralab.com">Status</a></li>
       <li><a class="signin" href="https://api.dev.inferralab.com/">Sign in</a></li>
@@ -69,11 +68,11 @@
       <h1 id="h1">Your GitHub repo is your backend platform.</h1>
       <p class="lead">Commit one file, keep values in GitHub Environments, push. Inferra builds, deploys and reports back on the commit: APIs, workers and Postgres, sandboxed, for a flat monthly price.</p>
       <div class="btns">
-        <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a>
+        <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a><!-- LAUNCH: production API host -->
         <a class="btn" href="/setup" data-event="setup_click">Read the setup guide</a>
       </div>
       <div class="hero-meta">
-        <a href="/demo#video" data-event="demo_video_click">▶&nbsp; Watch the 2½-minute demo</a>
+        <a href="/demo#video" data-event="demo_video_click">▶&nbsp; Demo video · coming soon</a>
         <a class="status-dot" href="https://status.inferralab.com" data-status><span class="dot unknown"></span><span>System status</span></a>
       </div>
     </div>
@@ -217,16 +216,16 @@
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Proof you can check</p>
-      <h2 id="h-proof">We run a real org in public. Look at it.</h2>
-      <p class="lead">No customer logos yet, so here is the next best thing: a public repo deployed by Inferra, its live app, its dashboard and our status page. The video shows it end to end, at real speed.</p>
+      <h2 id="h-proof">A public demo is coming soon.</h2>
+      <p class="lead">The public demo repository is ready. Its first deployment will be recorded; the live app and demo video go live together. You can browse the repository and visit the status page today.</p>
     </div>
     <div class="proof">
       <div class="panel video">
         <!-- LAUNCH: replace the button with the video element (poster, captions, no autoplay) once recorded. -->
         <a class="poster" href="/demo#video" data-event="demo_video_click">
           <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="36" fill="var(--accent)"/><path d="M30 24l20 12-20 12z" fill="#fff"/></svg>
-          From install to a live API with Postgres · 2:30
-          <small>Recorded on the public demo org, at real speed</small>
+          From install to a live API with Postgres
+          <small>Video coming soon · not yet recorded</small>
         </a>
         <ol class="chapters">
           <li>Install the App</li><li>Commit org.yaml</li><li>Checks turn green</li><li>Add Postgres</li><li>Break it, roll back</li>
@@ -234,7 +233,7 @@
       </div>
       <div class="links">
         <a class="panel" href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click"><b>Demo repo</b><span class="mono">github.com/inferra-AI/inferra-demo</span><span>org.yaml, commit checks, previews</span></a>
-        <a class="panel" href="/demo" data-event="demo_open"><b>Live app and dashboard</b><span class="mono">inferralab.com/demo</span><span>the running app and a read-only dashboard</span></a>
+        <a class="panel" href="/demo" data-event="demo_open"><b>Demo plans and repository</b><span class="mono">inferralab.com/demo</span><span>live app and read-only dashboard coming soon</span></a>
         <a class="panel" href="https://status.inferralab.com" data-event="status_open"><b>Status page</b><span class="mono">status.inferralab.com</span><span>checked from outside our cloud</span></a>
       </div>
     </div>
@@ -291,7 +290,7 @@
     </div>
     <p class="small" style="margin:0 0 24px">Your own domains are coming soon; until then each app gets an inferralab.com address.</p>
     <div class="btns">
-      <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a>
+      <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a><!-- LAUNCH: production API host -->
       <a class="btn" href="/download" data-event="download_click">Download the CLI</a>
       <a class="btn" href="/setup" data-event="setup_click">Setup guide</a>
     </div>

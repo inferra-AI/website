@@ -1,0 +1,43 @@
+name: MCP early access
+description: Tell us how you would use the planned Inferra MCP server.
+title: "MCP early access: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The Inferra MCP server is coming soon. This issue and every answer are public.
+        Email is optional. Do not share credentials, secret values, or private logs.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: The name you want us to use.
+    validations:
+      required: true
+  - type: input
+    id: email
+    attributes:
+      label: Email (optional)
+      description: Only include an email address if you are comfortable publishing it here.
+    validations:
+      required: false
+  - type: dropdown
+    id: assistant
+    attributes:
+      label: Assistant used
+      multiple: true
+      options:
+        - Claude
+        - Codex
+        - VS Code
+        - Cursor
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: What do you want it to do?
+      description: Describe the troubleshooting or configuration work you want help with.
+    validations:
+      required: true

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLI reference · Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="The Inferra CLI inspects repository orgs and operates running workloads. GitHub pushes deploy source; customer commands cover logs, metrics, instances, rollback and promotion.">
+<link rel="canonical" href="https://inferralab.com/docs/cli">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1220" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "CLI reference", "item": "https://inferralab.com/docs/cli"}]}</script>
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Inferra home">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="var(--accent)"/><path d="M8 7v10M12 7v10M16 7v10" stroke="var(--on-accent)" stroke-width="2" stroke-linecap="round"/></svg>
+      Inferra
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <ul id="nav-links">
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/setup">Setup</a></li>
+      <li><a href="/download">Download</a></li>
+      <li><a href="/#plans">Pricing</a></li>
+      <li><a href="/demo">Demo</a></li>
+      <li><a href="https://status.inferralab.com">Status</a></li>
+      <li><a class="signin" href="https://api.dev.inferralab.com/">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+<main id="main" class="document wrap">
+<div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>CLI reference</h1><p class="lead">The Inferra CLI inspects repository orgs and operates running workloads. GitHub pushes deploy source; customer commands cover logs, metrics, instances, rollback and promotion.</p></div>
+<section id="commands"><h2>Customer commands</h2><p>Run <code>inferra COMMAND --help</code> for built-in help. Replace uppercase placeholders with your names. These are customer commands; operator-only and planned command surfaces are excluded.</p><!-- LAUNCH: production API host --><div class="table-scroll" tabindex="0" role="region" aria-label="Command (after inferra) table"><table class="table"><thead><tr><th scope="col">Command (after inferra)</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>version</code></td><td>Print the installed CLI version.</td></tr><tr><td><code>init [-p PATH] [--name NAME] [--force]</code></td><td>Write starter configuration and environment workflow. Review the release-specific workflow behavior in setup. --force overwrites generated files.</td></tr><tr><td><code>login --api https://api.dev.inferralab.com</code></td><td>Paste a personal token from Settings → Tokens. --token - reads stdin; --org and --space choose the target.</td></tr><tr><td><code>logout</code></td><td>Clear the saved login locally.</td></tr><tr><td><code>whoami</code></td><td>Show the current identity and roles.</td></tr><tr><td><code>target [ORG[/SPACE]]</code></td><td>Show or save the default target.</td></tr><tr><td><code>orgs</code></td><td>List accessible repository orgs.</td></tr><tr><td><code>orgs delete ORG [--yes]</code></td><td>Delete an org and all its resources. Restricted by the API to org-wide owners (repository admins); prompts for confirmation unless --yes is passed. Removing repository access in GitHub also triggers cleanup.</td></tr><tr><td><code>org [NAME]</code></td><td>Inspect an org; defaults to the target.</td></tr><tr><td><code>spaces</code></td><td>List spaces in the target org.</td></tr><tr><td><code>accounts</code></td><td>List accessible GitHub accounts and pooled plan usage.</td></tr><tr><td><code>account NAME</code></td><td>Show one account’s orgs and shared usage.</td></tr><tr><td><code>quotas</code></td><td>List available plans and limits.</td></tr><tr><td><code>quota PLAN</code></td><td>Show one plan’s limits.</td></tr><tr><td><code>usage</code></td><td>Show target org usage and quota.</td></tr><tr><td><code>members</code></td><td>List members and roles.</td></tr><tr><td><code>invitations</code></td><td>List join requests; invitations accept ORG and invitations decline ORG answer them.</td></tr><tr><td><code>events [--app APP] [--since DURATION_OR_TIME]</code></td><td>Read org events; --since accepts a duration such as 24h or an RFC 3339 time.</td></tr><tr><td><code>apps</code></td><td>List apps in the target space.</td></tr><tr><td><code>apps status NAME</code></td><td>Show an app and its status.</td></tr><tr><td><code>instances APP</code></td><td>Inspect running instances.</td></tr><tr><td><code>deployments APP</code></td><td>List deployment history.</td></tr><tr><td><code>logs APP</code></td><td>Read app and platform logs. --follow/-f streams; --since filters time; --limit defaults to 500; --instance selects an instance; --grep filters text.</td></tr><tr><td><code>metrics APP [--since 1h]</code></td><td>Read CPU, memory, requests, latency and restarts. Default 1h; write 168h for 7 days.</td></tr><tr><td><code>exec APP [--pod POD] -- COMMAND...</code></td><td>Run a command in a running instance; defaults to a shell and the first ready pod.</td></tr><tr><td><code>start APP</code></td><td>Start a stopped app.</td></tr><tr><td><code>stop APP</code></td><td>Stop instances, preserving the URL, configuration and services.</td></tr><tr><td><code>restart APP</code></td><td>Restart using the same image.</td></tr><tr><td><code>rollback APP [--to DEPLOYMENT_ID]</code></td><td>Redeploy an earlier image with current variables and secrets.</td></tr><tr><td><code>promote APP --from SPACE [--to SPACE] [--deployment ID]</code></td><td>Promote the source space’s live image or a specified deployment; destination defaults to the targeted space.</td></tr><tr><td><code>env APP [--reveal]</code></td><td>List variables. Developers and owners may reveal ordinary values. Managed-service connection values stay hidden.</td></tr><tr><td><code>secrets APP</code></td><td>List secret names and metadata; never values. Customer tokens have no secret-writing CLI commands.</td></tr><tr><td><code>buildpacks</code></td><td>List curated buildpack IDs, versions and status.</td></tr><tr><td><code>services</code></td><td>List services and their bindings in the target space.</td></tr><tr><td><code>service status NAME</code></td><td>Inspect service health, version and backup metadata when available. db status NAME is the database form.</td></tr><tr><td><code>service logs NAME</code></td><td>Read service logs. db logs NAME is the database form. Both support --follow/-f, --since, --instance and --grep.</td></tr></tbody></table></div></section><section id="global"><h2>Flags and environment</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Setting table"><table class="table"><thead><tr><th scope="col">Setting</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>--api</code> / <code>INFERRA_API</code></td><td>API address; flag takes precedence, then environment, then saved login. Use https://api.dev.inferralab.com during preview.</td></tr><tr><td><code>--org</code> / <code>INFERRA_ORG</code></td><td>Org target; flag overrides environment and saved target.</td></tr><tr><td><code>--space</code> / <code>INFERRA_SPACE</code></td><td>Space target; flag overrides environment and saved target.</td></tr><tr><td><code>--json</code></td><td>Machine-readable output on commands that implement it.</td></tr><tr><td><code>INFERRA_TOKEN</code></td><td>Personal token for automation; overrides the saved token. Do not put the value into a command argument or commit it.</td></tr><tr><td><code>INFERRA_CONFIG</code></td><td>Override the local configuration file path.</td></tr></tbody></table></div><!-- LAUNCH: production API host --><p>When <code>INFERRA_TOKEN</code> is set, login refuses to replace it. Unset it to use another saved login. The explicit preview API is required because the current built-in default is incorrect.</p></section><section id="examples"><h2>Inspect and operate</h2><pre class="term"><code>inferra login --api https://api.dev.inferralab.com
+inferra orgs
+inferra target YOUR_ORG/prod
+inferra logs api --since 15m
+inferra metrics api --since 1h
+inferra exec api -- /bin/sh
+inferra rollback api
+inferra promote api --from prod --to stage</code></pre><!-- LAUNCH: production API host --></section><section id="limits"><h2>What changes where</h2><p>Push to GitHub to deploy new source. Edit <code>org.yaml</code> to change resources, app definitions, membership or service bindings. Use GitHub Environments for ordinary runtime variables and the dashboard for Inferra-set secret values. A manual rollback selects an image, not historical configuration.</p><p>The selected-secret generator’s <code>--secret</code> and <code>--workflow-only</code> flags are coming soon in a confirmed CLI release; see <a href="/setup#environment">setup’s release note</a>. Custom domains and MCP are also coming soon.</p></section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Inferra · inferralab.com</span>
+    <nav aria-label="Footer">
+      <a href="/docs">Docs</a><a href="/mcp">MCP</a><a href="/security">Security</a><a href="/compare">Compare</a><a href="/changelog">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy">Privacy</a><a href="https://status.inferralab.com">Status</a>
+    </nav>
+  </div>
+</footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>

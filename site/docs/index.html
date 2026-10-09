@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation · Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="Inferra is a GitHub-native platform for APIs, workers and their data. Start with one setup guide, then use the configuration and CLI references for precise details.">
+<link rel="canonical" href="https://inferralab.com/docs">
+<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1220" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Documentation", "item": "https://inferralab.com/docs"}]}</script>
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Inferra home">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="var(--accent)"/><path d="M8 7v10M12 7v10M16 7v10" stroke="var(--on-accent)" stroke-width="2" stroke-linecap="round"/></svg>
+      Inferra
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <ul id="nav-links">
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/setup">Setup</a></li>
+      <li><a href="/download">Download</a></li>
+      <li><a href="/#plans">Pricing</a></li>
+      <li><a href="/demo">Demo</a></li>
+      <li><a href="https://status.inferralab.com">Status</a></li>
+      <li><a class="signin" href="https://api.dev.inferralab.com/">Sign in</a></li>
+    </ul>
+  </div>
+</header>
+<main id="main" class="document wrap">
+<div class="document-head"><p class="eyebrow">Inferra · Preview</p><h1>Documentation</h1><p class="lead">Inferra is a GitHub-native platform for APIs, workers and their data. Start with one setup guide, then use the configuration and CLI references for precise details.</p></div>
+<section id="start"><h2>Start here</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Page table"><table class="table"><thead><tr><th scope="col">Page</th><th scope="col">What it covers</th></tr></thead><tbody><tr><td><a href="/setup">Setup</a></td><td>The canonical first deployment, prerequisites, GitHub Environments, secrets, commit checks and troubleshooting.</td></tr><tr><td><a href="/download">Download</a></td><td>Release archives, exact checksums, manual installation and the installer.</td></tr><tr><td><a href="/docs/org-yaml">org.yaml reference</a></td><td>Every accepted field, type and validation rule.</td></tr><tr><td><a href="/docs/cli">CLI reference</a></td><td>Customer commands and how to inspect or operate your apps.</td></tr><tr><td><a href="/#plans">Plans</a></td><td>Flat prices, shared limits and the 7-day Free trial.</td></tr><tr><td><a href="/security#network">Network rules</a></td><td>Inbound HTTPS, same-space communication, public outbound traffic and service bindings.</td></tr><tr><td><a href="/mcp">MCP — coming soon</a></td><td>Planned read-only troubleshooting and configuration changes as reviewed PRs.</td></tr><tr><td><a href="/security#deletion">Deletion and restore</a></td><td>Service retention, trial cleanup and recovery limits.</td></tr></tbody></table></div></section><section id="model"><h2>One file, a Git push, then evidence</h2><p>Install the GitHub App on a repository and commit <code>.inferra/org.yaml</code>. A push to a mapped branch builds and deploys the applicable apps. Read the result on the commit, in the dashboard or through the CLI. Databases and caches accept connections only from their bound apps.</p><p>Custom domains are <strong>coming soon</strong>. Use the platform-provided app address during preview. The MCP server is not built yet. The <a href="/demo">live demo and video</a> will go live together.</p></section>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Inferra · inferralab.com</span>
+    <nav aria-label="Footer">
+      <a href="/docs">Docs</a><a href="/mcp">MCP</a><a href="/security">Security</a><a href="/compare">Compare</a><a href="/changelog">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy">Privacy</a><a href="https://status.inferralab.com">Status</a>
+    </nav>
+  </div>
+</footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>

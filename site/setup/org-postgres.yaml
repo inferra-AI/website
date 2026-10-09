@@ -1,0 +1,19 @@
+version: 1
+spaces:
+  prod:
+    branch: main
+  stage: {}
+  preview:
+    branches: "*"
+apps:
+  api:
+    path: .
+    port: 8080
+    command: node server.js
+    cpu: "0.5"
+    memory: 512Mi
+    health: /health
+    services:
+      orders:
+        type: postgres
+        plan: shared-small

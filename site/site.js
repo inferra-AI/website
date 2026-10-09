@@ -46,3 +46,22 @@
     if (el) send(el.dataset.event, { href: el.getAttribute("href") });
   });
 })();
+
+// Setup request: copy only on an explicit user action.
+document.querySelectorAll('[data-copy]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copy);
+    if (!target) return;
+    try {
+      await navigator.clipboard.writeText(target.textContent);
+      button.textContent = 'Copied';
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents(target);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      button.textContent = 'Text selected — copy with your keyboard';
+    }
+  });
+});

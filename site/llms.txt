@@ -10,4 +10,16 @@ Key facts:
 - Custom domains are coming soon.
 
 ## Pages
-- [Homepage](https://inferralab.com/): what Inferra is, plans, network rules
+- [Homepage](https://inferralab.com/): product overview, plans and network rules
+- [Your first deployment](https://inferralab.com/setup): Inferra builds and deploys apps from GitHub pushes. This guide connects a repository, defines its spaces and app, and shows how to read the result.
+- [org.yaml reference](https://inferralab.com/docs/org-yaml): The .inferra/org.yaml file declares an Inferra repository’s spaces, branch mappings, apps and service bindings. This reference covers every field accepted by the parser.
+- [CLI reference](https://inferralab.com/docs/cli): The Inferra CLI inspects repository orgs and operates running workloads. GitHub pushes deploy source; customer commands cover logs, metrics, instances, rollback and promotion.
+- [Documentation](https://inferralab.com/docs): Inferra is a GitHub-native platform for APIs, workers and their data. Start with one setup guide, then use the configuration and CLI references for precise details.
+- [The public demo](https://inferralab.com/demo): The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.
+- [MCP is coming soon](https://inferralab.com/mcp): Inferra’s planned MCP server will let assistants read troubleshooting evidence and propose configuration changes as pull requests to org.yaml. It is not available yet.
+- [Security and data handling](https://inferralab.com/security): Inferra isolates apps with gVisor, controls network access by space and service binding, and keeps secret values out of read APIs. This page describes the implemented controls and preview limits.
+- [Website privacy](https://inferralab.com/privacy): The inferralab.com static website collects no analytics today. If analytics is enabled later, it will be first-party and cookieless.
+- [Page not found](https://inferralab.com/404.html): This address does not point to a page on the Inferra website. Use the documentation or setup guide to find your next step.
+- [Comparisons are coming soon](https://inferralab.com/compare): Inferra comparison pages are not published yet. Each future comparison will be dated and checked against its sources.
+- [Release notes](https://inferralab.com/changelog): Inferra CLI release notes live with the public GitHub releases. The download page identifies the exact preview release offered by this website.
+- [Download the CLI](https://inferralab.com/download): Git pushes create deployments; the CLI inspects and operates them.
