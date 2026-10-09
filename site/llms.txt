@@ -1,0 +1,13 @@
+# Inferra
+
+> Inferra is a GitHub-native application platform for backends. A file in your repository, `.inferra/org.yaml`, defines production, staging and preview spaces, the apps (APIs, workers, containers built with buildpacks, no Dockerfile) and their managed services (Postgres, Valkey cache, S3 buckets). Installing the Inferra GitHub App and pushing to a mapped branch builds and deploys; results appear as commit statuses. Plans are flat: Free (7-day trial), Pro $20/month, Team $99/month; limits stop the next push instead of adding to the bill.
+
+Key facts:
+- Deploys only through Git pushes; the `inferra` CLI inspects and operates (logs, metrics, exec, rollback, promote) but never deploys.
+- A managed database or cache accepts connections only from the apps bound to it in `org.yaml`.
+- Every app on every plan runs in a gVisor sandbox. Outbound network access is the same on every plan: any public port, never private ranges or cloud metadata.
+- A hosted MCP server for AI assistants (Claude, Codex, VS Code, Cursor) is coming soon: read-only troubleshooting, and configuration changes only as pull requests to `org.yaml`.
+- Custom domains are coming soon.
+
+## Pages
+- [Homepage](https://inferralab.com/): what Inferra is, plans, network rules
