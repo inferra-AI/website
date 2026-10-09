@@ -198,3 +198,6 @@ footer.site a { color: var(--muted); }
   .table-scroll .table { min-width: 620px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* PREVIEW: remove at launch */
+.preview-banner { background: var(--ink); color: var(--bg); text-align: center; font-size: 13px; padding: 8px 16px; }
