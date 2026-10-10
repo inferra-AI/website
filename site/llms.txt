@@ -2,7 +2,7 @@
 
 > Inferra is the Git-native cloud: a PaaS that builds APIs, web apps and background workers from GitHub pushes with Cloud Native Buildpacks and runs them with managed Postgres, a Redis-compatible Valkey cache and S3 buckets.
 
-Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10.
+Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10 (dev platform).
 
 ## Configuration and deployment
 - Git pushes deploy source. Each repository is an org, each eligible branch has its own space, and apps are named repository folders.
