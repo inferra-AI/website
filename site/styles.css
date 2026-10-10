@@ -393,3 +393,35 @@ svg { display: block; max-width: 100%; }
 @media (min-width: 901px) {
   .hero-scene { transform: scale(var(--fit, 1)); transform-origin: top left; margin-bottom: calc((var(--fit, 1) - 1) * 690px); }
 }
+
+/* You / Inferra split + why cards (homepage) */
+.split-section { padding-top: 128px; }
+.split-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 24px; max-width: 1040px; margin: 0 auto; }
+.split-col { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
+.split-col h3 { font-size: 13px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+.split-col.us { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.split-col.us h3 { color: var(--accent2); }
+.split-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; font-size: 16px; }
+.split-col.us ul { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.checks-list li { position: relative; padding-left: 26px; }
+.checks-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--ok); font-weight: 700; }
+.split-col.you li { color: var(--text); }
+.why-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; max-width: 1040px; margin: 24px auto 0; }
+.why-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.why-card h3 { font-size: 18px; margin: 0 0 8px; }
+.why-card p { color: var(--muted); margin: 0; font-size: 15px; line-height: 1.55; }
+.compare-link { text-align: center; margin: 28px 0 0; font-weight: 600; }
+@media (max-width: 900px) {
+  .split-grid, .why-grid { grid-template-columns: 1fr; }
+  .split-col.us ul { grid-template-columns: 1fr; }
+}
+
+/* FAQ (homepage) */
+.faq-section { padding-top: 120px; padding-bottom: 40px; }
+.faq-list { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+.faq-item { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; }
+.faq-item summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq-item summary::after { content: "+"; color: var(--accent2); font-weight: 400; }
+.faq-item[open] summary::after { content: "−"; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item p { color: var(--muted); margin: 12px 0 0; line-height: 1.6; }

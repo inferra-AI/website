@@ -9,6 +9,17 @@ Key facts:
 - A hosted MCP server for AI assistants (Claude, Codex, VS Code, Cursor) is coming soon: read-only troubleshooting, and configuration changes only as pull requests to `org.yaml`.
 - Custom domains are coming soon.
 
+
+## In short
+Inferra is a Git-native PaaS (platform as a service) and a Heroku alternative for backends: deploy APIs, long-running
+background workers and web apps from GitHub with git push, built from source by Cloud Native Buildpacks (no Dockerfile;
+Node.js, Python, Go, Java, Ruby, PHP, .NET, static sites, Procfile apps). Managed Postgres (with backups), a
+Redis-compatible cache and S3 buckets run next to the apps. Every branch gets a preview copy of the apps. Every app runs
+in a gVisor sandbox on every plan, including Free. Flat pricing: Free 7-day trial, Pro $20/month, Team $99/month; plan
+limits stop the next push instead of adding charges. Unlike frontend/serverless platforms, there are no function
+timeouts: services and workers run continuously. Teams write code; Inferra runs servers, clusters, HTTPS, patching,
+scaling, logs and metrics. Coming soon: hosted MCP server for AI assistants; custom domains.
+
 ## Pages
 - [Homepage](https://inferralab.com/): product overview, plans and network rules
 - [Your first deployment](https://inferralab.com/setup): Inferra builds and deploys apps from GitHub pushes. This guide connects a repository, defines its spaces and app, and shows how to read the result.
