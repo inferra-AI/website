@@ -18,7 +18,7 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 ## Credits pricing
 - No plans, subscriptions or app limits. Reserved branch CPU, memory and storage (including reserved bucket size), plus metered backup storage, are billed at simple per-unit prices, paid from prepaid credits. Bills cannot exceed the prepaid balance.
 - $5 of usage free every month per account, shared across all its repos. A card on file is required; never charged unless the customer buys credits. One free allowance per card.
-- Branch quotas live under org.yaml quotas:, keyed by exact branch names or patterns, with cpu, memory and storage. Each matching branch pays for its own quota. Missing entries use platform defaults.
+- Branch quotas live under org.yaml quotas:, keyed by exact branch names or patterns, with cpu, memory and storage. Each branch pays for what its apps and services reserve (app size × max instances, plus each service's declared size); the quota is the most a branch can reserve, across apps and services. Missing entries use platform defaults.
 - Free reservations must fit the monthly $5 allowance. Paid credits must cover at least 7 days at a new total; rejected changes leave existing quotas running.
 - At $0, new deploys pause immediately. After a 3-day grace period, workloads pause; data is kept for 7 days. Top up to resume. Optional auto top-up is off by default.
 - Current rates: $16.19 per vCPU-month, $1.78 per GB of memory a month, $0.10 per GB of storage a month. The live API publishes current prices at GET /v1/rates on the billing service.
