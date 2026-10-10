@@ -16,7 +16,7 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 - Deleting a branch removes its space asynchronously. Pattern-branch services delete immediately; named branches retain Postgres restore eligibility and bucket data for 7 days.
 
 ## Credits pricing
-- No plans, subscriptions or app limits. Reserved branch CPU, memory and storage plus metered bucket storage and backup storage are billed at simple per-unit prices, paid from prepaid credits. Bills cannot exceed the prepaid balance.
+- No plans, subscriptions or app limits. Reserved branch CPU, memory and storage (including reserved bucket size), plus metered backup storage, are billed at simple per-unit prices, paid from prepaid credits. Bills cannot exceed the prepaid balance.
 - $5 of usage free every month per account, shared across all its repos. A card on file is required; never charged unless the customer buys credits. One free allowance per card.
 - Branch quotas live under org.yaml quotas:, keyed by exact branch names or patterns, with cpu, memory and storage. Each matching branch pays for its own quota. Missing entries use platform defaults.
 - Free reservations must fit the monthly $5 allowance. Paid credits must cover at least 7 days at a new total; rejected changes leave existing quotas running.
