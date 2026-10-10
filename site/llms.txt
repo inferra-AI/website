@@ -1,6 +1,6 @@
 # Inferra
 
-> Inferra is a GitHub-native application platform for backends. A file in your repository, `.inferra/org.yaml`, defines production, staging and preview spaces, the apps (APIs, workers, containers built with buildpacks, no Dockerfile) and their managed services (Postgres, Valkey cache, S3 buckets). Installing the Inferra GitHub App and pushing to a mapped branch builds and deploys; results appear as commit statuses. Plans are flat: Free (7-day trial), Pro $20/month, Team $99/month; limits stop the next push instead of adding to the bill.
+> Inferra is the Git-native cloud: an application platform that runs backends straight from a GitHub repo. A file in your repository, `.inferra/org.yaml`, defines production, staging and preview spaces, the apps (APIs, workers, containers built with buildpacks, no Dockerfile) and their managed services (Postgres, Valkey cache, S3 buckets). Installing the Inferra GitHub App and pushing to a mapped branch builds and deploys; results appear as commit statuses. Plans are flat: Free (7-day trial), Pro $20/month, Team $99/month; limits stop the next push instead of adding to the bill.
 
 Key facts:
 - Deploys only through Git pushes; the `inferra` CLI inspects and operates (logs, metrics, exec, rollback, promote) but never deploys.
