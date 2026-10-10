@@ -23,3 +23,4 @@ Key facts:
 - [Comparisons are coming soon](https://inferralab.com/compare): Inferra comparison pages are not published yet. Each future comparison will be dated and checked against its sources.
 - [Release notes](https://inferralab.com/changelog): Inferra CLI release notes live with the public GitHub releases. The download page identifies the exact preview release offered by this website.
 - [Download the CLI](https://inferralab.com/download): Git pushes create deployments; the CLI inspects and operates them.
+- [Adding SSO to your app](https://inferralab.com/docs/sso): OAuth/OpenID Connect, SAML and LDAPS sign-in for apps hosted on Inferra
