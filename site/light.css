@@ -112,3 +112,43 @@ footer.site { background: var(--panel); }
 @media (max-width: 760px) { .yaml-pair { grid-template-columns: 1fr; } }
 .split-section > .yaml-card, .split-section > .yaml-next { width: min(1060px, calc(100% - 80px)); margin-inline: auto; }
 @media (max-width: 760px) { .split-section > .yaml-card, .split-section > .yaml-next { width: calc(100% - 32px); } }
+
+/* How it works (Landing v2 layout, light). */
+.diff-section { padding-top: 150px; }
+.diff-section .section-head { text-align: left; max-width: 760px; margin-bottom: 40px; }
+.diff-section .section-head code, .diff-section td code { background: var(--panel2); padding: 1px 6px; border-radius: 5px; font-size: .88em; }
+.how-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: start; }
+.how-code { display: grid; gap: 16px; }
+.how-code .yaml-card { margin: 0; }
+.yaml-card pre { padding: 14px 0; }
+.yaml-card .ln { display: block; padding: 0 20px; white-space: pre; }
+.yaml-card .ln.add { background: rgba(94, 230, 156, .14); box-shadow: inset 3px 0 0 #5ee69c; }
+.how-result { background: var(--panel); border-radius: 24px; padding: 24px; }
+.how-result-title { font-weight: 700; margin-bottom: 16px; }
+.space-card { background: #fff; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+.space-head { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; font-size: 14px; }
+.space-head span { color: var(--muted); }
+.space-apps { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; gap: 8px; align-items: center; background: var(--panel2); border-radius: 999px; padding: 6px 12px; font: 500 13px var(--mono); }
+.chip i { font-style: normal; font-family: var(--sans); font-size: 12px; color: var(--ok); }
+.chip.new { background: var(--mint); }
+.how-note { font-size: 14px; color: var(--muted); margin-top: 8px; }
+.how-table td:first-child { white-space: nowrap; }
+
+/* Credits pricing + calculator. */
+.calc { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; background: var(--panel); border-radius: 28px; padding: 32px; }
+.calc-inputs { display: grid; gap: 22px; }
+.calc-inputs label { display: grid; grid-template-columns: 1fr auto; gap: 8px; font-weight: 600; }
+.calc-inputs output { font: 500 14px var(--mono); }
+.calc-inputs input { grid-column: 1 / -1; width: 100%; accent-color: #0d0d0d; }
+.calc-result { background: #fff; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+.calc-total { font-size: 56px; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+.calc-free { color: var(--ok); font-weight: 600; }
+.calc-note { font-size: 12px; color: var(--muted); }
+.credit-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.credit-facts > div { border-radius: 20px; padding: 24px; }
+.credit-facts > div:nth-child(1) { background: var(--lemon); } .credit-facts > div:nth-child(2) { background: var(--sky); } .credit-facts > div:nth-child(3) { background: var(--pink); }
+.credit-facts p { color: #3d4047; margin-top: 8px; font-size: 15px; }
+@media (max-width: 900px) { .how-grid, .calc { grid-template-columns: 1fr; } .credit-facts { grid-template-columns: 1fr; } .calc { padding: 20px; } }
+.diff-section .section-head { margin-left: 0; padding-left: 0; }
+.diff-section .section-head p { margin-left: 0; }
