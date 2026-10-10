@@ -11,7 +11,7 @@ Teams write the code; Inferra runs the servers, clusters, builds, HTTPS, patchin
 - Managed Postgres (7-day backup window), Redis-compatible Valkey cache and S3 buckets. A database or cache accepts connections only from the apps bound to it in `org.yaml`.
 - Previews: pushing a branch that matches the preview pattern creates a copy of the apps in the preview space, apart from production, with the preview space's own services. Deleting the branch removes the copy. Each copy counts toward the app limit.
 - Every app on every plan, including Free, runs in a gVisor sandbox. Outbound access is the same on every plan: public destinations on any port, never private ranges or cloud metadata.
-- Pricing is flat: Free (7-day trial), Pro $20/month, Team $99/month. Reaching a plan limit stops the next push; nothing is added to the bill automatically.
+- Pricing is flat: Free (no time limit), Pro $20/month, Team $99/month. Reaching a plan limit stops the next push; nothing is added to the bill automatically.
 - The `inferra` CLI inspects and operates (logs, metrics, exec, rollback, promote); it never deploys source.
 
 ## Preview status
