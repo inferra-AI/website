@@ -16,12 +16,13 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 - Deleting a branch removes its space asynchronously. Pattern-branch services delete immediately; named branches retain Postgres restore eligibility and bucket data for 7 days.
 
 ## Credits pricing
-- No plans, subscriptions or app limits. Reserved branch CPU, memory and storage (including reserved bucket size), plus metered backup storage, are billed at simple per-unit prices, paid from prepaid credits. Bills cannot exceed the prepaid balance.
+- No plans, subscriptions or app limits. You pay for what apps and services reserve, charged hourly from prepaid credits: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.10 per GB-month (Postgres disks, bucket size, service disks). Postgres backups are measured at $0.0299 per GB-month and are free for accounts that have never bought credits. Bandwidth, S3 requests and build minutes are not charged.
+- Reserved = each app's CPU and memory times its maximum instances, plus each service's declared size. Buckets reserve their storage size only; that size is also the write limit.
+- Branch quotas in org.yaml quotas: (keyed by exact branch names or patterns; cpu, memory, storage) are the most a branch can reserve across apps and services, not the price. Each matching branch has its own quota. Missing entries use platform defaults.
 - $5 of usage free every month per account, shared across all its repos. A card on file is required; never charged unless the customer buys credits. One free allowance per card.
-- Branch quotas live under org.yaml quotas:, keyed by exact branch names or patterns, with cpu, memory and storage. Each branch pays for what its apps and services reserve (app size × max instances, plus each service's declared size); the quota is the most a branch can reserve, across apps and services. Missing entries use platform defaults.
-- Free reservations must fit the monthly $5 allowance. Paid credits must cover at least 7 days at a new total; rejected changes leave existing quotas running.
+- Pushes that raise a reservation must fit the branch quota and be paid ahead: paid accounts need credits covering at least 7 days at the new total; accounts without credits must stay at or below $5 a month. Refused changes fail the commit check and leave existing reservations running.
 - At $0, new deploys pause immediately. After a 3-day grace period, workloads pause; data is kept for 7 days. Top up to resume. Optional auto top-up is off by default.
-- Current rates: $16.19 per vCPU-month, $1.78 per GB of memory a month, $0.10 per GB of storage a month. The live API publishes current prices at GET /v1/rates on the billing service.
+- Example: main with api (250m, 512Mi, 2 instances), worker (250m, 256Mi), Postgres (250m, 256Mi, 10Gi) and a 20Gi bucket reserves 1 vCPU, 1.5 GB, 30 GB = $21.86 a month.
 
 ## Security and MCP
 - Every app uses a gVisor sandbox. Each branch has a private network; services accept connections only from bound apps. Public outbound destinations are allowed; private ranges and cloud metadata are blocked.
