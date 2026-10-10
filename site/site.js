@@ -32,6 +32,19 @@
     const el = e.target.closest("[data-event]");
     if (el) send(el.dataset.event, { href: el.getAttribute("href") });
   });
+
+  // Hero picture: scale it to fit between its column start and the window edge.
+  const scene = document.querySelector(".hero-scene");
+  if (scene) {
+    const fit = () => {
+      if (innerWidth <= 900) { scene.style.removeProperty("--fit"); return; }
+      const left = scene.getBoundingClientRect().left;
+      const s = Math.min(1, (document.documentElement.clientWidth - left - 32) / 850);
+      scene.style.setProperty("--fit", Math.max(0.5, s).toFixed(3));
+    };
+    fit();
+    addEventListener("resize", fit);
+  }
 })();
 
 // Setup request: copy only on an explicit user action.

@@ -387,3 +387,9 @@ svg { display: block; max-width: 100%; }
   .document .table-scroll { overflow: visible; }
   .document .table { min-width: 0; }
 }
+
+/* Hero picture: always fully visible beside the headline. site.js sets --fit to
+   the scale that fits between the column start and the window's right edge. */
+@media (min-width: 901px) {
+  .hero-scene { transform: scale(var(--fit, 1)); transform-origin: top left; margin-bottom: calc((var(--fit, 1) - 1) * 690px); }
+}
