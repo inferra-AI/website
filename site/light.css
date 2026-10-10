@@ -96,3 +96,19 @@ footer.site { background: var(--panel); }
   .ready-card { padding: 28px; }
   .ready-section { padding-top: 96px; }
 }
+
+/* YAML snippets (validated against the org.yaml parser). */
+.yaml-card { margin: 32px 0 24px; background: var(--ink-panel); border-radius: 20px; overflow: hidden; }
+.yaml-card figcaption { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 20px; border-bottom: 1px solid var(--ink-line); font: 12px/1.5 var(--mono); color: var(--ink-muted); }
+.yaml-card figcaption span:first-child { color: var(--ink-text); }
+.yaml-card pre, .yaml-mini { margin: 0; padding: 18px 20px; overflow-x: auto; font: 13px/1.7 var(--mono); color: var(--ink-text); }
+.yaml-mini { margin-top: 16px; background: var(--ink-panel); border-radius: 12px; font-size: 11px; padding: 12px 14px; }
+.yaml-card .k, .yaml-mini .k { color: #9db4ff; }
+.yaml-card .c, .yaml-mini .c { color: #8a909c; }
+.yaml-next { margin: 8px 0 32px; }
+.yaml-next-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-weight: 600; margin-bottom: 12px; }
+.yaml-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.yaml-pair .yaml-card { margin: 0; }
+@media (max-width: 760px) { .yaml-pair { grid-template-columns: 1fr; } }
+.split-section > .yaml-card, .split-section > .yaml-next { width: min(1060px, calc(100% - 80px)); margin-inline: auto; }
+@media (max-width: 760px) { .split-section > .yaml-card, .split-section > .yaml-next { width: calc(100% - 32px); } }
