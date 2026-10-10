@@ -425,3 +425,9 @@ svg { display: block; max-width: 100%; }
 .faq-item[open] summary::after { content: "−"; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item p { color: var(--muted); margin: 12px 0 0; line-height: 1.6; }
+
+.compare-table th[scope=row] { text-align: left; white-space: nowrap; color: var(--text); }
+.compare-table td { min-width: 112px; vertical-align: top; font-size: 14px; }
+.compare-table th[scope=row] { white-space: normal; min-width: 120px; }
+.compare-table thead th:nth-child(2), .compare-table td:nth-child(2) { color: var(--text); }
+.compare-table th, .compare-table td { overflow-wrap: normal; word-break: normal; hyphens: manual; }

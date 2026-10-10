@@ -16,7 +16,7 @@ Teams write the code; Inferra runs the servers, clusters, builds, HTTPS, patchin
 
 ## Preview status
 - The platform is in preview. Sign-in and the API currently run on the development environment (api.dev.inferralab.com).
-- Coming soon, not available yet: custom domains, the hosted MCP server for AI assistants, published comparison pages.
+- Coming soon, not available yet: custom domains and the hosted MCP server for AI assistants.
 - `inferra init --secret NAME` (send only listed secrets from GitHub) needs CLI 0.4.0-rc.17 or later; otherwise set secret values in the dashboard.
 
 ## Getting started
@@ -30,6 +30,9 @@ Teams write the code; Inferra runs the servers, clusters, builds, HTTPS, patchin
 - [CLI reference](https://inferralab.com/docs/cli/): logs, metrics, instances, rollback and promotion.
 - [Adding SSO to your app](https://inferralab.com/docs/sso/): OAuth/OpenID Connect, SAML and LDAPS sign-in inside your app.
 - [Release notes](https://inferralab.com/changelog/)
+
+## Compare
+- [Inferra vs Vercel, Heroku, Render, Railway and Fly.io](https://inferralab.com/compare/): pricing, workers, Postgres, previews and isolation, with official sources, verified 2026-10-10.
 
 ## Security
 - [Security and data handling](https://inferralab.com/security/): gVisor isolation, network rules, write-only secrets, deletion and backup retention.
