@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Credits and quotas for developers · Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="Declare branch reservations in Git and use the account wallet to track and fund them.">
+<link rel="canonical" href="https://inferralab.com/docs/billing/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Credits and quotas for developers", "item": "https://inferralab.com/docs/billing/"}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Credits and quotas for developers">
+<meta property="og:description" content="Declare branch reservations in Git and use the account wallet to track and fund them.">
+<meta property="og:url" content="https://inferralab.com/docs/billing/">
+<meta name="twitter:title" content="Credits and quotas for developers">
+<meta name="twitter:description" content="Declare branch reservations in Git and use the account wallet to track and fund them.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="document wrap">
+<div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>Credits and quotas for developers</h1><p class="lead">Declare branch reservations in Git and use the account wallet to track and fund them.</p></div>
+<section id="quotas"><h2>Reserve resources for each branch</h2><p>This guide describes credits billing. In this mode, the account’s Wallet replaces the plan billing page. The GitHub account shares a wallet across its repository orgs; each branch space has its own resource reservation.</p><p>Declare quotas in <code>.inferra/org.yaml</code> on the default branch. A feature branch cannot raise its own quota. For example:</p><pre class="term"><code>version: 2
+apps:
+  - folder: api
+    branches: [main, staging, &quot;feature/*&quot;]
+quotas:
+  main:
+    cpu: &quot;1&quot;
+    memory: 2Gi
+    storage: 20Gi
+  staging:
+    cpu: &quot;0.5&quot;
+    memory: 1Gi
+    storage: 5Gi
+  feature/*:
+    cpu: &quot;0.25&quot;
+    memory: 512Mi
+    storage: 2Gi</code></pre><p>Each matching feature branch gets its own quota and cost. Two open feature branches mean two reservations. Branches without quota entries use platform defaults. Read <a href="/docs/org-yaml/">the file reference</a> for branch matching and resource fields.</p></section>
+<section id="cost"><h2>Understand the cost</h2><p>Credits pricing charges reserved CPU, memory and storage, plus metered extras such as bucket storage, backups and outbound bandwidth, at simple per-unit prices. Lower measured usage does not reduce the reserved quota’s price. Sum the cost of every space across the account’s orgs.</p><p>Use the <a href="/#pricing">website pricing calculator</a> for an illustration. Its rates are examples. In the dashboard, open <strong>Wallet</strong> → <strong>Space quota calculator</strong>; select a space or enter a branch name/pattern, then enter CPU, memory and storage. The dashboard uses billing-supplied rates and shows the price per matching space. Copy its YAML into org.yaml, commit and push. The calculator does not save quotas.</p></section>
+<section id="wallet"><h2>Read your wallet</h2><p>Open the account’s <strong>Wallet</strong> from the dashboard navigation. It shows credit balance, free allowance left this month, monthly run rate, days of runway and a ledger of dated entries and amounts. Runway estimates how long the balance lasts at the current reservation rate.</p><p>The credits policy provides $5 of free usage each month per account, shared across its repos. The free allowance is used before paid credits. A card on file is required; one card receives one free allowance.</p></section>
+<section id="topups"><h2>Add credits</h2><p>In Wallet, enter an amount in USD and choose <strong>Add credits</strong> to open checkout. Under <strong>Auto top-up</strong>, enable it, set the balance threshold and amount to add, then choose <strong>Update auto top-up</strong>. Auto top-up is optional and off by default; the form defaults to adding $25 below $5. There is no top-up command in the captured CLI help.</p></section>
+<section id="admission"><h2>The quota rule</h2><p>The credits policy checks the new account-wide reservation: free accounts must stay at or below $5/month; paid accounts need at least seven days of runway at the new total. Refused changes appear on the commit check and leave previous quotas running. When billing is unavailable, quota increases are refused.</p><p>Illustrative example: a $60/month reservation with $50 of paid credits has about 25 days of runway and clears the seven-day rule. Raising the reservation to $300/month leaves about five days and needs a top-up. These amounts are examples, not live rates.</p></section>
+<section id="depletion"><h2>When credits run out</h2><p>Under the credits policy, at $0 new deploys pause immediately. After a three-day grace period, workloads pause. Data is kept for seven days; top up to resume. The core API enforces the wallet state returned by the billing service; grace timing and retention are handled by that service. Keep the wallet funded rather than relying on the retention window.</p></section>
+<section id="usage"><h2>Inspect usage from the CLI</h2><pre class="term"><code>inferra target shop/main
+inferra usage
+inferra usage --json</code></pre><p>In credits mode, output starts with the wallet balance, free allowance remaining and, when available, days of runway. The table shows each space’s reserved and used CPU, memory and storage, plus its monthly price. Example values:</p><pre class="term"><code>Wallet: $50.00 balance, $5.00 free left, 27.9 days runway
+SPACE      CPU RESERVED / USED  MEMORY RESERVED / USED  STORAGE RESERVED / USED  MONTHLY PRICE
+shop/main  1 / 0.5              2Gi / 512Mi             20Gi / 5Gi               $60.00</code></pre><p>A missing wallet is shown as <code>Wallet: unavailable</code>. Missing rates produce <code>unavailable</code> prices; missing reservations show <code>unspecified</code>. <code>--platform</code> is operator-only. See <a href="/docs/cli/">the CLI reference</a>.</p></section>
+</main>
+<footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>

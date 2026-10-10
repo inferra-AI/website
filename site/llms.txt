@@ -2,7 +2,7 @@
 
 > Inferra is the Git-native cloud: a PaaS that builds APIs, web apps and background workers from GitHub pushes with Cloud Native Buildpacks and runs them with managed Postgres, a Redis-compatible Valkey cache and S3 buckets.
 
-Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10 (dev platform, rc.22).
+Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10 (core code rc20; CLI help rc25).
 
 ## Configuration and deployment
 - Git pushes deploy source. Each repository is an org, each eligible branch has its own space, and apps are named repository folders.
@@ -16,21 +16,30 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 - Deleting a branch removes its space asynchronously. Pattern-branch services delete immediately; named branches retain Postgres restore eligibility and bucket data for 7 days.
 
 ## Credits pricing
-- No plans, subscriptions or app limits. Reserved branch CPU, memory and storage plus metered bandwidth, build minutes and backups cost our AWS cost plus 30%, paid from prepaid credits. Bills cannot exceed the prepaid balance.
+- No plans, subscriptions or app limits. Reserved branch CPU, memory and storage plus metered bucket storage, backups and outbound bandwidth are billed at simple per-unit prices, paid from prepaid credits. Bills cannot exceed the prepaid balance.
 - $5 of usage free every month per account, shared across all its repos. A card on file is required; never charged unless the customer buys credits. One free allowance per card.
 - Branch quotas live under org.yaml quotas:, keyed by exact branch names or patterns, with cpu, memory and storage. Each matching branch pays for its own quota. Missing entries use platform defaults.
 - Free reservations must fit the monthly $5 allowance. Paid credits must cover at least 7 days at a new total; rejected changes leave existing quotas running.
 - At $0, new deploys pause immediately. After a 3-day grace period, workloads pause; data is kept for 7 days. Top up to resume. Optional auto top-up is off by default.
-- Homepage calculator rates are illustrative, not published live AWS rates.
+- Current rates: $16.19 per vCPU-month, $1.78 per GB of memory a month, $0.10 per GB of storage a month. The live API publishes current prices at GET /v1/rates on the billing service.
 
 ## Security and MCP
 - Every app uses a gVisor sandbox. Each branch has a private network; services accept connections only from bound apps. Public outbound destinations are allowed; private ranges and cloud metadata are blocked.
-- Every build is scanned for known vulnerabilities. Secret values are not returned by read APIs.
+- Every successful build is submitted for scanning. Core accepts digest-bound pass/warn/block verdicts; no verdict can deploy with a not-scanned warning by default. v1 alone accepts scan: {block: critical}; high and the v2 scan field are rejected. Blocking policy waits up to two minutes. Core delegates vulnerability matching and does not verify OSV as a source. Secret values are not returned by read APIs.
 - The remote MCP server uses Streamable HTTP and the user's personal API token, verified on every request. Revoked tokens fail on the next request. All tools are read-only.
 - Clients: Claude Code, Codex, Cursor and VS Code. Connection examples use https://<host>/mcp; replace the host with the MCP server address.
 - Tools: list_orgs, list_spaces, list_apps, app_status, get_logs, get_metrics, list_deployments, explain_failed_deployment, get_org_yaml, propose_config_change.
 - propose_config_change returns advisory validation and a unified diff; it writes nothing. The assistant uses its own repo access to open a reviewable PR. Resource: inferra://docs/org-yaml.
 - The CLI inspects and operates apps; it does not deploy source.
+
+## Operating and observing apps
+- Git owns app/branch declarations, services and bindings, quotas, instances and sizing, members and environment configuration. Direct configuration writes in GitHub orgs are refused as managed by .inferra/org.yaml; GitHub Environment values are edited in GitHub.
+- Rollback changes the image only and keeps current environment/secrets; subsequent eligible pushes deploy from the new commit. Promotion copies an image without rebuilding, within the same cluster and with developer access to both spaces.
+- Restart, stop/start, secret-value writes, name inspection, logs, metrics and exec are allowed with the appropriate role. Captured CLI supports secret-name listing, not secret-value writes. Current dashboard has no exec terminal or promotion control in its tabbed app view.
+- Scale by editing branch-file run.instances, cpu and memory and pushing. Current GitHub Scale app dialog explains Git ownership; it has no GitHub line link.
+- Metrics ranges: 15m, 1h, 6h, 24h, 7d. Auto refresh: Off, 15s, 30s, 1m; pauses while zoomed. Wheel, drag-select, Shift-drag, pinch and keyboard zoom/pan; Reset zoom resumes the moving range.
+- CPU/memory show instance lines when available and a configured memory limit line when samples allow it. HTTP requests, p50/p95 latency and 5xx charts appear with data; otherwise charts are omitted, or No metrics available appears.
+- Live logs follow at the bottom; scrolling upward pauses following, and Jump to latest resumes. CLI: inferra logs APP --follow; inferra metrics APP --since 168h for seven days.
 
 ## Guides and references
 - [Setup](https://inferralab.com/setup/): two-file flow, secrets, commit checks and Postgres.
@@ -46,3 +55,7 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 - [Security and data handling](https://inferralab.com/security/)
 - [Website privacy](https://inferralab.com/privacy/)
 - [Demo repository and recording status](https://inferralab.com/demo/)
+
+- [Operate your apps](https://inferralab.com/docs/operate/): Git ownership and runtime operations.
+- [Metrics and logs](https://inferralab.com/docs/observe/): ranges, zoom and live logs.
+- [Credits and quotas for developers](https://inferralab.com/docs/billing/): reservations, wallet and usage.

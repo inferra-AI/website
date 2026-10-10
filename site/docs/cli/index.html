@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inferra CLI Reference: Logs, Rollback &amp; Promotion</title>
+<title>CLI reference · Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Inspect and operate Inferra apps with CLI commands for logs, metrics, rollback and promotion. GitHub pushes deploy source.">
+<meta name="description" content="Commands and flags as printed by the CLI, grouped by task.">
 <link rel="canonical" href="https://inferralab.com/docs/cli/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -16,11 +16,11 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "CLI reference", "item": "https://inferralab.com/docs/cli/"}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
-<meta property="og:title" content="Inferra CLI Reference: Logs, Rollback &amp; Promotion">
-<meta property="og:description" content="Inspect and operate Inferra apps with CLI commands for logs, metrics, rollback and promotion. GitHub pushes deploy source.">
+<meta property="og:title" content="CLI reference">
+<meta property="og:description" content="Commands and flags as printed by the CLI, grouped by task.">
 <meta property="og:url" content="https://inferralab.com/docs/cli/">
-<meta name="twitter:title" content="Inferra CLI Reference: Logs, Rollback &amp; Promotion">
-<meta name="twitter:description" content="Inspect and operate Inferra apps with CLI commands for logs, metrics, rollback and promotion. GitHub pushes deploy source.">
+<meta name="twitter:title" content="CLI reference">
+<meta name="twitter:description" content="Commands and flags as printed by the CLI, grouped by task.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -38,20 +38,683 @@
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
-<div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>CLI reference</h1><p class="lead">The Inferra CLI inspects repository orgs and operates running workloads. GitHub pushes deploy source; customer commands cover logs, metrics, instances, rollback and promotion.</p></div>
-<section id="commands"><h2>Customer commands</h2><p>Run <code>inferra COMMAND --help</code> for built-in help. Replace uppercase placeholders with your names. These are customer commands; operator-only and planned command surfaces are excluded.</p><!-- LAUNCH: production API host --><div class="table-scroll" tabindex="0" role="region" aria-label="Command (after inferra) table"><table class="table"><thead><tr><th scope="col">Command (after inferra)</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>version</code></td><td>Print the installed CLI version.</td></tr><tr><td><code>init [-p PATH] [--name NAME] [--force]</code></td><td>Write supported v1 starter configuration and environment workflow; for v2, write org.yaml and branch files by hand. Review the release-specific workflow behavior in setup. --force overwrites generated files.</td></tr><tr><td><code>login --api https://api.dev.inferralab.dev</code></td><td>Paste a personal token from Settings → Tokens. --token - reads stdin; --org and --space choose the target.</td></tr><tr><td><code>logout</code></td><td>Clear the saved login locally.</td></tr><tr><td><code>whoami</code></td><td>Show the current identity and roles.</td></tr><tr><td><code>target [ORG[/SPACE]]</code></td><td>Show or save the default target.</td></tr><tr><td><code>orgs</code></td><td>List accessible repository orgs.</td></tr><tr><td><code>orgs delete ORG [--yes]</code></td><td>Delete an org and all its resources. Restricted by the API to org-wide owners (repository admins); prompts for confirmation unless --yes is passed. Removing repository access in GitHub also triggers cleanup.</td></tr><tr><td><code>org [NAME]</code></td><td>Inspect an org; defaults to the target.</td></tr><tr><td><code>spaces</code></td><td>List spaces in the target org.</td></tr><tr><td><code>accounts</code></td><td>List accessible GitHub accounts and shared account usage.</td></tr><tr><td><code>account NAME</code></td><td>Show one account’s orgs and shared usage.</td></tr><tr><td><code>quotas</code></td><td>Inspect available quota information; branch quotas are configured in org.yaml.</td></tr><tr><td><code>usage</code></td><td>Show target org usage and quota.</td></tr><tr><td><code>members</code></td><td>List members and roles.</td></tr><tr><td><code>invitations</code></td><td>List join requests; invitations accept ORG and invitations decline ORG answer them.</td></tr><tr><td><code>events [--app APP] [--since DURATION_OR_TIME]</code></td><td>Read org events; --since accepts a duration such as 24h or an RFC 3339 time.</td></tr><tr><td><code>apps</code></td><td>List apps in the target space.</td></tr><tr><td><code>apps status NAME</code></td><td>Show an app and its status.</td></tr><tr><td><code>instances APP</code></td><td>Inspect running instances.</td></tr><tr><td><code>deployments APP</code></td><td>List deployment history.</td></tr><tr><td><code>logs APP</code></td><td>Read app and platform logs. --follow/-f streams; --since filters time; --limit defaults to 500; --instance selects an instance; --grep filters text.</td></tr><tr><td><code>metrics APP [--since 1h]</code></td><td>Read CPU, memory, requests, latency and restarts. Default 1h; write 168h for 7 days.</td></tr><tr><td><code>exec APP [--pod POD] -- COMMAND...</code></td><td>Run a command in a running instance; defaults to a shell and the first ready pod.</td></tr><tr><td><code>start APP</code></td><td>Start a stopped app.</td></tr><tr><td><code>stop APP</code></td><td>Stop instances, preserving the URL, configuration and services.</td></tr><tr><td><code>restart APP</code></td><td>Restart using the same image.</td></tr><tr><td><code>rollback APP [--to DEPLOYMENT_ID]</code></td><td>Redeploy an earlier image with current variables and secrets.</td></tr><tr><td><code>promote APP --from SPACE [--to SPACE] [--deployment ID]</code></td><td>Promote the source space’s live image or a specified deployment; destination defaults to the targeted space.</td></tr><tr><td><code>env APP [--reveal]</code></td><td>List variables. Developers and owners may reveal ordinary values. Managed-service connection values stay hidden.</td></tr><tr><td><code>secrets APP</code></td><td>List secret names and metadata; never values. Customer tokens have no secret-writing CLI commands.</td></tr><tr><td><code>buildpacks</code></td><td>List curated buildpack IDs, versions and status.</td></tr><tr><td><code>services</code></td><td>List services and their bindings in the target space.</td></tr><tr><td><code>service status NAME</code></td><td>Inspect service health, version and backup metadata when available. db status NAME is the database form.</td></tr><tr><td><code>service logs NAME</code></td><td>Read service logs. db logs NAME is the database form. Both support --follow/-f, --since, --instance and --grep.</td></tr></tbody></table></div></section><section id="global"><h2>Flags and environment</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Setting table"><table class="table"><thead><tr><th scope="col">Setting</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>--api</code> / <code>INFERRA_API</code></td><td>API address; flag takes precedence, then environment, then saved login. Use https://api.dev.inferralab.dev.</td></tr><tr><td><code>--org</code> / <code>INFERRA_ORG</code></td><td>Org target; flag overrides environment and saved target.</td></tr><tr><td><code>--space</code> / <code>INFERRA_SPACE</code></td><td>Space target; flag overrides environment and saved target.</td></tr><tr><td><code>--json</code></td><td>Machine-readable output on commands that implement it.</td></tr><tr><td><code>INFERRA_TOKEN</code></td><td>Personal token for automation; overrides the saved token. Do not put the value into a command argument or commit it.</td></tr><tr><td><code>INFERRA_CONFIG</code></td><td>Override the local configuration file path.</td></tr></tbody></table></div><!-- LAUNCH: production API host --><p>When <code>INFERRA_TOKEN</code> is set, login refuses to replace it. Unset it to use another saved login. The explicit API address is required because the current built-in default is incorrect.</p></section><section id="examples"><h2>Inspect and operate</h2><pre class="term"><code>inferra login --api https://api.dev.inferralab.dev
-inferra orgs
-inferra target YOUR_ORG/main
-inferra logs api --since 15m
-inferra metrics api --since 1h
-inferra exec api -- /bin/sh
-inferra rollback api
-inferra promote api --from main --to staging</code></pre><!-- LAUNCH: production API host --></section><section id="limits"><h2>What changes where</h2><p>Push to GitHub to deploy new source. Edit default-branch <code>org.yaml</code> v2 for app declarations, service resources, membership and branch quotas. Edit branch files for build/run settings, service bindings, env and secret names. Set secret values in the dashboard or the GitHub Environment named after the branch. A manual rollback selects an image, not historical configuration.</p><p><code>inferra init --secret NAME</code> and <code>--workflow-only</code> (CLI 0.4.0-rc.17 and later) generate a workflow that sends only the secrets you list; see <a href="/setup/#environment">setup, step 4</a>. Connect your assistant with the <a href="/mcp/">read-only MCP server</a>.</p></section>
+<div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>CLI reference</h1><p class="lead">Commands and flags as printed by the CLI, grouped by task.</p></div>
+<section id="getting-started"><h2>Start here</h2><p>GitHub pushes deploy source. The CLI inspects apps and operates running workloads. Choose a target with <code>inferra target ORG/SPACE</code>; use <code>--org</code> and <code>--space</code> to override it for one command. Commands also accept the global flags printed below.</p><pre class="term"><code>inferra login
+inferra target shop/main
+inferra apps
+inferra logs api --follow</code></pre><p>This reference preserves every command and flag in the supplied CLI help capture. Some help still describes plans or v1 services; credits mode uses the wallet, and v2 declares services in org.yaml with bindings in branch files. Read <a href="/docs/billing/">credits and quotas</a> and <a href="/docs/org-yaml/">the v2 reference</a> for those distinctions.</p></section>
+<section id="v2"><h2>Init currently writes version 1</h2><p><code>inferra init</code> currently generates the version-1 org file. To use v2, write these two files yourself, with your source in a named folder such as <code>api/</code>:</p><p><code>.inferra/org.yaml</code> on the default branch:</p><pre class="term"><code>version: 2
+apps:
+  - folder: api
+    branches: [main]</code></pre><p><code>.inferra/main.yaml</code> on main:</p><pre class="term"><code>apps:
+  api:
+    run:
+      instances:
+        min: 1
+        max: 1
+      cpu: &quot;0.25&quot;
+      memory: 256Mi</code></pre><p>Commit both and push. See <a href="/docs/org-yaml/">the configuration reference</a> for services, secrets and more branches. <code>--workflow-only</code> generates a workflow from an existing org.yaml; it does not convert a v1 file to v2.</p></section>
+<nav aria-label="CLI reference sections"><ul><li><a href="#global">Command list and global flags</a></li><li><a href="#session">Login, targeting and repository setup</a></li><li><a href="#inspect">Inspect accounts, orgs and apps</a></li><li><a href="#operate">Operate workloads and inspect configuration</a></li><li><a href="#observe">Logs and metrics</a></li><li><a href="#services">Services, buildpacks and plan compatibility</a></li><li><a href="#tools">Help, completion and version</a></li><li><a href="#staff">Staff commands</a></li></ul></nav><section id="global"><h2>Command list and global flags</h2><h3 id="command-root">inferra</h3><p>Find the available commands and global flags.</p><pre class="term"><code>$ inferra --help
+Inferra deploys repositories connected through the Inferra GitHub App.
+Use the CLI to inspect apps and operate running workloads.
+Start with: inferra init, commit the generated files, and push to GitHub.
+
+Usage:
+  inferra [command]
+
+Available Commands:
+  account     Show an account&#x27;s orgs and pooled resource usage
+  accounts    List GitHub accounts and their shared resource usage
+  admin       Operator commands for Inferra staff (super admins)
+  apps        List apps in the targeted space
+  buildpacks  List curated buildpacks
+  completion  Generate the autocompletion script for the specified shell
+  db          Inspect managed databases
+  deployments Show an app&#x27;s deployment history (newest first)
+  env         List an app&#x27;s environment variables
+  events      Show the org&#x27;s audit log (who did what)
+  exec        Run a command in a running app instance
+  help        Help about any command
+  init        Create starter Inferra repository configuration
+  instances   Show an app&#x27;s running instances
+  invitations List and answer org join requests
+  login       Log in with a personal token from the web UI (like cf login)
+  logout      Remove the saved token from this machine
+  logs        Show recent logs, or follow them with -f
+  members     List org members and their roles (GitHub admins and org.yaml members)
+  metrics     Show an app&#x27;s CPU, memory, requests and latency over time
+  org         Show an org&#x27;s plan, quota usage, owners and spaces (like cf org; change plans in the web UI)
+  orgs        List your GitHub repository orgs and their plans
+  promote     Deploy the exact image running in another space (no rebuild)
+  quota       Show one plan&#x27;s limits (like cf quota)
+  quotas      List plans and their quotas (like cf quotas)
+  restart     Restart instances with the same image
+  rollback    Redeploy an earlier deployment (default: the previous one)
+  secrets     List an app&#x27;s secret names (values are never shown)
+  service     Inspect a managed service
+  services    List services in the targeted space and the apps using them
+  spaces      List the org&#x27;s spaces
+  start       Start a stopped app
+  stop        Stop all instances (keeps URL, config and services)
+  target      Show or set the org and space that commands act on
+  usage       Show the org&#x27;s quota and current usage
+  version     Print the CLI version
+  whoami      Show who the current token belongs to and your orgs
+
+Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+  -h, --help           help for inferra
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra [command] --help&quot; for more information about a command.</code></pre></section>
+<section id="session"><h2>Login, targeting and repository setup</h2><h3 id="command-login">inferra login</h3><p>Log in with a personal token. Sign in at the Inferra web UI with GitHub,</p><pre class="term"><code>$ inferra login --help
+Log in with a personal token. Sign in at the Inferra web UI with GitHub,
+generate a token under Settings → Tokens, then paste it here. The token
+carries your own roles: you can do exactly what you can do in the UI.
+
+Then pick the org and space to work in, like &quot;cf login&quot;: chosen automatically
+when there is only one, otherwise from a numbered list (skip with --org and
+--space). Pipelines don&#x27;t log in: set INFERRA_TOKEN (plus INFERRA_ORG and
+INFERRA_SPACE) instead.
+
+Usage:
+  inferra login [flags]
+
+Examples:
+  inferra login                                  # paste the token (hidden) when asked
+  printenv INFERRA_NEW_TOKEN | inferra login --token - --org acme --space dev
+
+Avoid --token &lt;value&gt;: it shows up in shell history and process listings.
+
+Flags:
+  -h, --help           help for login
+      --org string     org to target (skips the prompt)
+      --space string   space to target (skips the prompt)
+      --token string   personal token; &quot;-&quot; reads it from stdin (preferred over passing the value)
+
+Global Flags:
+      --api string   API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json         print machine-readable JSON</code></pre><h3 id="command-logout">inferra logout</h3><p>Remove the saved token from this machine. To stop a token working everywhere, revoke it in the web UI.</p><pre class="term"><code>$ inferra logout --help
+Remove the saved token from this machine. To stop a token working everywhere, revoke it in the web UI.
+
+Usage:
+  inferra logout [flags]
+
+Flags:
+  -h, --help   help for logout
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-whoami">inferra whoami</h3><p>Show who the current token belongs to and your orgs</p><pre class="term"><code>$ inferra whoami --help
+Show who the current token belongs to and your orgs
+
+Usage:
+  inferra whoami [flags]
+
+Flags:
+  -h, --help   help for whoami
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-target">inferra target</h3><p>Show or set the default org and space, like &quot;cf target&quot;.</p><pre class="term"><code>$ inferra target --help
+Show or set the default org and space, like &quot;cf target&quot;.
+Examples:
+  inferra target acme/prod
+  inferra target acme        (org only; set a space later)
+
+Usage:
+  inferra target [ORG[/SPACE]] [flags]
+
+Flags:
+  -h, --help   help for target
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-init">inferra init</h3><p>Create starter Inferra repository configuration</p><pre class="term"><code>$ inferra init --help
+Create starter Inferra repository configuration
+
+Usage:
+  inferra init [flags]
+
+Flags:
+      --force                overwrite existing generated files
+  -h, --help                 help for init
+      --name string          app name (defaults to the folder name)
+  -p, --path string          repository folder (default &quot;.&quot;)
+      --secret stringArray   GitHub secret name to sync (repeat for each name; defaults to none)
+      --workflow-only        generate only the workflow using existing .inferra/org.yaml spaces
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="inspect"><h2>Inspect accounts, orgs and apps</h2><h3 id="command-accounts">inferra accounts</h3><p>List GitHub accounts and their shared resource usage</p><pre class="term"><code>$ inferra accounts --help
+List GitHub accounts and their shared resource usage
+
+Usage:
+  inferra accounts [flags]
+
+Flags:
+  -h, --help   help for accounts
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-account">inferra account</h3><p>Show an account&#x27;s orgs and pooled resource usage</p><pre class="term"><code>$ inferra account --help
+Show an account&#x27;s orgs and pooled resource usage
+
+Usage:
+  inferra account NAME [flags]
+
+Flags:
+  -h, --help   help for account
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-orgs">inferra orgs</h3><p>List your GitHub repository orgs and their plans</p><pre class="term"><code>$ inferra orgs --help
+List your GitHub repository orgs and their plans
+
+Usage:
+  inferra orgs [flags]
+  inferra orgs [command]
+
+Aliases:
+  orgs, teams
+
+Available Commands:
+  delete      Delete an org and all its spaces and apps (owner only)
+
+Flags:
+  -h, --help   help for orgs
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra orgs [command] --help&quot; for more information about a command.</code></pre><h3 id="command-org">inferra org</h3><p>Show an org&#x27;s plan, quota usage, owners and spaces (like cf org; change plans in the web UI)</p><pre class="term"><code>$ inferra org --help
+Show an org&#x27;s plan, quota usage, owners and spaces (like cf org; change plans in the web UI)
+
+Usage:
+  inferra org [NAME] [flags]
+
+Flags:
+  -h, --help   help for org
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-spaces">inferra spaces</h3><p>List the org&#x27;s spaces</p><pre class="term"><code>$ inferra spaces --help
+List the org&#x27;s spaces
+
+Usage:
+  inferra spaces [flags]
+
+Flags:
+  -h, --help   help for spaces
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-apps">inferra apps</h3><p>List apps in the targeted space</p><pre class="term"><code>$ inferra apps --help
+List apps in the targeted space
+
+Usage:
+  inferra apps [flags]
+  inferra apps [command]
+
+Aliases:
+  apps, app
+
+Available Commands:
+  status      Show an app&#x27;s state, URL and health conditions
+
+Flags:
+  -h, --help   help for apps
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra apps [command] --help&quot; for more information about a command.</code></pre><h3 id="command-instances">inferra instances</h3><p>Show an app&#x27;s running instances</p><pre class="term"><code>$ inferra instances --help
+Show an app&#x27;s running instances
+
+Usage:
+  inferra instances APP [flags]
+
+Flags:
+  -h, --help   help for instances
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-deployments">inferra deployments</h3><p>Show an app&#x27;s deployment history (newest first)</p><pre class="term"><code>$ inferra deployments --help
+Show an app&#x27;s deployment history (newest first)
+
+Usage:
+  inferra deployments APP [flags]
+
+Flags:
+  -h, --help   help for deployments
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-members">inferra members</h3><p>List org members and their roles (GitHub admins and org.yaml members)</p><pre class="term"><code>$ inferra members --help
+List org members and their roles (GitHub admins and org.yaml members)
+
+Usage:
+  inferra members [flags]
+
+Flags:
+  -h, --help   help for members
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-invitations">inferra invitations</h3><p>List and answer org join requests</p><pre class="term"><code>$ inferra invitations --help
+List and answer org join requests
+
+Usage:
+  inferra invitations [flags]
+  inferra invitations [command]
+
+Available Commands:
+  accept&#32;&#32;&#32;&#32;&#32;&#32;
+  decline&#32;&#32;&#32;&#32;&#32;
+
+Flags:
+  -h, --help   help for invitations
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra invitations [command] --help&quot; for more information about a command.</code></pre><h3 id="command-events">inferra events</h3><p>Show the org&#x27;s audit log (who did what)</p><pre class="term"><code>$ inferra events --help
+Show the org&#x27;s audit log (who did what)
+
+Usage:
+  inferra events [flags]
+
+Flags:
+      --app string     only events for this app (in the targeted space)
+  -h, --help           help for events
+      --since string   only newer events, e.g. &quot;24h&quot; or an RFC 3339 time
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-usage">inferra usage</h3><p>Show the org&#x27;s quota and current usage</p><pre class="term"><code>$ inferra usage --help
+Show the org&#x27;s quota and current usage
+
+Usage:
+  inferra usage [flags]
+
+Flags:
+  -h, --help       help for usage
+      --platform   show platform-wide totals (operator only)
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="operate"><h2>Operate workloads and inspect configuration</h2><h3 id="command-restart">inferra restart</h3><p>Restart instances with the same image</p><pre class="term"><code>$ inferra restart --help
+Restart instances with the same image
+
+Usage:
+  inferra restart APP [flags]
+
+Flags:
+  -h, --help   help for restart
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-stop">inferra stop</h3><p>Stop all instances (keeps URL, config and services)</p><pre class="term"><code>$ inferra stop --help
+Stop all instances (keeps URL, config and services)
+
+Usage:
+  inferra stop APP [flags]
+
+Flags:
+  -h, --help   help for stop
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-start">inferra start</h3><p>Start a stopped app</p><pre class="term"><code>$ inferra start --help
+Start a stopped app
+
+Usage:
+  inferra start APP [flags]
+
+Flags:
+  -h, --help   help for start
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-rollback">inferra rollback</h3><p>Redeploy an earlier deployment (default: the previous one)</p><pre class="term"><code>$ inferra rollback --help
+Redeploy an earlier deployment (default: the previous one)
+
+Usage:
+  inferra rollback APP [flags]
+
+Flags:
+  -h, --help        help for rollback
+      --to string   deployment id to roll back to
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-promote">inferra promote</h3><p>Promote what was tested in one space into the targeted space, using the</p><pre class="term"><code>$ inferra promote --help
+Promote what was tested in one space into the targeted space, using the
+same image, without rebuilding. Example:
+  inferra promote order-api --from qa --space prod
+
+Usage:
+  inferra promote APP --from SPACE [flags]
+
+Flags:
+      --deployment string   deployment to promote (default: the one live in --from)
+      --from string         space to promote from
+  -h, --help                help for promote
+      --to string           target space (default: the currently targeted space)
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-exec">inferra exec</h3><p>Run a command in a running app instance</p><pre class="term"><code>$ inferra exec --help
+Run a command in a running app instance
+
+Usage:
+  inferra exec APP [-- COMMAND...] [flags]
+
+Flags:
+  -h, --help         help for exec
+      --pod string   pod name (defaults to the first ready pod)
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-env">inferra env</h3><p>List variable names; --reveal also shows ordinary variable values (developer role or higher).</p><pre class="term"><code>$ inferra env --help
+List variable names; --reveal also shows ordinary variable values (developer role or higher).
+Managed-service connection values stay hidden. Use &quot;inferra secrets&quot; to list secret names.
+
+Usage:
+  inferra env APP [flags]
+
+Flags:
+  -h, --help     help for env
+      --reveal   show values
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-secrets">inferra secrets</h3><p>List an app&#x27;s secret names (values are never shown)</p><pre class="term"><code>$ inferra secrets --help
+List an app&#x27;s secret names (values are never shown)
+
+Usage:
+  inferra secrets APP [flags]
+
+Flags:
+  -h, --help   help for secrets
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="observe"><h2>Logs and metrics</h2><h3 id="command-logs">inferra logs</h3><p>Show recent logs, or follow them with -f</p><pre class="term"><code>$ inferra logs --help
+Show recent logs, or follow them with -f
+
+Usage:
+  inferra logs APP [flags]
+
+Flags:
+  -f, --follow         stream new log lines until interrupted
+      --grep string    only messages containing this text
+  -h, --help           help for logs
+      --instance int   only this instance number
+      --limit int      maximum lines (without -f) (default 500)
+      --since string   only newer lines, e.g. &quot;15m&quot; or an RFC 3339 time
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-metrics">inferra metrics</h3><p>Show an app&#x27;s CPU, memory, requests and latency over time</p><pre class="term"><code>$ inferra metrics --help
+Show an app&#x27;s CPU, memory, requests and latency over time
+
+Usage:
+  inferra metrics APP [flags]
+
+Flags:
+  -h, --help           help for metrics
+      --since string   how far back, e.g. 15m, 6h, 7d is 168h (default &quot;1h&quot;)
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="services"><h2>Services, buildpacks and plan compatibility</h2><h3 id="command-services">inferra services</h3><p>Declare managed services (postgres, redis, bucket) under each app&#x27;s</p><pre class="term"><code>$ inferra services --help
+Declare managed services (postgres, redis, bucket) under each app&#x27;s
+&quot;services:&quot; in .inferra/org.yaml, then push to GitHub. Apps in the same space
+that declare the same service name share it. Removing the last declaration
+schedules deletion according to the service&#x27;s retention policy.
+Use &quot;inferra service status NAME&quot; to inspect a service.
+
+Usage:
+  inferra services [flags]
+
+Flags:
+  -h, --help   help for services
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-service">inferra service</h3><p>Inspect a managed service</p><pre class="term"><code>$ inferra service --help
+Inspect a managed service
+
+Usage:
+  inferra service [command]
+
+Available Commands:
+  logs&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+  status&#32;&#32;&#32;&#32;&#32;&#32;
+
+Flags:
+  -h, --help   help for service
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra service [command] --help&quot; for more information about a command.</code></pre><h3 id="command-db">inferra db</h3><p>Inspect managed databases</p><pre class="term"><code>$ inferra db --help
+Inspect managed databases
+
+Usage:
+  inferra db [command]
+
+Available Commands:
+  logs&#32;&#32;&#32;&#32;&#32;&#32;&#32;&#32;
+  status&#32;&#32;&#32;&#32;&#32;&#32;
+
+Flags:
+  -h, --help   help for db
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra db [command] --help&quot; for more information about a command.</code></pre><h3 id="command-buildpacks">inferra buildpacks</h3><p>List curated buildpacks</p><pre class="term"><code>$ inferra buildpacks --help
+List curated buildpacks
+
+Usage:
+  inferra buildpacks [flags]
+
+Flags:
+  -h, --help   help for buildpacks
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-quotas">inferra quotas</h3><p>List plans and their quotas (like cf quotas)</p><pre class="term"><code>$ inferra quotas --help
+List plans and their quotas (like cf quotas)
+
+Usage:
+  inferra quotas [flags]
+
+Aliases:
+  quotas, plans
+
+Flags:
+  -h, --help   help for quotas
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-quota">inferra quota</h3><p>Show one plan&#x27;s limits (like cf quota)</p><pre class="term"><code>$ inferra quota --help
+Show one plan&#x27;s limits (like cf quota)
+
+Usage:
+  inferra quota PLAN [flags]
+
+Aliases:
+  quota, plan
+
+Flags:
+  -h, --help   help for quota
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="tools"><h2>Help, completion and version</h2><h3 id="command-help">inferra help</h3><p>Help provides help for any command in the application.</p><pre class="term"><code>$ inferra help --help
+Help provides help for any command in the application.
+Simply type inferra help [path to command] for full details.
+
+Usage:
+  inferra help [command] [flags]
+
+Flags:
+  -h, --help   help for help
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-completion">inferra completion</h3><p>Generate the autocompletion script for inferra for the specified shell.</p><pre class="term"><code>$ inferra completion --help
+Generate the autocompletion script for inferra for the specified shell.
+See each sub-command&#x27;s help for details on how to use the generated script.
+
+Usage:
+  inferra completion [command]
+
+Available Commands:
+  bash        Generate the autocompletion script for bash
+  fish        Generate the autocompletion script for fish
+  powershell  Generate the autocompletion script for powershell
+  zsh         Generate the autocompletion script for zsh
+
+Flags:
+  -h, --help   help for completion
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra completion [command] --help&quot; for more information about a command.</code></pre><h3 id="command-version">inferra version</h3><p>Print the CLI version</p><pre class="term"><code>$ inferra version --help
+Print the CLI version
+
+Usage:
+  inferra version [flags]
+
+Flags:
+  -h, --help   help for version
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+<section id="staff"><h2>Staff commands</h2><h3 id="command-admin">inferra admin</h3><p>Commands for Inferra operators: inspect plans (quotas), look up orgs,</p><pre class="term"><code>$ inferra admin --help
+Commands for Inferra operators: inspect plans (quotas), look up orgs,
+suspend and unsuspend them, and view platform usage. Operators are
+super admins over every org; log in with an operator token from the admin
+console (company SSO + MFA, short-lived). Every operator action is recorded
+in the affected org&#x27;s events.
+
+Usage:
+  inferra admin [flags]
+  inferra admin [command]
+
+Available Commands:
+  accounts    Manage GitHub billing accounts
+  org         Show one org&#x27;s plan, owners, usage and billing state
+  orgs        Search orgs across the platform
+  quotas      List all plans, including private and retired
+  usage       Platform-wide totals
+  whoami      Check the current token is an operator token
+
+Flags:
+  -h, --help   help for admin
+
+Global Flags:
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --json           print machine-readable JSON
+      --org string     org (overrides the saved target and $INFERRA_ORG)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)
+
+Use &quot;inferra admin [command] --help&quot; for more information about a command.</code></pre></section>
+<section id="subcommands"><h2>Subcommands listed in the help</h2><p>The capture lists these child commands but does not include their individual flag help. Use <code>inferra help COMMAND SUBCOMMAND</code> to inspect the installed CLI before using them.</p><div class="table-scroll" tabindex="0" role="region" aria-label="CLI subcommands"><table class="table"><thead><tr><th scope="col">Command path</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>inferra apps status</code></td><td>Show the app state, URL and health conditions.</td></tr><tr><td><code>inferra orgs delete</code></td><td>Delete an org and its spaces and apps; requires owner access.</td></tr><tr><td><code>inferra invitations accept</code></td><td>Accept an org join request.</td></tr><tr><td><code>inferra invitations decline</code></td><td>Decline an org join request.</td></tr><tr><td><code>inferra db status</code></td><td>Inspect a managed database.</td></tr><tr><td><code>inferra db logs</code></td><td>Read managed database logs.</td></tr><tr><td><code>inferra service status</code></td><td>Inspect a managed service.</td></tr><tr><td><code>inferra service logs</code></td><td>Read managed service logs.</td></tr><tr><td><code>inferra completion bash</code></td><td>Generate shell completion for bash.</td></tr><tr><td><code>inferra completion fish</code></td><td>Generate shell completion for fish.</td></tr><tr><td><code>inferra completion powershell</code></td><td>Generate shell completion for PowerShell.</td></tr><tr><td><code>inferra completion zsh</code></td><td>Generate shell completion for zsh.</td></tr><tr><td><code>inferra admin accounts</code></td><td>Manage GitHub billing accounts as an operator.</td></tr><tr><td><code>inferra admin org</code></td><td>Inspect an org as an operator.</td></tr><tr><td><code>inferra admin orgs</code></td><td>Search orgs as an operator.</td></tr><tr><td><code>inferra admin quotas</code></td><td>List all plans, including private and retired plans.</td></tr><tr><td><code>inferra admin usage</code></td><td>Inspect platform-wide totals as an operator.</td></tr><tr><td><code>inferra admin whoami</code></td><td>Check whether your token is an operator token.</td></tr></tbody></table></div></section>
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
-<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
 <nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
 <div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
