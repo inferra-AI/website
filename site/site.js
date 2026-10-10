@@ -1,23 +1,10 @@
-// Inferra site: mobile menu, the diff highlighter, live status, first-party events.
+// Inferra site: mobile menu, live status, first-party events.
 (() => {
+  document.documentElement.classList.add("js");
   const menu = document.querySelector(".menu-btn"), links = document.getElementById("nav-links");
   menu?.addEventListener("click", () => {
     const open = links.classList.toggle("open");
     menu.setAttribute("aria-expanded", String(open));
-  });
-
-  // The diff: focusing or hovering a line lights up what it creates.
-  const env = document.getElementById("env");
-  const light = (keys) => {
-    env.classList.toggle("focusing", keys.length > 0);
-    env.querySelectorAll("[data-k]").forEach((el) => el.classList.toggle("lit", keys.includes(el.dataset.k)));
-  };
-  document.querySelectorAll(".code .ln[data-lit]").forEach((ln) => {
-    const keys = ln.dataset.lit.split(" ");
-    const on = () => { document.querySelectorAll(".code .ln.on").forEach((x) => x.classList.remove("on")); ln.classList.add("on"); light(keys); };
-    const off = () => { ln.classList.remove("on"); light([]); };
-    ln.addEventListener("mouseenter", on); ln.addEventListener("focus", on);
-    ln.addEventListener("mouseleave", off); ln.addEventListener("blur", off);
   });
 
   // Status dot: read the status page's summary; stay neutral if it can't be reached.

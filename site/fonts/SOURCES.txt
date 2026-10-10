@@ -1,0 +1,13 @@
+Inter 400/500/600 and JetBrains Mono 400/500: existing self-hosted assets retained.
+Inter 700: static bold instance of Inter Variable 4.001 (git-9221beed3),
+weight 700, optical size 14, subset to the same codepoints as the existing
+Inter Latin font using fontTools. SIL Open Font License: Inter-LICENSE.txt.
+
+Source: locally installed n8n-editor-ui asset InterVariable-DiVDrmQJ.woff2.
+The requested jsDelivr @fontsource/inter download could not be reached in
+the build sandbox (DNS/network restricted). This is a real Inter bold
+font, not renamed semibold or browser-synthesized bold. All fonts are
+served locally; no third-party font requests are made.
+
+Requested upstream asset for a future byte-for-byte Fontsource replacement:
+https://cdn.jsdelivr.net/npm/@fontsource/inter/files/inter-latin-700-normal.woff2

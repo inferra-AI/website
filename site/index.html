@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inferra: GitHub-native platform for APIs, workers and Postgres</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Deploy APIs, workers and containers from your GitHub repo, with managed Postgres, cache, buckets, previews and logs, on flat monthly plans.">
+<meta name="description" content="APIs, workers and web apps straight from your repo. Postgres next to the app, a preview for every branch, a sandbox on every plan.">
 <link rel="canonical" href="https://inferralab.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
@@ -13,10 +13,9 @@
 <meta property="og:description" content="One file defines production, staging and previews. Databases only your apps can reach. A flat monthly bill.">
 <meta property="og:url" content="https://inferralab.com/">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#fafaf7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1220" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#07080c">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">
@@ -25,7 +24,7 @@
   "@graph": [
     {"@type": "Organization", "@id": "https://inferralab.com/#org", "name": "Inferra", "url": "https://inferralab.com/", "logo": "https://inferralab.com/favicon.svg", "sameAs": ["https://github.com/inferra-AI"]},
     {"@type": "SoftwareApplication", "name": "Inferra", "applicationCategory": "DeveloperApplication", "operatingSystem": "Linux, macOS, Windows (CLI)", "url": "https://inferralab.com/",
-     "description": "A GitHub-native application platform: one file in your repo defines production, staging and previews for your APIs, workers and containers, with managed Postgres, Valkey cache and S3 buckets, on flat monthly plans.",
+     "description": "APIs, workers and web apps straight from your repo. Postgres next to the app, a preview for every branch, a sandbox on every plan.",
      "publisher": {"@id": "https://inferralab.com/#org"},
      "offers": [
        {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "7-day trial: 3 apps, 1.5 CPU, 1.5 GiB"},
@@ -39,279 +38,67 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 </head>
-<body>
+<body class="landing">
 <a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
 
-<header class="nav">
-  <div class="wrap">
-    <a class="logo" href="/" aria-label="Inferra home">
-      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="var(--accent)"/><path d="M8 7v10M12 7v10M16 7v10" stroke="var(--on-accent)" stroke-width="2" stroke-linecap="round"/></svg>
-      Inferra
-    </a>
-    <button class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
-    <ul id="nav-links">
-      <li><a href="/docs">Docs</a></li>
-      <li><a href="/setup">Setup</a></li>
-      <li><a href="/download">Download</a></li>
-      <li><a href="/#plans">Pricing</a></li>
-      <li><a href="/demo">Demo</a></li>
-      <li><a href="https://status.inferralab.com">Status</a></li>
-      <li><a class="signin" href="https://api.dev.inferralab.com/">Sign in</a></li>
-    </ul>
-  </div>
-</header>
-
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="#product">Product</a></li><li><a href="/docs">Docs</a></li><li><a href="#pricing">Pricing</a></li><li><a href="/demo">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.com/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
 <main id="main">
-
-<section class="hero" aria-labelledby="h1">
-  <div class="wrap">
-    <div>
-      <p class="eyebrow">GitHub-native application platform</p>
-      <h1 id="h1">Your GitHub repo is your backend platform.</h1>
-      <p class="lead">Commit one file, keep values in GitHub Environments, push. Inferra builds, deploys and reports back on the commit: APIs, workers and Postgres, sandboxed, for a flat monthly price.</p>
-      <div class="btns">
-        <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a><!-- LAUNCH: production API host -->
-        <a class="btn" href="/setup" data-event="setup_click">Read the setup guide</a>
-      </div>
-      <div class="hero-meta">
-        <a href="/demo#video" data-event="demo_video_click">▶&nbsp; Demo video · coming soon</a>
-        <a class="status-dot" href="https://status.inferralab.com" data-status><span class="dot unknown"></span><span>System status</span></a>
-      </div>
-    </div>
-
-    <!-- LAUNCH: replace the commit and SHAs with a real commit from the demo org. Status texts below are the product's exact wording. -->
-    <figure class="panel receipt" aria-label="A commit on GitHub with Inferra's status checks" style="margin:0">
-      <header>
-        <div class="repo">inferra-AI / inferra-demo · main</div>
-        <div class="msg">Add orders database to api</div>
-        <div class="sha">b41c9e2 · pushed 2 minutes ago</div>
-      </header>
-      <ul>
-        <li><svg class="check" viewBox="0 0 16 16" aria-label="success"><circle cx="8" cy="8" r="8" fill="var(--ok)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.9" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>inferra/config</b><span>Inferra configuration applied</span></div></li>
-        <li><svg class="check" viewBox="0 0 16 16" aria-label="success"><circle cx="8" cy="8" r="8" fill="var(--ok)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.9" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>inferra/deploy/api</b><span>deployment live · Details opens the app</span></div></li>
-        <li><svg class="check" viewBox="0 0 16 16" aria-label="success"><circle cx="8" cy="8" r="8" fill="var(--ok)"/><path d="M4.5 8.2l2.3 2.3 4.7-4.9" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>inferra/deploy/worker</b><span>unchanged since 3f2a1c, still live</span></div></li>
-      </ul>
-      <footer>The checks Inferra adds to every commit, one per app</footer>
-    </figure>
-  </div>
-</section>
-
-<section aria-labelledby="h-problem">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">The problem</p>
-      <h2 id="h-problem">You didn’t choose this architecture. It accreted.</h2>
-      <p class="lead">A host here, a database there, a cache, a bucket, a workflow file, a log tool, a secrets spreadsheet, and a bill you can’t predict. Inferra is one repo, one file, one bill.</p>
-    </div>
-    <div class="sprawl">
-      <div class="chips" aria-label="What a typical backend is spread across">
-        <span class="chip">App host <i>$</i></span><span class="chip">Database vendor <i>$</i></span>
-        <span class="chip">Cache <i>$</i></span><span class="chip">Object storage <i>usage</i></span>
-        <span class="chip">CI workflow file <i>—</i></span><span class="chip">Log tool <i>$?</i></span>
-        <span class="chip">Secrets spreadsheet <i>—</i></span><span class="chip">Seats <i>× team</i></span>
-      </div>
-      <svg width="32" height="16" viewBox="0 0 32 16" aria-hidden="true"><path d="M1 8h28M23 2l6 6-6 6" stroke="var(--muted)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="one">
-        <b>Your repo</b><br>
-        <span class="mono small">.inferra/org.yaml</span><br>
-        Apps and databases<br>prod · stage · previews<br>One bill: from $20 / month
-      </div>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-diff">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">How it works</p>
-      <h2 id="h-diff">The diff is your infrastructure.</h2>
-      <p class="lead"><code>main</code> deploys to prod. Every other branch gets its own preview copy, removed with the branch. A database declared next to an app appears beside it, its address already in the app’s environment, reachable by that app and nothing else.</p>
-    </div>
-    <div class="diff">
-      <div class="code" role="group" aria-label=".inferra/org.yaml change; focus a line to see what it creates">
-        <div class="file">.inferra/org.yaml<em>+5 −0</em></div>
-        <span class="ln">spaces:</span>
-        <span class="ln" tabindex="0" data-lit="lane-prod">  prod:     { branch: main }</span>
-        <span class="ln" tabindex="0" data-lit="lane-stage">  stage:    {}</span>
-        <span class="ln" tabindex="0" data-lit="lane-preview">  preview:  { branches: "*" }</span>
-        <span class="ln">apps:</span>
-        <span class="ln" tabindex="0" data-lit="app-api">  api:</span>
-        <span class="ln">    path: api/</span>
-        <span class="ln add" tabindex="0" data-lit="db">    services:</span>
-        <span class="ln add" tabindex="0" data-lit="db">      orders:</span>
-        <span class="ln add" tabindex="0" data-lit="db">        type: postgres</span>
-        <span class="ln add" tabindex="0" data-lit="db">        version: "17"</span>
-        <span class="ln" tabindex="0" data-lit="app-worker">  worker:</span>
-        <span class="ln">    path: worker/</span>
-        <span class="ln add" tabindex="0" data-lit="db app-worker">    services: { orders: {} }</span>
-      </div>
-      <div class="panel env" id="env">
-        <p class="small"><b>What Inferra creates</b></p>
-        <div class="lane" data-k="lane-prod"><span class="name">prod<small>main</small></span>
-          <span class="res" data-k="app-api">api<small>deployment live</small></span>
-          <span class="res" data-k="app-worker">worker<small>unchanged, live</small></span>
-          <span class="res db" data-k="db">orders<small>Postgres 17 · new</small></span></div>
-        <div class="lane" data-k="lane-stage"><span class="name">stage<small>by promote</small></span>
-          <span class="res" data-k="app-api">api<small>promoted</small></span>
-          <span class="res" data-k="app-worker">worker<small>promoted</small></span>
-          <span class="res db" data-k="db">orders<small>Postgres 17 · new</small></span></div>
-        <div class="lane" data-k="lane-preview"><span class="name">preview<small>feature/login</small></span>
-          <span class="res" data-k="app-api">api-feature-login<small>preview</small></span>
-          <span class="res db" data-k="db">orders<small>Postgres 17 · new</small></span></div>
-        <p class="rule"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="6" width="10" height="7" rx="1.5" fill="var(--accent)"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="var(--accent)" stroke-width="1.4" fill="none"/></svg><span><b>orders</b> accepts connections from api and worker only. Nothing else in the space, or outside it, can reach it.</span></p>
-      </div>
-    </div>
-    <div class="table-scroll">
-      <table class="table">
-        <thead><tr><th scope="col">What you wrote</th><th scope="col">What Inferra created</th><th scope="col">Who can reach it</th></tr></thead>
-        <tbody>
-          <tr><td><code>services: orders</code> (postgres 17) on api and worker</td><td>A Postgres 17 database in each space; its address set in api and worker</td><td>api and worker in the same space</td></tr>
-          <tr><td><code>branches: "*"</code> on preview</td><td>A preview copy of every app for each branch, removed with the branch</td><td>Anyone with the preview URL</td></tr>
-          <tr><td>No change under <code>worker/</code></td><td>Nothing rebuilt; the running version stays live</td><td>—</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-doors">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">One way to change production</p>
-      <h2 id="h-doors">Four ways in. Every change is a Git commit.</h2>
-    </div>
-    <div class="doors">
-      <div class="panel door"><h3>GitHub App</h3><p class="job">A push builds and deploys.</p><p>The commit shows the result for each app: building, live with its URL, or the error.</p></div>
-      <div class="panel door"><h3>CLI</h3><p class="job">Operates. Never deploys.</p><p>Logs with history, metrics, a shell in a running instance, rollback, promote.</p></div>
-      <div class="panel door"><h3>Dashboard</h3><p class="job">The same facts at a glance.</p><p>Org, space, app: instances, deployments, services, logs and metrics in one view.</p></div>
-      <div class="panel door"><h3>MCP server <span class="badge">Coming soon</span></h3><p class="job">Your assistant reads; you merge.</p><p>Connect Claude, Codex, VS Code or Cursor. It reads logs, builds, crashes and metrics and explains what’s wrong. If the fix is configuration, it opens a pull request to <code>org.yaml</code>. It never deploys, restarts, deletes or sees a secret value.</p></div>
-    </div>
-    <div class="cta-row">
-      <a class="btn" href="/mcp" data-event="mcp_interest_click">Join MCP early access</a>
-      <span class="small">Read-only troubleshooting first. Configuration changes only as pull requests you review.</span>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-data">
-  <div class="wrap split">
-    <div>
-      <p class="eyebrow">Application and data belong together</p>
-      <h2 id="h-data">A database only its apps can reach.</h2>
-      <p class="lead">Declare Postgres, a Valkey cache or an S3 bucket next to the apps that use it. Inferra creates it in the same space, puts its address in those apps’ environment, and closes it to everything else.</p>
-      <p class="small">Choose the Postgres major version in <code>org.yaml</code>. If you delete a database, support can restore it within 7 days.</p>
-    </div>
-    <div class="table-scroll">
-      <table class="table">
-        <thead><tr><th scope="col">Service</th><th scope="col">Name in org.yaml</th><th scope="col">Your app gets</th><th scope="col">Reachable by</th></tr></thead>
-        <tbody>
-          <tr><td>Postgres 17</td><td class="mono">orders</td><td class="mono">ORDERS_URL</td><td>api, worker</td></tr>
-          <tr><td>Valkey cache</td><td class="mono">sessions</td><td class="mono">SESSIONS_URL</td><td>api</td></tr>
-          <tr><td>S3 bucket</td><td class="mono">files</td><td class="mono">FILES_BUCKET</td><td>api, with no keys: access comes from the app’s identity</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-proof" id="proof">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Proof you can check</p>
-      <h2 id="h-proof">A public demo is coming soon.</h2>
-      <p class="lead">The public demo repository is ready. Its first deployment will be recorded; the live app and demo video go live together. You can browse the repository and visit the status page today.</p>
-    </div>
-    <div class="proof">
-      <div class="panel video">
-        <!-- LAUNCH: replace the button with the video element (poster, captions, no autoplay) once recorded. -->
-        <a class="poster" href="/demo#video" data-event="demo_video_click">
-          <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="36" fill="var(--accent)"/><path d="M30 24l20 12-20 12z" fill="#fff"/></svg>
-          From install to a live API with Postgres
-          <small>Video coming soon · not yet recorded</small>
-        </a>
-        <ol class="chapters">
-          <li>Install the App</li><li>Commit org.yaml</li><li>Checks turn green</li><li>Add Postgres</li><li>Break it, roll back</li>
-        </ol>
-      </div>
-      <div class="links">
-        <a class="panel" href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click"><b>Demo repo</b><span class="mono">github.com/inferra-AI/inferra-demo</span><span>org.yaml, commit checks, previews</span></a>
-        <a class="panel" href="/demo" data-event="demo_open"><b>Demo plans and repository</b><span class="mono">inferralab.com/demo</span><span>live app and read-only dashboard coming soon</span></a>
-        <a class="panel" href="https://status.inferralab.com" data-event="status_open"><b>Status page</b><span class="mono">status.inferralab.com</span><span>checked from outside our cloud</span></a>
-      </div>
-    </div>
-<pre class="term" aria-label="Example CLI session"><span class="cmd">$ inferra logs api --since 10m</span>
-12:04:11 APP/1        api listening on 3000
-12:06:40 APP/1        GET /orders 200
-12:07:02 DB/1         checkpoint complete
-<span class="cmd">$ inferra rollback api</span>
-<span class="ok">Rolling back api to dep_7f3k2q9xw1ab (deployment dep_m4c8r2ta6ezq).</span></pre>
-  </div>
-</section>
-
-<section aria-labelledby="h-trust">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Security</p>
-      <h2 id="h-trust">Built to run other people’s code.</h2>
-    </div>
-    <div class="points">
-      <div><h3>A sandbox around every app</h3><p>Every app runs in a gVisor sandbox on every plan, Free included.</p></div>
-      <div><h3>Each space is its own network</h3><p>Closed by default. Apps in a space reach each other; nothing reaches private ranges or cloud metadata.</p></div>
-      <div><h3>Builds from a pinned catalog</h3><p>Buildpacks come from a mirrored catalog pinned by digest. No Dockerfile needed.</p></div>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="h-plans" id="plans">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Pricing</p>
-      <h2 id="h-plans">Flat plans. Limits stop the next push; they never add to the bill.</h2>
-    </div>
-    <div class="plans">
-      <div class="panel plan"><h3>Free</h3><div class="price">$0<small>7-day trial</small></div>
-        <dl><div><dt>Apps</dt><dd>3</dd></div><div><dt>CPU / memory</dt><dd>1.5 / 1.5 GiB</dd></div><div><dt>Instances per app</dt><dd>1</dd></div><div><dt>Build minutes</dt><dd>100 / mo</dd></div><div><dt>Bandwidth</dt><dd>10 GB / mo</dd></div><div><dt>Log history</dt><dd>1 day</dd></div></dl>
-        <p>Each app up to 0.5 CPU / 512 MiB. Apps stop on day 7; data is deleted 7 days later unless you upgrade.</p></div>
-      <div class="panel plan featured"><h3>Pro</h3><div class="price">$20<small>per month</small></div>
-        <dl><div><dt>Apps</dt><dd>20</dd></div><div><dt>CPU / memory</dt><dd>8 / 16 GiB</dd></div><div><dt>Instances per app</dt><dd>10</dd></div><div><dt>Build minutes</dt><dd>1,000 / mo</dd></div><div><dt>Bandwidth</dt><dd>100 GB / mo</dd></div><div><dt>Log history</dt><dd>7 days</dd></div></dl>
-        <p>Postgres, Valkey cache and S3 buckets.</p></div>
-      <div class="panel plan"><h3>Team</h3><div class="price">$99<small>per month</small></div>
-        <dl><div><dt>Apps</dt><dd>100</dd></div><div><dt>CPU / memory</dt><dd>32 / 64 GiB</dd></div><div><dt>Instances per app</dt><dd>50</dd></div><div><dt>Build minutes</dt><dd>5,000 / mo</dd></div><div><dt>Bandwidth</dt><dd>1 TB / mo</dd></div><div><dt>Log history</dt><dd>30 days</dd></div></dl>
-        <p>For several teams sharing one organization.</p></div>
-    </div>
-    <div class="table-scroll" style="margin-bottom:24px">
-      <table class="table net">
-        <caption>Network rules — the same on every plan</caption>
-        <tbody>
-          <tr><th scope="row">Into your app</th><td>Only through Inferra’s HTTPS gateway (443), forwarded to your app’s <code>$PORT</code>. Apps in the same space reach each other directly.</td></tr>
-          <tr><th scope="row">Out of your app</th><td>Any port on the public internet: external databases, SMTP, third-party APIs.</td></tr>
-          <tr><th scope="row">Never</th><td>Private network ranges or cloud metadata, on any plan.</td></tr>
-          <tr><th scope="row">Your Inferra databases</th><td>Reachable only by the apps bound to them.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small" style="margin:0 0 24px">Your own domains are coming soon; until then each app gets an inferralab.com address.</p>
-    <div class="btns">
-      <a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Install the GitHub App</a><!-- LAUNCH: production API host -->
-      <a class="btn" href="/download" data-event="download_click">Download the CLI</a>
-      <a class="btn" href="/setup" data-event="setup_click">Setup guide</a>
-    </div>
-  </div>
-</section>
-
+<section class="hero" aria-labelledby="h1"><div class="wrap hero-grid"><div class="hero-copy"><h1 id="h1">Push code.<br><span>Go live.</span></h1><p class="lead">APIs, workers and web apps straight from your repo. Postgres next to the app, a preview for every branch, a sandbox on every plan.</p><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --><a class="btn" href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">View the demo repo ↗</a></div><p class="hero-note">Free plan · 7-day trial · 3 apps</p></div>
+<!-- LAUNCH: replace illustrative commits and SHAs with a real commit from the demo org. Status texts use the product's wording. -->
+<figure class="hero-scene" aria-label="Illustration: a Git push, commit checks and the application dashboard"><div class="push-chip"><span>$</span> git push origin main</div>
+<div class="scene-wire wire-one"></div><div class="scene-wire wire-two"></div>
+<div class="checks window"><div class="window-bar"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h6m8 0h6"/><circle cx="12" cy="12" r="4"/></svg><span><b>acme/shop</b> · main</span><code>· 9c1e4f2</code></div><ul><li><span class="check-mark "><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><b>inferra / api</b><span>deployment live</span></li><li><span class="check-mark "><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><b>inferra / worker</b><span>deployment live</span></li><li><span class="check-mark unchanged"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><b>inferra / web</b><span>unchanged since 3f2a1c, still live</span></li></ul></div>
+<div class="dashboard window"><div class="dashboard-bar"><span><span class="muted">acme</span> / <b>prod</b> <span class="pill live">● Live</span></span><div class="dashboard-tabs"><b>Apps</b><span>Data</span><span>Logs</span><span>Deployments</span></div></div>
+<div class="dashboard-content"><div class="app-grid"><div class="app-card"><div class="app-title"><b><i></i>api</b><span>2 instances</span></div><div class="metrics"><div class="metric"><div><span>CPU</span><b>0.3/1.0</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,22 10,20 20,22 30,17 40,19 50,14 60,17 70,12 80,15 90,9 100,12"/></svg></div><div class="metric"><div><span>MEMORY</span><b>212 MiB</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,17 10,17 20,16 30,17 40,15 50,16 60,15 70,16 80,14 90,15 100,14"/></svg></div><div class="metric"><div><span>REQUESTS</span><b>48 /s</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,21 10,15 20,23 30,13 40,19 50,12 60,21 70,14 80,18 90,11 100,13"/></svg></div><div class="metric"><div><span>P95</span><b>71 ms</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,11 10,13 20,12 30,15 40,14 50,15 60,16 70,15 80,17 90,17 100,18"/></svg></div></div></div><div class="app-card"><div class="app-title"><b><i></i>worker</b><span>1 instance</span></div><div class="metrics"><div class="metric"><div><span>CPU</span><b>0.3/1.0</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,22 10,20 20,22 30,17 40,19 50,14 60,17 70,12 80,15 90,9 100,12"/></svg></div><div class="metric"><div><span>MEMORY</span><b>212 MiB</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,17 10,17 20,16 30,17 40,15 50,16 60,15 70,16 80,14 90,15 100,14"/></svg></div><div class="metric"><div><span>JOBS</span><b>12 /min</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,21 10,15 20,23 30,13 40,19 50,12 60,21 70,14 80,18 90,11 100,13"/></svg></div><div class="metric"><div><span>RETRIES</span><b>0</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,22 100,22"/></svg></div></div></div><div class="app-card"><div class="app-title"><b><i></i>web</b><span>1 instance</span></div><div class="metrics"><div class="metric"><div><span>CPU</span><b>0.3/1.0</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,22 10,20 20,22 30,17 40,19 50,14 60,17 70,12 80,15 90,9 100,12"/></svg></div><div class="metric"><div><span>MEMORY</span><b>212 MiB</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,17 10,17 20,16 30,17 40,15 50,16 60,15 70,16 80,14 90,15 100,14"/></svg></div><div class="metric"><div><span>REQUESTS</span><b>48 /s</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,21 10,15 20,23 30,13 40,19 50,12 60,21 70,14 80,18 90,11 100,13"/></svg></div><div class="metric"><div><span>P95</span><b>38 ms</b></div><svg class="sparkline" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polyline points="0,11 10,13 20,12 30,15 40,14 50,15 60,16 70,15 80,17 90,17 100,18"/></svg></div></div></div></div>
+<div class="data-label">DATA</div><div class="data-grid">
+<div class="data-card"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg></span><div><b>Postgres <code>17</code></b><small>Only api and worker can connect</small></div></div>
+<div class="data-card"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h5l3-8 4 16 3-8h5"/></svg></span><div><b>Cache <code>redis-compatible</code></b><small>Only api can connect</small></div></div>
+<div class="data-card"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg></span><div><b>Bucket <code>uploads</code></b><small>S3 · api, worker</small></div></div></div></div></div></figure>
+</div></section>
+<section class="facts" aria-label="Inferra at a glance"><div class="wrap facts-grid"><div class="fact"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg></span><div><h2>Free to start</h2><p>7-day trial · 3 apps</p></div></div><div class="fact"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg></span><div><h2>Postgres, cache, buckets</h2><p>declared next to the app</p></div></div><div class="fact"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg></span><div><h2>Sandboxed on every plan</h2><p>gVisor sandbox · private network per environment</p></div></div><div class="fact"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4v10l-8 4-8-4V7l8-4Zm0 9L4 7m8 5 8-5m-8 5v9M8 5l8 4"/></svg></span><div><h2>Flat monthly price</h2><p>limits stop the next push, never add to the bill</p></div></div><div class="fact"><span class="icon-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></svg></span><div><h2>Built in public</h2><p>status page · CLI · demo repo on GitHub</p></div></div></div></section>
+<section id="product" class="how-section wrap" aria-labelledby="h-how"><div class="section-head"><h2 id="h-how">Git does the deploying.</h2><p>A push to main updates prod. Any other branch gets its own copy, removed when the branch is deleted.</p></div><ol class="steps"><li class="step"><h3><span>1</span>Push a branch</h3><figure class="step-visual" aria-label="Illustration: Push a branch"><div class="terminal window"><div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><pre><span>$</span> git checkout -b feature/checkout
+<span>$</span> git push -u origin feature/checkout
+<span class="muted">→ new branch: feature/checkout</span>
+<span>$</span> <span class="cursor">█</span></pre></div></figure>
+<p>Nothing to run locally. The CLI never deploys; git does.</p></li><li class="step"><h3><span>2</span>Checks on the commit</h3><figure class="step-visual" aria-label="Illustration: Checks on the commit"><div class="checks window"><div class="window-bar"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h6m8 0h6"/><circle cx="12" cy="12" r="4"/></svg><span><b>acme/shop</b> · feature/checkout</span><code>· b41d9e0</code></div><ul><li><span class="check-mark "><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><b>inferra / api</b><span>deployment live</span></li><li><span class="check-mark "><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></span><b>inferra / worker</b><span>deployment live</span></li><li><span class="check-mark error">!</span><b>inferra / web</b><span>deployment failed; see inferra logs</span></li></ul></div></figure>
+<p>One check per app on every commit: live, or the error. Unchanged apps are not rebuilt.</p></li><li class="step"><h3><span>3</span>Live app + database</h3><figure class="step-visual" aria-label="Illustration: Live app + database"><div class="preview-window window"><div class="window-bar"><span><span class="muted">acme</span> / <b>preview · feature-checkout</b></span><span class="pill">Preview</span></div><div class="preview-rows"><div><b><i></i>api</b><span>2 instances</span></div><div><b><i></i>worker</b><span>1 instance</span></div><div><b><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg>Postgres 17</b><code>only api, worker</code></div></div></div></figure>
+<p>Its own apps, its own Postgres, its own private network. Delete the branch and it is gone.</p></li></ol></section>
+<section class="features-section wrap" aria-labelledby="h-features"><div class="section-head"><h2 id="h-features">Room to build.</h2><p>Databases, previews, logs, rollback and a sandbox come with every app, on every plan.</p></div><div class="bento-grid"><article class="feature feature-branches"><h3>A branch. A fresh preview. </h3><p>Open a branch, get a copy of the whole environment. Delete the branch, the copy is gone.</p><figure class="feature-visual" aria-label="Illustration: A branch. A fresh preview."><div class="branch-row"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10m12-10v3c0 4-12 0-12 5"/></svg><code>main</code><span class="pill live">● prod</span></div><div class="branch-row"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10m12-10v3c0 4-12 0-12 5"/></svg><code>feature/checkout</code><span class="pill ">preview</span></div><div class="branch-row"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10m12-10v3c0 4-12 0-12 5"/></svg><code>fix/login</code><span class="pill neutral">removed with branch</span></div></figure>
+</article>
+<article class="feature feature-private"><h3>Your data. A private connection. </h3><p>Postgres, cache and buckets declared next to the app. The URL is injected; nothing else can connect.</p><figure class="feature-visual" aria-label="Illustration: Your data. A private connection."><div class="private-diagram"><div class="endpoints"><span><i></i>api</span><span><i></i>worker</span></div><div class="connections allowed"><span>──✓</span><span>──✓</span></div><div class="db-node"><span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg></span><b>Postgres</b><code>orders-db</code></div><div class="connections blocked"><span>× ──</span><span>× ──</span></div><div class="endpoints outside"><span>internet</span><span>other env</span></div></div></figure>
+</article>
+<article class="feature feature-logs"><h3>See what&#x27;s happening. </h3><p>Instances, CPU, memory, requests, latency and logs, in the dashboard or from the CLI.</p><figure class="feature-visual" aria-label="Illustration: See what's happening."><div class="mini-logs window"><div class="window-bar">$ inferra logs api --follow</div><div class="log-lines"><div>api-1 GET /orders <span>200 · 12 ms</span></div><div>api-2 GET /orders/41 <span>200 · 9 ms</span></div><div>api-1 POST /checkout <span>201 · 48 ms</span></div><div>api-2 worker: job sent <span>queue 3</span></div></div></div><div class="metrics mini-metrics"><div class="metric"><div><span>REQUESTS</span><b>48 /s</b></div><svg class="sparkline area" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polygon points="0,32 0,21 10,15 20,23 30,13 40,19 50,12 60,21 70,14 80,18 90,11 100,13 100,32"/><polyline points="0,21 10,15 20,23 30,13 40,19 50,12 60,21 70,14 80,18 90,11 100,13"/></svg></div><div class="metric"><div><span>P95</span><b>71 ms</b></div><svg class="sparkline area" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true"><path class="chart-grid" d="M0 10h100M0 22h100"/><polygon points="0,32 0,11 10,13 20,12 30,15 40,14 50,15 60,16 70,15 80,17 90,17 100,18 100,32"/><polyline points="0,11 10,13 20,12 30,15 40,14 50,15 60,16 70,15 80,17 90,17 100,18"/></svg></div></div></figure>
+</article>
+<article class="feature feature-sandbox"><h3>Isolated. Even on Free. </h3><p>Each app runs in a gVisor sandbox inside its environment&#x27;s private network. Free plan included.</p><figure class="feature-visual" aria-label="Illustration: Isolated. Even on Free."><div class="sandbox-visual"><div class="shield-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-4 8-8 10-4-2-8-5-8-10V6l8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div><ul class="tick-list"><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>gVisor sandbox per app</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Private network per environment</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>No reach to cloud metadata</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Included on the Free plan</li></ul></div></figure>
+</article>
+<article class="feature feature-rollback"><h3>A way back. </h3><p>Every deployment is kept. Go back from the dashboard or with the CLI.</p><figure class="feature-visual" aria-label="Illustration: A way back."><div class="deployment-row"><code>9c1e4f2</code><span>Add checkout retries</span><span class="pill live">● Live</span></div><div class="deployment-row"><code>3f2a1c0</code><span>Bump order limits</span><span class="mock-button">↶ Roll back</span></div><div class="deployment-row"><code>8b77d0e</code><span>Fix tax rounding</span></div><code class="rollback-command">$ inferra rollback api --to 3f2a1c0</code></figure>
+</article>
+<article class="feature feature-ai"><h3>AI, with a review. <span class="badge">Coming soon</span></h3><p>A hosted MCP server for Claude, Codex, VS Code and Cursor. It reads logs and metrics and explains problems; changes arrive as a pull request you merge.</p><figure class="feature-visual" aria-label="Illustration: AI, with a review."><div class="chat-question">Why is api slow since the last deploy?</div><div class="chat-answer"><span class="assistant-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></svg></span><p>p95 rose from 71 ms to 240 ms after 9c1e4f2 and memory sits at the 512 MiB limit. I opened PR #42 to raise it — merge to apply.</p></div><div class="client-chips"><span>Claude</span><span>Codex</span><span>VS Code</span><span>Cursor</span></div></figure>
+</article>
+</div></section>
+<section class="pricing-section wrap" id="pricing" aria-labelledby="h-pricing"><span id="plans" class="anchor-alias" aria-hidden="true"></span><div class="section-head"><h2 id="h-pricing">Know your bill.</h2><p>Pick a plan, pay the same every month. When you hit a limit, the next push stops. Nothing is added to the bill.</p></div><div class="pricing-grid"><article class="plan"><h3>FREE</h3><div class="price">$0</div><p>7-day trial for your first apps.</p><ul class="tick-list"><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>3 apps</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>1.5 CPU · 1.5 GiB in total</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Up to 0.5 CPU · 512 MiB per app</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>gVisor sandbox</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>Previews per branch</li></ul><a class="btn" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></article>
+<article class="plan featured"><h3>PRO</h3><div class="price">$20<span>/month</span></div><p>For a product in production.</p><ul class="tick-list"><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>20 apps</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>8 CPU · 16 GiB</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>1,000 build minutes</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>100 GB bandwidth</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>7-day logs</li></ul><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start with Pro</a><!-- LAUNCH: production API host --></article>
+<article class="plan"><h3>TEAM</h3><div class="price">$99<span>/month</span></div><p>For a team running many services.</p><ul class="tick-list"><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>100 apps</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>32 CPU · 64 GiB</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>5,000 build minutes</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>1 TB bandwidth</li><li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>30-day logs</li></ul><a class="btn" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start with Team</a><!-- LAUNCH: production API host --></article>
+</div><p class="pricing-note">Every plan runs every app in the gVisor sandbox. Custom domains: coming soon.</p></section>
+<section class="cta-section wrap" aria-labelledby="h-cta"><div class="cta-panel"><h2 id="h-cta">Make your next push count.</h2><p>One file in your repo declares environments, apps and databases. Your first three apps are free for seven days.</p><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --><a class="btn" href="/docs" data-event="docs_click">Read the docs</a></div></div></section>
 </main>
-
-<footer class="site">
-  <div class="wrap">
-    <span>© 2026 Inferra · inferralab.com</span>
-    <nav aria-label="Footer">
-      <a href="/docs">Docs</a><a href="/mcp">MCP</a><a href="/security">Security</a><a href="/compare">Compare</a><a href="/changelog">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy">Privacy</a><a href="https://status.inferralab.com">Status</a>
-    </nav>
-  </div>
-</footer>
-
+<footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push code. Go live.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs">Docs</a><a href="/setup" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.com/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download" data-event="download_click">Download</a><a href="/mcp">MCP</a><a href="/security">Security</a><a href="/compare">Compare</a><a href="/changelog">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Hosted MCP server and custom domains: coming soon.</span></div>
+</div></footer>
 <!-- LAUNCH: links use the dev API host api.dev.inferralab.com; switch to the production API host at launch. -->
+<!-- LAUNCH: replace the demo video placeholder on /demo with the video element (poster, captions, no autoplay) once recorded. -->
 <script src="/site.js" defer></script>
 </body>
 </html>
