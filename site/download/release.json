@@ -1,16 +1,58 @@
 {
-  "version": "0.4.0-rc.16",
-  "tag": "v0.4.0-rc.16",
+  "version": "0.4.0-rc.17",
+  "tag": "v0.4.0-rc.17",
   "date": "2026-10-09",
   "channel": "preview",
   "repo": "https://github.com/inferra-AI/cli",
-  "checksums": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/checksums.txt",
+  "checksums": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/checksums.txt",
   "assets": [
-    {"os": "darwin", "arch": "amd64", "file": "inferra_0.4.0-rc.16_darwin_amd64.tar.gz", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_darwin_amd64.tar.gz", "sha256": "e12fd7e93e9c358d020f64f078df5ec173ca2da362b90765945ac1954684f30d", "bytes": 3276228},
-    {"os": "darwin", "arch": "arm64", "file": "inferra_0.4.0-rc.16_darwin_arm64.tar.gz", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_darwin_arm64.tar.gz", "sha256": "9e53a2b28ca382f010f67deac1f6d524d8578ee20cde8563af1bee52378ecba8", "bytes": 3001399},
-    {"os": "linux", "arch": "amd64", "file": "inferra_0.4.0-rc.16_linux_amd64.tar.gz", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_linux_amd64.tar.gz", "sha256": "c0bc10eb573c276f632c8d2259a5dde4e990a901f909ecfb5fb83cb5e2929622", "bytes": 3238235},
-    {"os": "linux", "arch": "arm64", "file": "inferra_0.4.0-rc.16_linux_arm64.tar.gz", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_linux_arm64.tar.gz", "sha256": "6eedb366d7940b602017c8f11fc8f77efa4345a56144d51eac2cd908cca52568", "bytes": 2904020},
-    {"os": "windows", "arch": "amd64", "file": "inferra_0.4.0-rc.16_windows_amd64.zip", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_windows_amd64.zip", "sha256": "e581ff7ffcb0622f7c280af4f667cad63e8f3c42aa267499ba4cfbb35550f867", "bytes": 3379209},
-    {"os": "windows", "arch": "arm64", "file": "inferra_0.4.0-rc.16_windows_arm64.zip", "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.16/inferra_0.4.0-rc.16_windows_arm64.zip", "sha256": "c26b4829fcfb306ddc91f578994f597bd62331f2f6e1376d4dddeec80f582468", "bytes": 3019240}
+    {
+      "os": "darwin",
+      "arch": "amd64",
+      "file": "inferra_0.4.0-rc.17_darwin_amd64.tar.gz",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_darwin_amd64.tar.gz",
+      "sha256": "38295f8a068efaa16e0af597b1849254498d0240b21345bc3691cb965cab6c11",
+      "bytes": 3283413
+    },
+    {
+      "os": "darwin",
+      "arch": "arm64",
+      "file": "inferra_0.4.0-rc.17_darwin_arm64.tar.gz",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_darwin_arm64.tar.gz",
+      "sha256": "e772bfff297e60184e365ae1dd0daf460726be3a08cb78a6914d2cffea632fe8",
+      "bytes": 3008427
+    },
+    {
+      "os": "linux",
+      "arch": "amd64",
+      "file": "inferra_0.4.0-rc.17_linux_amd64.tar.gz",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_linux_amd64.tar.gz",
+      "sha256": "99bcd8eaf1f27df37d6bdd8a30295ceb563c8797fa6302d621392164d92ee758",
+      "bytes": 3245606
+    },
+    {
+      "os": "linux",
+      "arch": "arm64",
+      "file": "inferra_0.4.0-rc.17_linux_arm64.tar.gz",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_linux_arm64.tar.gz",
+      "sha256": "7a6861e72ffccf971dfa1b05bd2b82cc0bc62c31a83bcdadae695790361be68c",
+      "bytes": 2910686
+    },
+    {
+      "os": "windows",
+      "arch": "amd64",
+      "file": "inferra_0.4.0-rc.17_windows_amd64.zip",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_windows_amd64.zip",
+      "sha256": "cdf661c0f4376d53c1e584bcb9e348b05c5d2e0649c345dc4a4a015713198a56",
+      "bytes": 3387757
+    },
+    {
+      "os": "windows",
+      "arch": "arm64",
+      "file": "inferra_0.4.0-rc.17_windows_arm64.zip",
+      "url": "https://github.com/inferra-AI/cli/releases/download/v0.4.0-rc.17/inferra_0.4.0-rc.17_windows_arm64.zip",
+      "sha256": "99b2601b014e388ffb0bed91434e7586bf0a60a77b635546af3231376832dc7c",
+      "bytes": 3025877
+    }
   ]
 }

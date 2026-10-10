@@ -2,7 +2,7 @@
 set -eu
 
 # Generated default from site/download/release.json; prereleases are not latest.
-DEFAULT_VERSION='0.4.0-rc.16'
+DEFAULT_VERSION='0.4.0-rc.17'
 version=${INFERRA_VERSION:-$DEFAULT_VERSION}
 version=${version#v}
 case "$version" in
