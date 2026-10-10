@@ -1,6 +1,6 @@
 # Inferra
 
-> Inferra is the Git-native cloud: a PaaS that builds APIs, web apps and background workers from GitHub pushes with Cloud Native Buildpacks and runs them with managed Postgres, a Redis-compatible Valkey cache and S3 buckets.
+> A platform for real production applications. APIs, web apps and background workers, built straight from your repo. Postgres next to each app, a preview for every branch, and every app isolated in its own secure sandbox (gVisor).
 
 Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10 (core code rc20; CLI help rc25).
 
@@ -60,3 +60,8 @@ Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs a
 - [Operate your apps](https://inferralab.com/docs/operate/): Git ownership and runtime operations.
 - [Metrics and logs](https://inferralab.com/docs/observe/): ranges, zoom and live logs.
 - [Credits and quotas for developers](https://inferralab.com/docs/billing/): reservations, wallet and usage.
+
+## Plain-language definitions
+- What is the app sandbox? Each app runs in its own gVisor sandbox: it talks to a small screening kernel instead of the server’s real kernel. This isolation prevents a compromised app from reaching the host or other customers.
+- What is a background worker? A background worker is a long-running process with no public web address, such as a queue consumer. Set run.process: worker in your branch file to run one.
+- Homepage calculators estimate total account reservations or app count × per-app CPU/memory × instances, plus total storage. Hourly estimates use monthly prices divided by 730; the first $5 of usage is free each month per account.
