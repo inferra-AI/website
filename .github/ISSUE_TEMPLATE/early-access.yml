@@ -1,0 +1,36 @@
+name: Early access
+description: Ask to try Inferra before launch.
+title: "Early access: "
+labels: [early-access]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in Inferra. This issue and every answer are public.
+        Email is optional. Do not share credentials or secret values.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: email
+    attributes:
+      label: Email (optional)
+      description: Only include an email address if you are comfortable publishing it here.
+    validations:
+      required: false
+  - type: input
+    id: github
+    attributes:
+      label: GitHub repository you'd deploy (optional)
+    validations:
+      required: false
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you run on Inferra?
+      description: For example an API with a background worker and Postgres.
+    validations:
+      required: true

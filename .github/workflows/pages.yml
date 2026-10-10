@@ -1,4 +1,6 @@
-# Publishes site/ to GitHub Pages (inferralab.com) on every push to main.
+# Publishes the public pre-launch page (public/) to GitHub Pages (inferralab.com).
+# The full site (site/) runs only on the dev copy under inferralab.dev until launch;
+# at launch, publish site/ here instead.
 name: pages
 on:
   push:
@@ -24,8 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Assemble the public page
+        run: |
+          mkdir -p out
+          cp -r public/. out/
+          cp -r site/fonts site/favicon.svg site/og.png site/install.sh out/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: out
       - id: deployment
         uses: actions/deploy-pages@v4
