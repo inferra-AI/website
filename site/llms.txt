@@ -1,37 +1,40 @@
 # Inferra
 
-> Inferra is the Git-native cloud: an application platform that runs backends straight from a GitHub repo. A file in your repository, `.inferra/org.yaml`, defines production, staging and preview spaces, the apps (APIs, workers, containers built with buildpacks, no Dockerfile) and their managed services (Postgres, Valkey cache, S3 buckets). Installing the Inferra GitHub App and pushing to a mapped branch builds and deploys; results appear as commit statuses. Plans are flat: Free (7-day trial), Pro $20/month, Team $99/month; limits stop the next push instead of adding to the bill.
+> Inferra is the Git-native cloud: a PaaS that builds APIs, web apps and background workers from GitHub pushes with Cloud Native Buildpacks and runs them with managed Postgres, a Redis-compatible Valkey cache and S3 buckets.
 
-Key facts:
-- Deploys only through Git pushes; the `inferra` CLI inspects and operates (logs, metrics, exec, rollback, promote) but never deploys.
-- A managed database or cache accepts connections only from the apps bound to it in `org.yaml`.
-- Every app on every plan runs in a gVisor sandbox. Outbound network access is the same on every plan: any public port, never private ranges or cloud metadata.
-- A hosted MCP server for AI assistants (Claude, Codex, VS Code, Cursor) is coming soon: read-only troubleshooting, and configuration changes only as pull requests to `org.yaml`.
-- Custom domains are coming soon.
+Teams write the code; Inferra runs the servers, clusters, builds, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com. Facts below were reviewed on 2026-10-10.
 
+## Key facts
+- Deploys only through Git pushes. One file in the repository, `.inferra/org.yaml`, maps branches to spaces (production, staging, previews) and declares apps and their managed services. Results appear as GitHub commit statuses.
+- Builds from source with Cloud Native Buildpacks, no Dockerfile: Node.js, Python, Go, Java, Ruby, PHP, .NET, static sites and Procfile apps.
+- Web apps and long-running background workers. An app with a `command` and no `port` is a worker: no address or health check, it keeps running. Services and workers are long-running processes, not time-limited functions.
+- Managed Postgres (7-day backup window), Redis-compatible Valkey cache and S3 buckets. A database or cache accepts connections only from the apps bound to it in `org.yaml`.
+- Previews: pushing a branch that matches the preview pattern creates a copy of the apps in the preview space, apart from production, with the preview space's own services. Deleting the branch removes the copy. Each copy counts toward the app limit.
+- Every app on every plan, including Free, runs in a gVisor sandbox. Outbound access is the same on every plan: public destinations on any port, never private ranges or cloud metadata.
+- Pricing is flat: Free (7-day trial), Pro $20/month, Team $99/month. Reaching a plan limit stops the next push; nothing is added to the bill automatically.
+- The `inferra` CLI inspects and operates (logs, metrics, exec, rollback, promote); it never deploys source.
 
-## In short
-Inferra is a Git-native PaaS (platform as a service) and a Heroku alternative for backends: deploy APIs, long-running
-background workers and web apps from GitHub with git push, built from source by Cloud Native Buildpacks (no Dockerfile;
-Node.js, Python, Go, Java, Ruby, PHP, .NET, static sites, Procfile apps). Managed Postgres (with backups), a
-Redis-compatible cache and S3 buckets run next to the apps. Every branch gets a preview copy of the apps. Every app runs
-in a gVisor sandbox on every plan, including Free. Flat pricing: Free 7-day trial, Pro $20/month, Team $99/month; plan
-limits stop the next push instead of adding charges. Unlike frontend/serverless platforms, there are no function
-timeouts: services and workers run continuously. Teams write code; Inferra runs servers, clusters, HTTPS, patching,
-scaling, logs and metrics. Coming soon: hosted MCP server for AI assistants; custom domains.
+## Preview status
+- The platform is in preview. Sign-in and the API currently run on the development environment (api.dev.inferralab.com).
+- Coming soon, not available yet: custom domains, the hosted MCP server for AI assistants, published comparison pages.
+- `inferra init --secret NAME` (send only listed secrets from GitHub) needs CLI 0.4.0-rc.17 or later; otherwise set secret values in the dashboard.
 
-## Pages
-- [Homepage](https://inferralab.com/): product overview, plans and network rules
-- [Your first deployment](https://inferralab.com/setup): Inferra builds and deploys apps from GitHub pushes. This guide connects a repository, defines its spaces and app, and shows how to read the result.
-- [org.yaml reference](https://inferralab.com/docs/org-yaml): The .inferra/org.yaml file declares an Inferra repository’s spaces, branch mappings, apps and service bindings. This reference covers every field accepted by the parser.
-- [CLI reference](https://inferralab.com/docs/cli): The Inferra CLI inspects repository orgs and operates running workloads. GitHub pushes deploy source; customer commands cover logs, metrics, instances, rollback and promotion.
-- [Documentation](https://inferralab.com/docs): Inferra is a GitHub-native platform for APIs, workers and their data. Start with one setup guide, then use the configuration and CLI references for precise details.
-- [The public demo](https://inferralab.com/demo): The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.
-- [MCP is coming soon](https://inferralab.com/mcp): Inferra’s planned MCP server will let assistants read troubleshooting evidence and propose configuration changes as pull requests to org.yaml. It is not available yet.
-- [Security and data handling](https://inferralab.com/security): Inferra isolates apps with gVisor, controls network access by space and service binding, and keeps secret values out of read APIs. This page describes the implemented controls and preview limits.
-- [Website privacy](https://inferralab.com/privacy): The inferralab.com static website collects no analytics today. If analytics is enabled later, it will be first-party and cookieless.
-- [Page not found](https://inferralab.com/404.html): This address does not point to a page on the Inferra website. Use the documentation or setup guide to find your next step.
-- [Comparisons are coming soon](https://inferralab.com/compare): Inferra comparison pages are not published yet. Each future comparison will be dated and checked against its sources.
-- [Release notes](https://inferralab.com/changelog): Inferra CLI release notes live with the public GitHub releases. The download page identifies the exact preview release offered by this website.
-- [Download the CLI](https://inferralab.com/download): Git pushes create deployments; the CLI inspects and operates them.
-- [Adding SSO to your app](https://inferralab.com/docs/sso): OAuth/OpenID Connect, SAML and LDAPS sign-in for apps hosted on Inferra
+## Getting started
+- [Your first deployment](https://inferralab.com/setup/): install the GitHub App, commit `.inferra/org.yaml`, push, read the commit status, add Postgres.
+- [Download the CLI](https://inferralab.com/download/): macOS, Linux and Windows builds with SHA-256 checksums.
+- [Pricing and plan limits](https://inferralab.com/#pricing)
+
+## Reference
+- [Documentation](https://inferralab.com/docs/)
+- [org.yaml reference](https://inferralab.com/docs/org-yaml/): every accepted field, workers, previews, services, validation rules.
+- [CLI reference](https://inferralab.com/docs/cli/): logs, metrics, instances, rollback and promotion.
+- [Adding SSO to your app](https://inferralab.com/docs/sso/): OAuth/OpenID Connect, SAML and LDAPS sign-in inside your app.
+- [Release notes](https://inferralab.com/changelog/)
+
+## Security
+- [Security and data handling](https://inferralab.com/security/): gVisor isolation, network rules, write-only secrets, deletion and backup retention.
+- [Website privacy](https://inferralab.com/privacy/): no website analytics today.
+
+## Planned
+- [MCP server (coming soon)](https://inferralab.com/mcp/): read-only troubleshooting for assistants; configuration changes only as pull requests to `org.yaml`.
+- [Demo](https://inferralab.com/demo/): an API, a worker and Postgres deployed from the public inferra-AI/inferra-demo repository.
