@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The public demo · Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.">
+<meta name="description" content="Watch a real git push deploy a new version of the demo API on Inferra, then open the live app, repository and read-only dashboard.">
 <link rel="canonical" href="https://inferralab.com/demo/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,10 +17,10 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="The public demo · Inferra">
-<meta property="og:description" content="The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.">
+<meta property="og:description" content="Watch a real git push deploy a new version of the demo API on Inferra, then open the live app, repository and read-only dashboard.">
 <meta property="og:url" content="https://inferralab.com/demo/">
 <meta name="twitter:title" content="The public demo · Inferra">
-<meta name="twitter:description" content="The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.">
+<meta name="twitter:description" content="Watch a real git push deploy a new version of the demo API on Inferra, then open the live app, repository and read-only dashboard.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,8 +38,20 @@
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.com/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
-<div class="document-head"><p class="eyebrow">Inferra · Preview</p><h1>The public demo</h1><p class="lead">The Inferra demo repository will show an API, a worker and Postgres deployed from GitHub. The live demo goes live with the demo video; it is not running yet.</p></div>
-<section id="video"><h2>The demo goes live with the video</h2><p>The public repository is <a href="https://github.com/inferra-AI/inferra-demo">inferra-AI/inferra-demo</a>. The Inferra App has not yet been installed on it. Installation and the first deployment will be recorded; there is no live app or public dashboard to link here yet.</p><p>The video, live app and read-only public dashboard are coming soon. This page does not show simulated deployment results.</p></section><section id="show"><h2>What the recording will show</h2><ol><li>Install the App and commit the org configuration for an API and a worker.</li><li>Push, read the real commit statuses and open the deployed API.</li><li>Add Postgres, bind it to the API and inspect which apps rebuild.</li><li>Break a health check, read the evidence in logs and roll back.</li><li>Inspect the same org in the dashboard.</li></ol><p><a href="https://github.com/inferra-AI/inferra-demo/commits">Browse the repository’s commits</a> or <a href="https://status.inferralab.com">visit the status page</a>. For your own deployment, use <a href="/setup/">the setup guide</a>.</p></section>
+<div class="document-head"><p class="eyebrow">Demo</p><h1>A real deploy, start to finish</h1><p class="lead">One line changed in the public <a href="https://github.com/inferra-AI/inferra-demo">inferra-AI/inferra-demo</a> repository, pushed with git, built with buildpacks and live on Inferra. Recorded on our dev platform; only the build wait is cut.</p></div>
+<video class="demo-video" controls playsinline preload="metadata" width="1280" height="720" src="/demo/inferra-demo.mp4" aria-label="Demo: a git push deploys a new version of the demo API"></video>
+<section id="see"><h2>See it yourself</h2><ul>
+<li><a href="https://github.com/inferra-AI/inferra-demo">The repository</a>: an API, a background worker and the <code>.inferra/</code> files.</li>
+<li><a href="https://api-inferra-ai-inferra-demo.inferralab.dev/">The live API</a>: it answers with the greeting from the last push.</li>
+<li><a href="https://api.dev.inferralab.com/demo">The read-only dashboard</a>: apps, deployments, logs and metrics of the demo org.</li>
+<li><a href="https://status.inferralab.com">The status page</a>: checked from outside every five minutes.</li>
+</ul></section>
+<section id="steps"><h2>What happens in the video</h2><ol>
+<li>One line in <code>api/server.js</code> changes; <code>git commit</code> and <code>git push</code>.</li>
+<li>GitHub tells Inferra about the push; the commit shows a check per app.</li>
+<li>Inferra builds the API with buildpacks (no Dockerfile) and the new version replaces the old one.</li>
+<li>The API answers over HTTPS with the new greeting.</li>
+</ol></section>
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
@@ -47,7 +59,7 @@
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.com/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
 <nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Hosted MCP server and custom domains: coming soon.</span></div>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
 <script src="/site.js" defer></script>

@@ -152,3 +152,5 @@ footer.site { background: var(--panel); }
 @media (max-width: 900px) { .how-grid, .calc { grid-template-columns: 1fr; } .credit-facts { grid-template-columns: 1fr; } .calc { padding: 20px; } }
 .diff-section .section-head { margin-left: 0; padding-left: 0; }
 .diff-section .section-head p { margin-left: 0; }
+
+.demo-video { width: 100%; height: auto; border-radius: 20px; background: #111216; margin: 8px 0 24px; }

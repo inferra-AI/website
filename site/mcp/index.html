@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Inferra MCP Server for AI Assistants: Coming Soon</title>
+<title>Inferra MCP: connect Claude Code, Codex, Cursor and VS Code</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Inferra&#x27;s planned MCP server will read logs and metrics and propose org.yaml changes as reviewed pull requests. Not available yet.">
+<meta name="description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
 <link rel="canonical" href="https://inferralab.com/mcp/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -13,14 +13,14 @@
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/light.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "MCP is coming soon", "item": "https://inferralab.com/mcp/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Connect your assistant to Inferra", "item": "https://inferralab.com/mcp/"}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
-<meta property="og:title" content="Inferra MCP Server for AI Assistants: Coming Soon">
-<meta property="og:description" content="Inferra&#x27;s planned MCP server will read logs and metrics and propose org.yaml changes as reviewed pull requests. Not available yet.">
+<meta property="og:title" content="Inferra MCP: connect Claude Code, Codex, Cursor and VS Code">
+<meta property="og:description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
 <meta property="og:url" content="https://inferralab.com/mcp/">
-<meta name="twitter:title" content="Inferra MCP Server for AI Assistants: Coming Soon">
-<meta name="twitter:description" content="Inferra&#x27;s planned MCP server will read logs and metrics and propose org.yaml changes as reviewed pull requests. Not available yet.">
+<meta name="twitter:title" content="Inferra MCP: connect Claude Code, Codex, Cursor and VS Code">
+<meta name="twitter:description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,8 +38,38 @@
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.com/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
-<div class="document-head"><p class="eyebrow">Inferra · Preview</p><h1>MCP is coming soon</h1><p class="lead">Inferra’s planned MCP server will let assistants read troubleshooting evidence and propose configuration changes as pull requests to org.yaml. It is not available yet.</p></div>
-<section id="planned"><h2>Coming soon: read the evidence, propose a change</h2><p>The MCP server is not built. The planned connection targets are Claude, Codex, VS Code and Cursor. There is no connection URL, install command or available tool to configure today.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Planned capability table"><table class="table"><thead><tr><th scope="col">Planned capability</th><th scope="col">Scope</th><th scope="col">Planned audit record</th><th scope="col">Can open a PR?</th></tr></thead><tbody><tr><td>Inspect apps, deployments, builds and crashes</td><td>Read-only; limited to selected orgs and your own access</td><td>Access and tool use; format not finalized</td><td>No</td></tr><tr><td>Read logs and metrics</td><td>Read-only; selected orgs and spaces you may read</td><td>Access and tool use; format not finalized</td><td>No</td></tr><tr><td>Suggest an org.yaml fix</td><td>Repository configuration only</td><td>Proposed change and GitHub review history</td><td>Yes, only to org.yaml</td></tr></tbody></table></div></section><section id="boundaries"><h2>What it will never do</h2><p>The intended permission model never allows the assistant to deploy, restart or delete resources, read secret values, or write configuration directly to the platform. Configuration changes can only be proposed as pull requests to <code>org.yaml</code> for you to review and merge. A subsequent Git push follows the normal deployment path.</p><p>Authentication, org selection, revocation and detailed audit behavior are still to be implemented. The design calls for access limited by your permissions, explicit org selection and a way to revoke the assistant’s access. These are plans, not shipped controls.</p></section><section id="access"><h2>Help shape early access</h2><p>Tell us which assistant you use and what you want help with. The GitHub issue is public; email is optional. Do not include credentials, secrets or private logs.</p><a class="btn primary" href="https://github.com/inferra-AI/website/issues/new?template=mcp-early-access.yml">Request MCP early access</a></section>
+<div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>Connect your assistant to Inferra</h1><p class="lead">Inferra’s MCP server connects Claude Code, Codex, Cursor and VS Code to your apps. Read logs, metrics and deployment status, explain failures, and draft configuration changes for review.</p></div>
+<section id="connect"><h2>Create a token and choose your client</h2><p>Create a personal API token in the Inferra dashboard. Replace <code>&lt;host&gt;</code> with your Inferra MCP server host and <code>&lt;token&gt;</code> with your token. Use the MCP server address, rather than assuming the core API host serves MCP. The connection uses Streamable HTTP.</p></section><section id="claude-code"><h2>Claude Code</h2><pre class="term"><code>claude mcp add --transport http inferra https://&lt;host&gt;/mcp --header &quot;Authorization: Bearer &lt;token&gt;&quot;</code></pre></section><section id="codex"><h2>Codex</h2><p>Set <code>INFERRA_TOKEN</code> in your environment, then add this to <code>~/.codex/config.toml</code>:</p><pre class="term"><code>[mcp_servers.inferra]
+url = &quot;https://&lt;host&gt;/mcp&quot;
+bearer_token_env_var = &quot;INFERRA_TOKEN&quot;</code></pre><p>Or use the CLI:</p><pre class="term"><code>export INFERRA_TOKEN=&lt;token&gt;
+codex mcp add inferra --url https://&lt;host&gt;/mcp --bearer-token-env-var INFERRA_TOKEN</code></pre></section><section id="cursor"><h2>Cursor</h2><p>Set <code>INFERRA_TOKEN</code> in the environment available to Cursor. Put this in <code>~/.cursor/mcp.json</code> or your project’s <code>.cursor/mcp.json</code>:</p><pre class="term"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;inferra&quot;: {
+      &quot;url&quot;: &quot;https://&lt;host&gt;/mcp&quot;,
+      &quot;headers&quot;: {
+        &quot;Authorization&quot;: &quot;Bearer ${env:INFERRA_TOKEN}&quot;
+      }
+    }
+  }
+}</code></pre></section><section id="vscode"><h2>VS Code</h2><p>Put this in <code>.vscode/mcp.json</code>. VS Code prompts for the token so you do not commit it:</p><pre class="term"><code>{
+  &quot;inputs&quot;: [
+    {
+      &quot;type&quot;: &quot;promptString&quot;,
+      &quot;id&quot;: &quot;inferra-token&quot;,
+      &quot;description&quot;: &quot;Inferra personal API token&quot;,
+      &quot;password&quot;: true
+    }
+  ],
+  &quot;servers&quot;: {
+    &quot;inferra&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://&lt;host&gt;/mcp&quot;,
+      &quot;headers&quot;: {
+        &quot;Authorization&quot;: &quot;Bearer ${input:inferra-token}&quot;
+      }
+    }
+  }
+}</code></pre><p>If your client rejects a configuration, check its remote HTTP server configuration with headers.</p></section><section id="tools"><h2>Available tools</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Tool table"><table class="table"><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th></tr></thead><tbody><tr><td><code>list_orgs</code></td><td>List orgs you belong to, their status and repository.</td></tr><tr><td><code>list_spaces</code></td><td>List an org’s spaces and their branches.</td></tr><tr><td><code>list_apps</code></td><td>List apps with state, URL and current deployment.</td></tr><tr><td><code>app_status</code></td><td>Read app conditions, instances, restarts, last exit and deployment.</td></tr><tr><td><code>get_logs</code></td><td>Read runtime logs; filter by since, grep, instance and limit.</td></tr><tr><td><code>get_metrics</code></td><td>Read latest, minimum, maximum and average metrics per series, plus CPU and memory limits.</td></tr><tr><td><code>list_deployments</code></td><td>List deployments, newest first.</td></tr><tr><td><code>explain_failed_deployment</code></td><td>Read the failed deployment, error, build log tail, runtime logs, instances and recent events together.</td></tr><tr><td><code>get_org_yaml</code></td><td>Read the org.yaml applied at the synced commit.</td></tr><tr><td><code>propose_config_change</code></td><td>Get advisory validation and a unified diff for proposed org.yaml; writes nothing.</td></tr></tbody></table></div><p>The resource <code>inferra://docs/org-yaml</code> provides an org.yaml reference. Try asking: “Explain the latest failed deployment for my API” or “Show its recent logs and CPU usage.”</p></section><section id="boundaries"><h2>Your token, your permissions</h2><p>All MCP tools are read-only. Every request verifies your token with the core API, and tool calls use that same token and your permissions. Revoking it stops access on the next request. The server has no privileges of its own.</p><p><code>propose_config_change</code> does not write to Inferra or GitHub. Your assistant can use its own repository access to open a pull request for you to review. Merging and pushing follows the normal deployment flow.</p><p>Tokens are not logged or sent to GitHub. Request logs record method, path, status, duration and trace ID. App logs are untrusted output; assistants should treat them as data.</p></section>
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
@@ -47,7 +77,7 @@
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.com/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
 <nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Hosted MCP server and custom domains: coming soon.</span></div>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
 <script src="/site.js" defer></script>

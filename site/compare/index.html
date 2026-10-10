@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -39,42 +39,42 @@
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.com/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.com/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
-<div class="document-head"><p class="eyebrow">Compare · Last verified 10 October 2026</p><h1>Inferra compared with Vercel, Heroku, Render, Railway and Fly.io</h1><p class="lead">Pick Inferra if you want APIs, background workers, Postgres, a cache and buckets built from GitHub and run for a flat monthly price, with previews for the branches you choose and a sandbox around every app. Pick Vercel for frontend frameworks and a global CDN, Heroku for a decade-mature add-on ecosystem, Render for a broad managed catalog, Railway for cheap usage-billed experiments, and Fly.io for VMs in many regions.</p></div>
-<p>Every competitor fact on this page links to that company’s own pricing page or documentation, read on 10 October 2026. Where we could not confirm something on an official page, we say <em>not verified</em> instead of guessing. Inferra is in preview: custom domains and the hosted MCP server are not available yet. Spotted something out of date? <a href="https://github.com/inferra-AI/website/issues">Tell us on GitHub</a>.</p>
+<div class="document-head"><p class="eyebrow">Compare · Last verified 10 October 2026</p><h1>Inferra compared with Vercel, Heroku, Render, Railway and Fly.io</h1><p class="lead">Pick Inferra if you want APIs, background workers, Postgres, a cache and buckets built from GitHub and run with prepaid credits at AWS cost plus 30%, with previews for the branches you choose and a sandbox around every app. Pick Vercel for frontend frameworks and a global CDN, Heroku for a decade-mature add-on ecosystem, Render for a broad managed catalog, Railway for cheap usage-billed experiments, and Fly.io for VMs in many regions.</p></div>
+<p>Every competitor fact on this page links to that company’s own pricing page or documentation, read on 10 October 2026. Where we could not confirm something on an official page, we say <em>not verified</em> instead of guessing. Inferra’s MCP server connects assistants to read-only deployment tools. Spotted something out of date? <a href="https://github.com/inferra-AI/website/issues">Tell us on GitHub</a>.</p>
 
 <section id="summary"><h2>At a glance</h2>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Comparison summary table"><table class="table compare-table"><thead><tr><th scope="col">&nbsp;</th><th scope="col">Inferra</th><th scope="col">Vercel</th><th scope="col">Heroku</th><th scope="col">Render</th><th scope="col">Railway</th><th scope="col">Fly.io</th></tr></thead><tbody>
-<tr><th scope="row">Free option</th><td>Free plan, 3 apps, no time limit</td><td>Hobby, free for non-commercial use</td><td>None since Nov 2022</td><td>Free web services that sleep after 15 min idle; free Postgres expires after 30 days</td><td>Free plan with $1/month usage credit</td><td>Trial: 2 hours of runtime or 7 days</td></tr>
-<tr><th scope="row">Entry paid price</th><td>Pro $20/month, flat</td><td>Pro $20 per developer seat/month, plus usage beyond a $20 credit</td><td>Eco $5/month for 1,000 shared dyno hours; Basic $7 per dyno/month; add-ons extra</td><td>Hobby workspace free plus paid compute; Pro $25/month plus compute (instance prices not verified)</td><td>Hobby $5/month incl. $5 usage; Pro $20 per workspace</td><td>Pay as you go, from $2.19/month per small machine</td></tr>
-<tr><th scope="row">Bill grows on its own?</th><td>No: the next push stops at a plan limit</td><td>Yes; optional pause on Pro checks every few minutes</td><td>Usage-based; hard cap not verified</td><td>Yes; hard cap not verified</td><td>Compute can be capped by an optional hard limit that takes workloads offline</td><td>Yes; hard cap not verified</td></tr>
+<tr><th scope="row">Free option</th><td>$5 of usage free monthly per account; card on file; no time limit</td><td>Hobby, free for non-commercial use</td><td>None since Nov 2022</td><td>Free web services that sleep after 15 min idle; free Postgres expires after 30 days</td><td>Free plan with $1/month usage credit</td><td>Trial: 2 hours of runtime or 7 days</td></tr>
+<tr><th scope="row">Entry paid price</th><td>Prepaid credits at AWS cost plus 30%</td><td>Pro $20 per developer seat/month, plus usage beyond a $20 credit</td><td>Eco $5/month for 1,000 shared dyno hours; Basic $7 per dyno/month; add-ons extra</td><td>Hobby workspace free plus paid compute; Pro $25/month plus compute (instance prices not verified)</td><td>Hobby $5/month incl. $5 usage; Pro $20 per workspace</td><td>Pay as you go, from $2.19/month per small machine</td></tr>
+<tr><th scope="row">Bill grows on its own?</th><td>No: prepaid balance caps the bill; new deploys pause at $0</td><td>Yes; optional pause on Pro checks every few minutes</td><td>Usage-based; hard cap not verified</td><td>Yes; hard cap not verified</td><td>Compute can be capped by an optional hard limit that takes workloads offline</td><td>Yes; hard cap not verified</td></tr>
 <tr><th scope="row">Always-on background workers</th><td>Yes</td><td>No always-on worker processes; containers scale down after 5 min idle (30 s in preview)</td><td>Yes (worker dynos)</td><td>Yes (paid instances)</td><td>Yes</td><td>Yes, if auto-stop is turned off</td></tr>
 <tr><th scope="row">Postgres</th><td>Built in; backups kept for 7 days</td><td>Through Marketplace partners (Neon, Supabase, Aurora)</td><td>Built in, from $5/month</td><td>Built in; paid databases get point-in-time recovery (3 days on Hobby, 7 on Pro and up)</td><td>Database template on a volume, with scheduled backups</td><td>Managed Postgres from $38/month plus storage</td></tr>
 <tr><th scope="row">Redis-compatible cache</th><td>Built in (Valkey)</td><td>Through partners (Upstash, Redis)</td><td>Built in; Mini up to $3/month, without persistence</td><td>Built in (Valkey)</td><td>Redis template</td><td>Through Upstash</td></tr>
 <tr><th scope="row">Object storage</th><td>S3 buckets, built in</td><td>Vercel Blob, built in</td><td>None; Heroku points to S3</td><td>Not verified; persistent disks available</td><td>S3-compatible buckets, built in</td><td>Through Tigris</td></tr>
 <tr><th scope="row">Build without a Dockerfile</th><td>Yes, buildpacks only</td><td>Yes, framework detection</td><td>Yes, buildpacks</td><td>Yes, native runtimes</td><td>Yes, Railpack</td><td>Partly: buildpacks optional, Dockerfile by default</td></tr>
-<tr><th scope="row">Branch previews</th><td>Every matched branch, every plan; previews share a preview Postgres, apart from production</td><td>Every branch; databases only if a partner adds branching</td><td>Review Apps via Pipelines and app.json</td><td>Pro plan and up; datastores copied without data</td><td>PR environments replicate services, networking and variables; data copy not verified</td><td>A GitHub Actions recipe; app only by default</td></tr>
-<tr><th scope="row">Isolation model published</th><td>gVisor sandbox per app, every plan</td><td>MicroVM per function; shared instances with Fluid compute</td><td>OS containers with custom hardening</td><td>Not verified</td><td>Not verified</td><td>Firecracker microVMs</td></tr>
-<tr><th scope="row">Custom domains</th><td>Coming soon</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
-</tbody></table></div>
+<tr><th scope="row">Branch previews</th><td>Every matched branch has independent bound services, apart from production</td><td>Every branch; databases only if a partner adds branching</td><td>Review Apps via Pipelines and app.json</td><td>Pro plan and up; datastores copied without data</td><td>PR environments replicate services, networking and variables; data copy not verified</td><td>A GitHub Actions recipe; app only by default</td></tr>
+<tr><th scope="row">Isolation model published</th><td>gVisor sandbox per app, including free usage</td><td>MicroVM per function; shared instances with Fluid compute</td><td>OS containers with custom hardening</td><td>Not verified</td><td>Not verified</td><td>Firecracker microVMs</td></tr>
+
+<tr><th scope="row">MCP server</th><td>Yes: read-only tools for status, logs, metrics and configuration proposals</td><td>Not compared</td><td>Not compared</td><td>Not compared</td><td>Not compared</td><td>Not compared</td></tr></tbody></table></div>
 <p>Prices are in US dollars before tax and change often; follow the source links below before you decide.</p></section>
 
 <section id="different"><h2>Where Inferra is different</h2>
 <ul>
-<li><strong>A bill that can’t grow by itself.</strong> Plans are flat. At a plan limit the next push stops; nothing is added to the bill. Railway documents a comparable hard limit for compute that takes workloads offline; Vercel offers an optional production pause that takes effect after a few minutes.</li>
-<li><strong>A sandbox around every app, Free included.</strong> Every app runs in a gVisor sandbox, and each space is its own private network. Fly.io also names its isolation (Firecracker microVMs); the others describe it differently or not at all.</li>
-<li><strong>App, database, cache and buckets in one file, from one vendor.</strong> Declare Postgres, the cache and buckets in <code>.inferra/org.yaml</code> next to the app; only the apps bound to a service can connect to it. On Vercel and Fly.io some of these come from partners.</li>
-<li><strong>Previews on every plan.</strong> Each matched branch gets a running copy of your apps. Previews share their preview space’s Postgres and other services, kept apart from production. Render needs a Pro workspace for previews; Railway’s PR environments are comparable.</li>
-<li><strong>Long-running workers, unlike Vercel.</strong> An app with a start command and no port is a worker that keeps running. Heroku, Render, Railway and Fly.io run workers too; this is a difference from Vercel only.</li>
+<li><strong>A bill that can’t grow by itself.</strong> Prepaid credits pay for reserved resources at AWS cost plus 30%. The first $5 every month is free per account. A card on file is never charged unless you buy credits. At $0, new deploys pause and data is kept for 7 days. Railway documents a comparable hard limit for compute that takes workloads offline; Vercel offers an optional production pause that takes effect after a few minutes.</li>
+<li><strong>A sandbox around every app, including free usage.</strong> Every app runs in a gVisor sandbox, and each space is its own private network. Fly.io also names its isolation (Firecracker microVMs); the others describe it differently or not at all.</li>
+<li><strong>App, database, cache and buckets from one vendor.</strong> Declare Postgres, the cache and buckets in <code>.inferra/org.yaml</code> alongside app declarations; bind services in each branch file. Only bound apps can connect to a service. On Vercel and Fly.io some of these come from partners.</li>
+<li><strong>Previews for every matched branch.</strong> Each matched branch gets a running copy of your apps. Each branch has its own Postgres and other bound services, kept apart from production and other branches. Render needs a Pro workspace for previews; Railway’s PR environments are comparable.</li>
+<li><strong>Long-running workers, unlike Vercel.</strong> A Procfile worker selected with <code>run.process: worker</code> keeps running without a public route. Heroku, Render, Railway and Fly.io run workers too; this is a difference from Vercel only.</li>
 </ul></section>
 
 <section id="stronger"><h2>Where others are stronger today</h2>
 <ul>
-<li><strong>Maturity.</strong> Inferra is in preview. Heroku has run buildpacks, Procfiles and Review Apps for over a decade, and the others are generally available products.</li>
-<li><strong>Custom domains.</strong> Every competitor has them; Inferra’s are coming soon.</li>
+<li><strong>Maturity.</strong> Heroku has run buildpacks, Procfiles and Review Apps for over a decade, and the others are generally available products.</li>
+
 <li><strong>Regions and edge.</strong> Fly.io runs machines in many regions; Vercel serves from a global CDN.</li>
 <li><strong>Compliance.</strong> Render’s Pro plan includes SOC 2 and ISO 27001 reports. Inferra does not hold these certifications.</li>
 <li><strong>Database recovery depth.</strong> Heroku, Render and Fly.io document point-in-time recovery, rollback or high-availability options beyond Inferra’s 7-day backup window.</li>
-<li><strong>Docker and scale to zero.</strong> Render, Railway and Fly.io accept a Dockerfile when buildpacks don’t fit (Vercel’s Container Runtime is in Beta and must serve HTTP), and Fly.io, Railway and Vercel can stop idle workloads to cost less. Inferra builds with buildpacks only and charges the same each month.</li>
+<li><strong>Docker and scale to zero.</strong> Render, Railway and Fly.io accept a Dockerfile when buildpacks don’t fit (Vercel’s Container Runtime is in Beta and must serve HTTP), and Fly.io, Railway and Vercel can stop idle workloads to cost less. Inferra builds with buildpacks only and charges for reserved branch quotas and metered extras through prepaid credits.</li>
 </ul></section>
 
 <section id="vercel"><h2>Inferra vs Vercel</h2>
@@ -87,7 +87,7 @@
 </ul></section>
 
 <section id="heroku"><h2>Inferra vs Heroku</h2>
-<p><strong>Choose Heroku</strong> for the most mature git-push platform and a very large add-on marketplace. <strong>Choose Inferra</strong> for the same buildpack workflow with a flat price, built-in buckets, previews on every plan and a sandbox per app.</p>
+<p><strong>Choose Heroku</strong> for the most mature git-push platform and a very large add-on marketplace. <strong>Choose Inferra</strong> for the same buildpack workflow with prepaid credits, built-in buckets, branch previews and a sandbox per app.</p>
 <ul>
 <li>No free plan since 28 November 2022; Eco dynos sleep after 30 minutes without traffic (<a href="https://help.heroku.com/RSBRUH58/removal-of-heroku-free-product-plans-faq">FAQ</a>, <a href="https://devcenter.heroku.com/articles/eco-dyno-hours">Eco dynos</a>).</li>
 <li>Dynos are billed per dyno, prorated to the second, with Postgres and Key-Value Store as separately billed add-ons (<a href="https://devcenter.heroku.com/articles/usage-and-billing">billing</a>, <a href="https://www.heroku.com/pricing">pricing</a>).</li>
@@ -96,7 +96,7 @@
 </ul></section>
 
 <section id="render"><h2>Inferra vs Render</h2>
-<p><strong>Choose Render</strong> for a broad managed catalog with point-in-time Postgres recovery and compliance reports. <strong>Choose Inferra</strong> for a single flat price that includes compute, and previews and sandboxing on every plan.</p>
+<p><strong>Choose Render</strong> for a broad managed catalog with point-in-time Postgres recovery and compliance reports. <strong>Choose Inferra</strong> for prepaid credits at AWS cost plus 30%, with branch previews and sandboxing for every app.</p>
 <ul>
 <li>Workspace plans: Hobby free, Pro $25/month, Scale $499/month; each service instance is billed on top (<a href="https://render.com/changelog/updated-plans-for-render-workspaces">plan change</a>). We could not read per-instance prices from Render’s pricing page; check <a href="https://render.com/pricing">render.com/pricing</a>.</li>
 <li>Free web services spin down after 15 minutes idle; free Postgres expires after 30 days (<a href="https://render.com/docs/free">free tier</a>).</li>
@@ -105,7 +105,7 @@
 </ul></section>
 
 <section id="railway"><h2>Inferra vs Railway</h2>
-<p><strong>Choose Railway</strong> for cheap experiments billed by the second, a lasting free plan and Docker support. <strong>Choose Inferra</strong> for a fixed monthly price and a published sandbox model on every plan.</p>
+<p><strong>Choose Railway</strong> for cheap experiments billed by the second, a lasting free plan and Docker support. <strong>Choose Inferra</strong> for prepaid credits and a published sandbox model for every app.</p>
 <ul>
 <li>Free plan with $1 of monthly credit; Hobby $5/month includes $5 of usage and Pro $20/month per workspace includes $20; usage beyond that is about $20 per vCPU-month and $10 per GB-month of memory (<a href="https://docs.railway.com/reference/pricing/plans">plans</a>).</li>
 <li>Usage limits on every plan: at the compute hard limit, “all your workloads will be taken offline” (<a href="https://docs.railway.com/pricing/cost-control">cost controls</a>).</li>
@@ -123,7 +123,7 @@
 </ul></section>
 
 <section id="inferra-sources"><h2>Inferra’s side</h2>
-<p>Inferra’s plans, limits and network rules are on the <a href="/#pricing">homepage</a>; workers, previews and services in the <a href="/docs/org-yaml/">org.yaml reference</a>; isolation, backups and deletion on the <a href="/security/">security page</a>. To try it, follow <a href="/setup/">your first deployment</a>.</p></section>
+<p>Inferra’s credits pricing and branch quotas are on the <a href="/#pricing">homepage</a>; workers, previews and services in the <a href="/docs/org-yaml/">org.yaml reference</a>; isolation, backups and deletion on the <a href="/security/">security page</a>. To try it, follow <a href="/setup/">your first deployment</a>.</p></section>
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
@@ -131,7 +131,7 @@
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.com/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
 <nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Hosted MCP server and custom domains: coming soon.</span></div>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
 <script src="/site.js" defer></script>

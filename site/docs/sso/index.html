@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Preview — not yet launched. Links to the platform point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -46,12 +46,12 @@
 </tbody></table></div></section>
 <section id="steps"><h2>Set it up</h2>
 <h3>1. Register your app with the identity provider</h3><p>Use your app's address, shown on its commit check and in the dashboard, as the redirect (callback) URL, for example <code>https://YOUR-APP-ADDRESS/auth/callback</code>. Each preview branch has its own address: register the ones you need, or use a separate client for previews.</p>
-<h3>2. Keep the client ID and secret out of your code</h3><p>Put the client ID in a GitHub Environment variable and the client secret in the app's Secrets in the dashboard (or send it from GitHub with <code>inferra init --secret NAME</code>; see <a href="/setup/#environment">setup, step 4</a>). Your app reads both from its environment.</p>
+<h3>2. Keep the client ID and secret out of your code</h3><p>Put the client ID in branch or app <code>env</code>, declare the client secret’s name in <code>secrets</code>, and set its value in the dashboard (or send it from GitHub with <code>inferra init --workflow-only --secret NAME</code>; see <a href="/setup/#environment">setup, step 4</a>). Your app reads both from its environment.</p>
 <h3>3. Tell your framework it runs behind HTTPS</h3><p>Inferra's gateway terminates HTTPS and forwards plain HTTP to your app on <code>$PORT</code>, with <code>X-Forwarded-Proto: https</code>. Turn on your framework's "trust proxy" setting so redirect URLs and secure cookies use <code>https://</code>; otherwise the identity provider rejects the callback.</p>
-<h3>4. Share sessions between instances</h3><p>With more than one instance, keep sessions in a shared store. Declare a cache next to the app in <code>org.yaml</code> and point your session library at the URL Inferra injects (see the <a href="/docs/org-yaml/">org.yaml reference</a>), or use signed, stateless session cookies.</p>
+<h3>4. Share sessions between instances</h3><p>With more than one instance, keep sessions in a shared store. Declare a cache in <code>org.yaml</code> and bind it to the app in the branch file, then point your session library at the URL Inferra injects (see the <a href="/docs/org-yaml/">org.yaml reference</a>), or use signed, stateless session cookies.</p>
 <h3>5. SAML certificates and keys</h3><p>Store the certificate and private key as secrets (multi-line values are fine). If your library needs file paths, write them to a temporary file at startup; first-class secrets-as-files is coming.</p></section>
 <section id="later"><h2>Coming later</h2><ul>
-<li><strong>Your own domain</strong> (for example <code>login.acme.com</code>) for enterprise SAML setups that require it.</li>
+
 <li><strong>Secrets as files</strong>, for libraries that read certificates and keys from disk.</li>
 <li><strong>Protect with SSO</strong>: put sign-in in front of an app with a few lines in <code>org.yaml</code>, no code, for internal tools. Planned.</li>
 <li><strong>Private networking</strong> to reach directories inside your own network.</li>
@@ -63,7 +63,7 @@
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.com/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
 <nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Hosted MCP server and custom domains: coming soon.</span></div>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
 <script src="/site.js" defer></script>
