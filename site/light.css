@@ -188,3 +188,45 @@ footer.site { background: var(--panel); }
 .net-ok { fill: none; stroke: #138a43; stroke-width: 2; }
 .net-no { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 4 4; }
 .net-x { font: 700 16px var(--sans); fill: var(--bad); }
+
+/* Real product screens and a compact customer journey. */
+.hero-product { margin: 0; min-width: 0; align-self: center; }
+.hero-product img { width: 100%; height: auto; display: block; border-radius: 20px; border: 1px solid var(--line); box-shadow: 0 24px 70px #20204018; }
+.hero-product figcaption, .journey-step figcaption { font-size: 12px; color: var(--muted); margin-top: 12px; line-height: 1.6; }
+.journey-section, .value-section { padding-top: 96px; }
+.journey-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+.journey-step { min-width: 0; position: relative; }
+.journey-number { display: grid; place-items: center; width: 36px; height: 36px; background: var(--text); color: white; border-radius: 50%; margin-bottom: 20px; font-weight: 700; }
+.journey-step:not(:last-child)::after { content: '→'; position: absolute; top: 2px; right: 0; font-size: 24px; color: var(--muted); }
+.journey-step h3 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 12px; }
+.journey-step > p { font-size: 14px; line-height: 1.7; min-height: 120px; color: var(--muted); }
+.journey-step code { overflow-wrap: anywhere; font-size: .9em; }
+.journey-step figure { margin: 20px 0 0; }
+.journey-step figure a { display: block; }
+.journey-step img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 8px; transition: box-shadow .2s; }
+.journey-step a:hover img { box-shadow: 0 4px 20px #0002; }
+.journey-step figcaption a { display: inline; }
+.journey-video { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: center; background: var(--lilac); border-radius: 24px; padding: 32px; margin-top: 48px; }
+.journey-video h3 { font-size: 30px; letter-spacing: -.03em; margin-bottom: 12px; }
+.journey-video p { margin-bottom: 16px; }
+.journey-video video { display: block; margin: 0; }
+.value-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
+.value-grid article { border-radius: 24px; padding: 28px; background: var(--mint); }
+.value-grid article:nth-child(4n+2) { background: var(--lilac); }
+.value-grid article:nth-child(4n+3) { background: var(--sky); }
+.value-grid article:nth-child(4n+4) { background: var(--peach); }
+.value-grid h3 { font-size: 22px; margin-bottom: 12px; letter-spacing: -.02em; }
+.value-grid p { color: #3d4047; font-size: 15px; line-height: 1.7; }
+.ready-section .btns { justify-content: center; margin-top: 24px; }
+@media (max-width: 1100px) { .value-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 900px) {
+ .journey-steps { grid-template-columns: 1fr; gap: 32px; }
+ .journey-step { padding: 24px; background: var(--panel); border-radius: 24px; }
+ .journey-step:not(:last-child)::after { content: '↓'; top: auto; bottom: -32px; right: 50%; }
+ .journey-step > p { min-height: 0; }
+ .journey-video { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+ .hero-product { margin-top: 24px; }
+}
+@media (max-width: 600px) { .value-grid { grid-template-columns: 1fr; } .journey-section, .value-section { padding-top: 64px; } }
+.landing .pricing-section { padding-top: 96px; }
+@media (max-width: 600px) { .landing .pricing-section { padding-top: 64px; } }
