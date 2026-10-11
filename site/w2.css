@@ -7,3 +7,7 @@
 .w2-ready { background:var(--sky); padding:28px; border-radius:24px; }
 .w2-ready .btns { display:flex; flex-wrap:wrap; gap:12px; }
 @media(max-width:700px) { .w2-grid { grid-template-columns:1fr; } .w2-grid article { padding:18px; } }
+.document section.w2-ready { padding: 36px 40px; border-top: 0; margin-top: 24px; }
+.document section.w2-ready h2 { margin-top: 0; }
+.document section.w2-ready .btns { margin-top: 20px; }
+@media(max-width:700px) { .document section.w2-ready { padding: 24px 20px; } }
