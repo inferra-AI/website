@@ -82,7 +82,7 @@
 <tr><td><code>postgres: orders</code></td><td>A Postgres 17 database in each of those namespaces, with backups.</td></tr>
 <tr><td><code>services: [orders]</code></td><td>api and worker are connected to the database. Its address is given to them automatically (as <code>ORDERS_URL</code>); no passwords to copy.</td></tr>
 </tbody></table></div></section>
-<section id="product" class="how-section wrap" aria-labelledby="h-how"><div class="section-head"><h2 id="h-how">Git does the deploying.</h2><p>A push to main updates its namespace. Each matched branch gets its own copy, removed when the branch is deleted.</p></div><ol class="steps"><li class="step"><h3><span>1</span>Push a branch</h3><figure class="step-visual" aria-label="Illustration: Push a branch"><div class="terminal window"><div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><pre><span>$</span> git checkout -b feature/checkout
+<section id="product" class="how-section wrap" aria-labelledby="h-how"><div class="section-head"><h2 id="h-how">Git does the deploying.</h2><p>Every new commit on main (a push or a merged pull request) updates its namespace. Each matched branch gets its own copy, removed when the branch is deleted.</p></div><ol class="steps"><li class="step"><h3><span>1</span>Push a branch</h3><figure class="step-visual" aria-label="Illustration: Push a branch"><div class="terminal window"><div class="window-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div><pre><span>$</span> git checkout -b feature/checkout
 <span>$</span> git push -u origin feature/checkout
 <span class="muted">→ new branch: feature/checkout</span>
 <span>$</span> <span class="cursor">█</span></pre></div></figure>
