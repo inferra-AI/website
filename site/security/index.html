@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inferra Security: gVisor, Networks &amp; Data Retention</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="How Inferra uses gVisor sandboxes, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
+<meta name="description" content="How Inferra isolates apps with gVisor, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
 <link rel="canonical" href="https://inferralab.com/security/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,10 +17,10 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="Inferra Security: gVisor, Networks &amp; Data Retention">
-<meta property="og:description" content="How Inferra uses gVisor sandboxes, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
+<meta property="og:description" content="How Inferra isolates apps with gVisor, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
 <meta property="og:url" content="https://inferralab.com/security/">
 <meta name="twitter:title" content="Inferra Security: gVisor, Networks &amp; Data Retention">
-<meta name="twitter:description" content="How Inferra uses gVisor sandboxes, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
+<meta name="twitter:description" content="How Inferra isolates apps with gVisor, service bindings and write-only secrets, plus deletion, backup retention and branch recovery limits.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -39,7 +39,7 @@
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Security and data handling</h1><p class="lead">Inferra isolates apps with gVisor, controls network access by space and service binding, and keeps secret values out of read APIs. This page describes the product controls and data retention.</p></div>
-<section id="isolation"><h2>Sandbox and builds</h2><p>Every app, including apps covered by the free allowance, runs in a gVisor sandbox. Spaces use separate namespaces and network policies. Buildpacks come from a mirrored catalog pinned by digest. Apps build from source with buildpacks, with no Dockerfile option. Every successful build is submitted for vulnerability scanning. A scan may be incomplete or unavailable; check its result before treating an image as scanned.</p></section><section id="scanning"><h2>Build vulnerability scanning</h2><p>The build image’s software bill of materials (SBOM) supplies the package inventory for scanning. The core API accepts <code>pass</code>, <code>warn</code> and <code>block</code> verdicts tied to that exact image digest. A warning is not a clean bill of health; a blocking verdict prevents deployment when an opt-in blocking policy is active.</p>
+<section id="isolation"><h2>Isolation and builds</h2><p>Every app, including apps covered by the free allowance, runs isolated with gVisor. Spaces use separate namespaces and network policies. Buildpacks come from a mirrored catalog pinned by digest. Apps build from source with buildpacks, with no Dockerfile option. Every successful build is submitted for vulnerability scanning. A scan may be incomplete or unavailable; check its result before treating an image as scanned.</p></section><section id="scanning"><h2>Build vulnerability scanning</h2><p>The build image’s software bill of materials (SBOM) supplies the package inventory for scanning. The core API accepts <code>pass</code>, <code>warn</code> and <code>block</code> verdicts tied to that exact image digest. A warning is not a clean bill of health; a blocking verdict prevents deployment when an opt-in blocking policy is active.</p>
 <p>The current orgfile parser supports this policy in <strong>version 1 only</strong>:</p><pre class="term"><code>version: 1
 scan:
   block: critical</code></pre><p><code>critical</code> is the only accepted nonempty value. <code>high</code> is rejected, and v2 org.yaml does not accept the <code>scan</code> field. Keep the rest of your valid v1 configuration when adding this setting.</p>

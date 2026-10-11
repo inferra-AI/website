@@ -177,3 +177,14 @@ footer.site { background: var(--panel); }
 /* Files -> result arrow (right on desktop, down when stacked). */
 .how-arrow::before { content: "→"; display: block; font-size: 40px; line-height: 1; color: var(--muted); }
 @media (max-width: 900px) { .how-arrow { text-align: center; } .how-arrow::before { content: "↓"; } }
+
+/* Private network picture under the result card. */
+.net-diagram { margin: 8px 0 0; }
+.net-diagram svg { width: 100%; height: auto; max-width: 420px; display: block; }
+.net-label { font: 500 11px var(--sans); fill: var(--muted); }
+.net-chip { fill: #fff; stroke: #d9d9d3; }
+.net-db { fill: var(--mint); stroke: #b9e2c8; }
+.net-chip-text { font: 500 12px var(--mono); fill: var(--text); text-anchor: middle; }
+.net-ok { fill: none; stroke: #138a43; stroke-width: 2; }
+.net-no { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 4 4; }
+.net-x { font: 700 16px var(--sans); fill: var(--bad); }
