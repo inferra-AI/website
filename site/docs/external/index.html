@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect to external databases and APIs</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="Reach databases and APIs outside Inferra: fixed outbound IPs to allowlist, credentials as secrets, and TLS with public or provider CA certificates and client certificates.">
+<link rel="canonical" href="https://inferralab.com/docs/external/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+<link rel="stylesheet" href="/w2.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Connect to external services", "item": "https://inferralab.com/docs/external/"}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Connect to external databases and APIs">
+<meta property="og:description" content="Reach databases and APIs outside Inferra: fixed outbound IPs to allowlist, credentials as secrets, and TLS with public or provider CA certificates and client certificates.">
+<meta property="og:url" content="https://inferralab.com/docs/external/">
+<meta name="twitter:title" content="Connect to external databases and APIs">
+<meta name="twitter:description" content="Reach databases and APIs outside Inferra: fixed outbound IPs to allowlist, credentials as secrets, and TLS with public or provider CA certificates and client certificates.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="document wrap"><div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Connect to external databases and APIs</h1><p class="lead">Your apps can reach databases and APIs anywhere on the public internet. Allowlist our outbound IP addresses, keep credentials in secrets, and connect over verified TLS.</p></div>
+<section id="network"><h2>What your app can reach</h2><p>Apps reach any public address and port, including external databases, SMTP and APIs. Private address ranges and cloud metadata endpoints are blocked, so private networks in your own cloud aren't reachable yet. Custom services that need the internet must declare <code>internet: true</code>.</p></section>
+<section id="allowlist"><h2>Allowlist our outbound IP addresses</h2><p>If your provider asks for an IP allowlist, copy the <b>Outbound IP addresses</b> from the dashboard Help menu or your organization's overview page, run <code>inferra network</code>, or request <code>GET /v1/platform/network</code>. Allowlist every published address.</p><p><b>These addresses are shared by every app on the platform.</b> An allowlist doesn't identify your app, so always require credentials as well.</p></section>
+<section id="credentials"><h2>Keep credentials in secrets</h2><p>Declare secret names in the branch file's <code>secrets</code> and set their values in the dashboard, or send them from GitHub (see <a href="/setup/#environment">setup, step 4</a>). Never commit passwords, keys or connection strings with passwords in them.</p></section>
+<section id="tls"><h2>TLS certificates</h2><p>Always connect over TLS with verification on. What you need depends on who signed the database server's certificate.</p><p>If your app needs a certificate authority (CA) it doesn't already trust, there are three ways to provide it:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Ways to provide a CA"><table class="table"><thead><tr><th scope="col">Way</th><th scope="col">Works today</th><th scope="col">Use it when</th></tr></thead><tbody>
+<tr><td>CA file in your repo + an environment variable</td><td>Yes</td><td>The CA is public (most provider bundles)</td></tr>
+<tr><td>CA stored as a secret, written to a file at startup</td><td>Yes</td><td>You'd rather not commit it, or it rotates often</td></tr>
+<tr><td>Paketo <code>ca-certificates</code> buildpack binding</td><td>Not yet</td><td>Needs secrets mounted as files (planned). The buildpack is already in every build.</td></tr>
+</tbody></table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Certificate cases"><table class="table"><thead><tr><th scope="col">Database</th><th scope="col">Certificate you need</th><th scope="col">How</th></tr></thead><tbody>
+<tr><td>Signed by a public authority<br><small>Neon, Supabase, MongoDB Atlas, PlanetScale…</small></td><td>None</td><td>Turn verification on, for example <code>sslmode=verify-full</code>. The app image already trusts public authorities.</td></tr>
+<tr><td>Signed by the provider's own authority<br><small>AWS RDS and Aurora, Azure, Google Cloud SQL, self-hosted</small></td><td>The provider's CA certificate (public)</td><td>Commit it to your repo and point the client at it.</td></tr>
+<tr><td>Checks your app's certificate (mutual TLS)</td><td>A client certificate and private key (secret)</td><td>Store both as secrets; write them to files at startup.</td></tr>
+</tbody></table></div>
+<h3>A provider CA for one connection</h3><pre><code>certs/rds-global-bundle.pem        # downloaded from the provider
+DATABASE_URL=postgres://…?sslmode=verify-full&amp;sslrootcert=certs/rds-global-bundle.pem</code></pre><p>Paths are relative to the app folder at runtime. Check the provider's docs for the current bundle and when it rotates.</p>
+<h3>A provider CA for the whole app</h3><p>To trust the CA in every library, not just one connection string, set your language's standard variable in the branch file's <code>env</code>. The app's files live under <code>/workspace</code> at runtime.</p>
+<pre><code>apps:
+  api:
+    env:
+      NODE_EXTRA_CA_CERTS: /workspace/certs/rds-global-bundle.pem   # Node.js
+      # SSL_CERT_FILE: /workspace/certs/bundle.pem                  # Python, Go, Ruby, OpenSSL
+      # REQUESTS_CA_BUNDLE: /workspace/certs/bundle.pem             # Python requests</code></pre>
+<p><code>SSL_CERT_FILE</code> replaces the default list rather than adding to it, so build that file from the system bundle plus your CA. Java apps import the CA into a truststore at startup instead.</p>
+<h3>Client certificates (mutual TLS)</h3><p>The client certificate can be shared, but its private key is a secret: never commit it. Store both as secrets (multi-line values are fine) and write them to owner-only files when the app starts:</p>
+<pre><code>umask 077
+printf '%s\n' "$DB_CLIENT_CERT" &gt; /tmp/client.crt
+printf '%s\n' "$DB_CLIENT_KEY"  &gt; /tmp/client.key
+exec npm start   # then use sslcert=/tmp/client.crt&amp;sslkey=/tmp/client.key</code></pre>
+<p>Put those lines in a small start script referenced from your Procfile (for example <code>web: sh start.sh</code>). Built-in secrets as files is planned.</p>
+<h3>A CA kept in a secret</h3><p>The same pattern works for a CA you store as a secret. <code>export</code> the variable so the app process sees it:</p>
+<pre><code>umask 077
+printf '%s\n' "$DB_CA_CERT" &gt; /tmp/db-ca.pem
+export NODE_EXTRA_CA_CERTS=/tmp/db-ca.pem
+exec npm start</code></pre>
+<p>Many clients also accept the CA straight from the environment, with no file, for example Node's <code>ca: process.env.DB_CA_CERT</code>.</p>
+<p><b>Never turn verification off</b> (<code>sslmode=require</code> without a CA, or <code>rejectUnauthorized: false</code>) to make a connection work. The traffic is still encrypted, but anyone in the middle can pretend to be your database.</p></section>
+<section id="later"><h2>Coming later</h2><ul><li>Secrets as files, for certificates and keys.</li><li>Private connections to networks in your own cloud.</li></ul></section></main>
+<footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>

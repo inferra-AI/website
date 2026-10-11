@@ -1,0 +1,9 @@
+.document { overflow-wrap: anywhere; }
+.w2-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.w2-grid article { min-width:0; padding:24px; border-radius:24px; background:var(--lilac); }
+.w2-grid article:nth-child(2) { background:var(--mint); }
+.document pre { max-width:100%; white-space:pre-wrap; overflow-wrap:anywhere; }
+.document .table-scroll { max-width:100%; }
+.w2-ready { background:var(--sky); padding:28px; border-radius:24px; }
+.w2-ready .btns { display:flex; flex-wrap:wrap; gap:12px; }
+@media(max-width:700px) { .w2-grid { grid-template-columns:1fr; } .w2-grid article { padding:18px; } }

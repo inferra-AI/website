@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Railway alternative: Inferra vs Railway</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="A Railway alternative with reserved-size pricing: compare billing, spend limits, buckets, previews and price, with sources.">
+<link rel="canonical" href="https://inferralab.com/compare/railway/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Railway alternative: Inferra vs Railway">
+<meta property="og:description" content="A Railway alternative with reserved-size pricing: compare billing, spend limits, buckets, previews and price, with sources.">
+<meta property="og:url" content="https://inferralab.com/compare/railway/">
+<meta name="twitter:title" content="Railway alternative: Inferra vs Railway">
+<meta name="twitter:description" content="A Railway alternative with reserved-size pricing: compare billing, spend limits, buckets, previews and price, with sources.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="/w2.css">
+<link rel="stylesheet" href="/tpl.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Compare", "item": "https://inferralab.com/compare/"}, {"@type": "ListItem", "position": 3, "name": "Inferra vs Railway", "item": "https://inferralab.com/compare/railway/"}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="tpl">
+<section class="tpl-hero"><div class="in">
+<p class="eyebrow">Compare · facts checked 10 Oct 2026</p>
+<h1>A Railway alternative priced by the size you reserve.</h1><p class="lead">Push-to-deploy apps, workers, Postgres and buckets, paid from prepaid credits, with a grace period before anything stops.</p>
+<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/migrate/railway/" data-umami-event="migration_open">Moving from Railway? Read the guide →</a></div>
+</div></section>
+<section class="band-off"><div class="in">
+<p class="eyebrow">Side by side</p><h2>Inferra vs Railway, feature by feature.</h2>
+<div class="vs"><table><thead><tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col">Railway</th><th scope="col">Inferra</th></tr></thead><tbody><tr><th scope="row">Billing</th><td class="them" data-label="Railway"><a href="https://docs.railway.com/reference/pricing/plans" rel="noopener">Trial: $5 one-time credit; Hobby $5 incl. $5 usage; Pro $20 incl. $20; then about $20/vCPU-month and $10/GB-month</a></td><td data-label="Inferra">Reserved size from prepaid credits: $16.19/vCPU-month, $1.78/GB-month</td></tr><tr><th scope="row">Spend limit</th><td class="them" data-label="Railway"><a href="https://docs.railway.com/pricing/cost-control" rel="noopener">At the compute hard limit, “all your workloads will be taken offline”</a></td><td data-label="Inferra">At $0, new deploys pause at once; apps pause after 3 days; data kept 7 days</td></tr><tr><th scope="row">Buckets</th><td class="them" data-label="Railway"><a href="https://docs.railway.com/storage-buckets" rel="noopener">S3-compatible buckets with free egress</a></td><td data-label="Inferra">Private S3 buckets, priced by reserved size</td></tr><tr><th scope="row">Previews</th><td class="them" data-label="Railway"><a href="https://docs.railway.com/guides/preview-deployments-with-pr-environments" rel="noopener">PR environments copy services, networking and variables; docs don't say whether data is copied</a></td><td data-label="Inferra">A namespace per matched branch, with a fresh database</td></tr></tbody></table></div>
+<p class="note">Each Railway fact links to its source on docs.railway.com, checked 10 Oct 2026.</p>
+</div></section>
+<section class="band-lemon"><div class="in">
+<p class="eyebrow">Same app, monthly price</p><h2>Same size, monthly price.</h2>
+<div class="grid2 tpl-price">
+<div class="card"><div class="who">Railway · Hobby, same size used all month</div><div class="amt">about $10 / month</div><p>$5 plan including $5 of usage, plus about $5 beyond it at about $20 per vCPU-month and $10 per GB-month. <a href="https://docs.railway.com/reference/pricing/plans" rel="noopener">Railway plans</a></p></div>
+<div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MB</div><div class="amt">$4.94 / month</div><p>Compute only. Fits the $5 account-wide allowance only if you have no other usage. Card required.</p></div>
+</div><p class="note">Railway bills actual usage, so this assumes 0.25 vCPU and 512 MB are used all month. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/#pricing">Full pricing</a></p>
+</div></section>
+<section><div class="in">
+<p class="eyebrow">Coming soon</p><h2>Missing pieces, coming soon.</h2><div class="grid3"><div class="card panel"><h3>Custom domains</h3><p>Today apps get an Inferra URL.</p></div><div class="card panel"><h3>Autoscaling</h3><p>Today you set instance counts in Git.</p></div><div class="card panel"><h3>SOC 2 audit</h3><p>An independent security audit of the platform.</p></div></div>
+</div></section>
+<section class="band-ink"><div class="in">
+<p class="eyebrow">Ready to move?</p><h2>Bring your Railway app over.</h2>
+<div class="btns"><a class="btn" href="/migrate/railway/" data-umami-event="migration_open">Read the Railway migration guide →</a><a class="btn ghost" href="/demo/" data-umami-event="demo_open">Open the live demo →</a></div>
+<p class="note"><a class="more" href="/compare/">Also compare: Heroku · Vercel · Render · Fly.io →</a></p>
+</div></section></main><footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-umami-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-umami-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-umami-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-umami-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<script src="/site.js" defer></script><script src="/analytics-config.js" defer></script><script src="/w2.js" defer></script></body></html>

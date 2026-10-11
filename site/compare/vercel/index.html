@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vercel alternative for APIs and workers: Inferra vs Vercel</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="A Vercel alternative for backends that run all the time: compare long-running work, workers, databases, billing and price, with sources.">
+<link rel="canonical" href="https://inferralab.com/compare/vercel/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Vercel alternative for APIs and workers: Inferra vs Vercel">
+<meta property="og:description" content="A Vercel alternative for backends that run all the time: compare long-running work, workers, databases, billing and price, with sources.">
+<meta property="og:url" content="https://inferralab.com/compare/vercel/">
+<meta name="twitter:title" content="Vercel alternative for APIs and workers: Inferra vs Vercel">
+<meta name="twitter:description" content="A Vercel alternative for backends that run all the time: compare long-running work, workers, databases, billing and price, with sources.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="/w2.css">
+<link rel="stylesheet" href="/tpl.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Compare", "item": "https://inferralab.com/compare/"}, {"@type": "ListItem", "position": 3, "name": "Inferra vs Vercel", "item": "https://inferralab.com/compare/vercel/"}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="tpl">
+<section class="tpl-hero"><div class="in">
+<p class="eyebrow">Compare · facts checked 10 Oct 2026</p>
+<h1>A Vercel alternative for APIs, workers and their database.</h1><p class="lead">Previews from Git like you're used to, plus servers and background workers that run all the time, with Postgres, cache and buckets in the same place.</p>
+<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/migrate/vercel/" data-umami-event="migration_open">Moving from Vercel? Read the guide →</a></div>
+</div></section>
+<section class="band-off"><div class="in">
+<p class="eyebrow">Side by side</p><h2>Inferra vs Vercel, feature by feature.</h2>
+<div class="vs"><table><thead><tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col">Vercel</th><th scope="col">Inferra</th></tr></thead><tbody><tr><th scope="row">Long-running work</th><td class="them" data-label="Vercel"><a href="https://vercel.com/docs/functions/limitations" rel="noopener">Functions on Fluid Compute stop after 300 s on Hobby or 800 s on Pro; 1,800 s in Beta</a></td><td data-label="Inferra">Apps run continuously</td></tr><tr><th scope="row">Background workers</th><td class="them" data-label="Vercel"><a href="https://vercel.com/kb/guide/docker-monolith-workers-vercel" rel="noopener">In a production container, a worker loop stops when the instance scales down after 5 minutes without HTTP traffic</a></td><td data-label="Inferra">Workers run continuously, with no public URL</td></tr><tr><th scope="row">Databases</th><td class="them" data-label="Vercel"><a href="https://vercel.com/docs/marketplace-storage" rel="noopener">Postgres and Redis from Marketplace partners such as Neon, Supabase and Upstash</a></td><td data-label="Inferra">Postgres (7-day restore), Valkey cache and S3 buckets built in</td></tr><tr><th scope="row">Billing</th><td class="them" data-label="Vercel"><a href="https://vercel.com/pricing" rel="noopener">Pro is $20 per developer seat, plus usage beyond the included credit</a></td><td data-label="Inferra">No seats. Prepaid credits for reserved CPU, memory and storage</td></tr><tr><th scope="row">Spend limit</th><td class="them" data-label="Vercel"><a href="https://vercel.com/docs/spend-management" rel="noopener">Spend Management can pause production deployments, checked every few minutes</a></td><td data-label="Inferra">The bill can't pass your prepaid balance</td></tr></tbody></table></div>
+<p class="note">Each Vercel fact links to its source on vercel.com, checked 10 Oct 2026.</p>
+</div></section>
+<section class="band-lemon"><div class="in">
+<p class="eyebrow">Same app, monthly price</p><h2>Illustrative monthly price: size, not seats.</h2>
+<div class="grid2 tpl-price">
+<div class="card"><div class="who">Vercel · Pro</div><div class="amt">$20 / seat / month</div><p>Plus usage beyond the included $20 credit. Hobby is free for non-commercial use. <a href="https://vercel.com/pricing" rel="noopener">Vercel pricing</a></p></div>
+<div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MB</div><div class="amt">$4.94 / month</div><p>Compute only. Fits the $5 account-wide allowance only if you have no other usage. Card required.</p></div>
+</div><p class="note">An illustration: Vercel bills different units and has no equivalent always-on worker, so the totals aren't like for like. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/#pricing">Full pricing</a></p>
+</div></section>
+<section><div class="in">
+<p class="eyebrow">Coming soon</p><h2>Missing pieces, coming soon.</h2><div class="grid3"><div class="card panel"><h3>Custom domains</h3><p>Today apps get an Inferra URL.</p></div><div class="card panel"><h3>Autoscaling</h3><p>Today you set instance counts in Git.</p></div><div class="card panel"><h3>SOC 2 audit</h3><p>An independent security audit of the platform.</p></div></div>
+</div></section>
+<section class="band-ink"><div class="in">
+<p class="eyebrow">Ready to move?</p><h2>Bring your backend over.</h2>
+<div class="btns"><a class="btn" href="/migrate/vercel/" data-umami-event="migration_open">Read the Vercel migration guide →</a><a class="btn ghost" href="/demo/" data-umami-event="demo_open">Open the live demo →</a></div>
+<p class="note"><a class="more" href="/compare/">Also compare: Heroku · Render · Railway · Fly.io →</a></p>
+</div></section></main><footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-umami-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-umami-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-umami-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-umami-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<script src="/site.js" defer></script><script src="/analytics-config.js" defer></script><script src="/w2.js" defer></script></body></html>
