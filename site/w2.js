@@ -9,7 +9,7 @@
     const codes = Array.isArray(config?.offerCodes) ? config.offerCodes : [];
     if (/^[A-Za-z0-9_-]{1,64}$/.test(candidate) && codes.includes(candidate)) {
       offer = candidate;
-      document.getElementById('offer-message').textContent = `Your code ${offer} adds credits after sign-up`;
+      document.getElementById('offer-message').textContent = `Have code ${offer}? Check it in your wallet.`;
       document.getElementById('offer-note').textContent = 'Redeem it in your wallet after signing up. The wallet confirms eligibility and the credit amount.';
     }
   }
