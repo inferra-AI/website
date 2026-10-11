@@ -1,4 +1,4 @@
-// Inferra site: mobile menu, live status, first-party events.
+// Inferra site: mobile menu, live status and optional Umami events.
 (() => {
   document.documentElement.classList.add("js");
   const menu = document.querySelector(".menu-btn"), links = document.getElementById("nav-links");
@@ -20,18 +20,31 @@
       .catch(() => {});
   }
 
-  // First-party events (no cookies, no third parties). Sent only if an endpoint is configured.
-  const endpoint = document.querySelector('meta[name="events-endpoint"]')?.content;
-  const send = (name, props = {}) => {
-    if (!endpoint) return;
-    const body = JSON.stringify({ name, path: location.pathname, ref: document.referrer ? new URL(document.referrer).host : "", ...props });
-    navigator.sendBeacon?.(endpoint, body);
+  // Optional Umami analytics. Do Not Track disables both loading and events.
+  const dnt = [navigator.doNotTrack, window.doNotTrack, navigator.msDoNotTrack]
+    .some(value => value === "1" || value === "yes");
+  const config = window.INFERRA_ANALYTICS || {};
+  const enabled = !dnt && Boolean(config.src && config.websiteId);
+  const track = (name, data) => {
+    if (!enabled) return;
+    try { window.umami?.track(name, data); } catch { /* Analytics must never break the site. */ }
   };
-  send("landing_visit");
-  document.addEventListener("click", (e) => {
-    const el = e.target.closest("[data-event]");
-    if (el) send(el.dataset.event, { href: el.getAttribute("href") });
-  });
+  window.inferraTrack = track;
+  const heading = document.querySelector('[data-hero-heading]');
+  const variant = new URLSearchParams(location.search).get('hero') === 'b' ? 'b' : 'a';
+  if (heading && variant === 'b') heading.textContent = 'Just bring your code. We run it.';
+  if (enabled) {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = config.src;
+    script.dataset.websiteId = config.websiteId;
+    script.dataset.doNotTrack = 'true';
+    script.addEventListener('load', () => {
+      if (heading) track('hero_variant', { variant });
+    });
+    document.head.appendChild(script);
+  }
+  // Umami handles annotated clicks itself. Do not also send the same click manually.
 
   // Hero picture: scale it to fit between its column start and the window edge.
   const scene = document.querySelector(".hero-scene");

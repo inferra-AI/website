@@ -230,3 +230,24 @@ footer.site { background: var(--panel); }
 @media (max-width: 600px) { .value-grid { grid-template-columns: 1fr; } .journey-section, .value-section { padding-top: 64px; } }
 .landing .pricing-section { padding-top: 96px; }
 @media (max-width: 600px) { .landing .pricing-section { padding-top: 64px; } }
+
+/* AI assistant entry point and reservation pricing. */
+.assistant-strip { margin-top: 48px; padding: 32px; background: var(--lilac); border-radius: 24px; }
+.assistant-strip h2 { margin-bottom: 20px; }
+.assistant-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.assistant-badges span { padding: 8px 16px; background: white; border-radius: 99px; font-weight: 600; }
+#deploy-prompt { padding: 20px; border-radius: 16px; background: white; overflow-wrap: anywhere; margin-bottom: 20px; }
+.pricing-intro { padding-top: 64px; }
+.pricing-intro h1 { font-size: clamp(36px, 5vw, 64px); }
+.pricing-intro table { width: 100%; margin: 32px 0 16px; border-collapse: collapse; }
+.pricing-intro caption { text-align: left; margin-bottom: 12px; font-weight: 600; }
+.pricing-intro th, .pricing-intro td { padding: 16px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+.pricing-intro th { background: var(--mint); }
+.nav-inner { gap: 16px; }
+#nav-links ul { flex-wrap: wrap; gap: 12px; }
+@media (min-width: 901px) { #nav-links { min-width: 0; } #nav-links a { font-size: 13px; } }
+@media (max-width: 600px) {
+ .assistant-strip { padding: 24px; }
+ .assistant-strip > a { display: block; margin-top: 16px; }
+ .pricing-intro th, .pricing-intro td { padding: 12px 6px; font-size: 13px; overflow-wrap: anywhere; }
+}

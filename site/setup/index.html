@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deploy your first app with Inferra’s two-file configuration</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
-<link rel="canonical" href="https://inferralab.com/setup/">
+
+
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,26 +16,35 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Deploy an app from GitHub with Inferra", "description": "Configure org.yaml v2 and branch files, push and inspect deployment.", "step": [{"@type": "HowToStep", "name": "Prepare a repository", "text": "Use a named app folder and a repository admin who can install the App.", "url": "https://inferralab.com/setup/#prerequisites"}, {"@type": "HowToStep", "name": "Install and sign in", "text": "Install the App and CLI; log in with https://api.dev.inferralab.dev.", "url": "https://inferralab.com/setup/#install"}, {"@type": "HowToStep", "name": "Write two configuration files", "text": "Write org.yaml v2 on the default branch and a file for each branch’s settings.", "url": "https://inferralab.com/setup/#configuration"}, {"@type": "HowToStep", "name": "Set secrets", "text": "Declare secret names and set values in the dashboard or matching branch GitHub Environment.", "url": "https://inferralab.com/setup/#environment"}, {"@type": "HowToStep", "name": "Push", "text": "Push the default branch first, then eligible branches.", "url": "https://inferralab.com/setup/#push"}, {"@type": "HowToStep", "name": "Inspect checks", "text": "Read configuration and deployment results and open the live URL.", "url": "https://inferralab.com/setup/#checks"}, {"@type": "HowToStep", "name": "Bind Postgres", "text": "Declare Postgres in org.yaml and bind it in each branch file.", "url": "https://inferralab.com/setup/#postgres"}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
-<meta property="og:title" content="Deploy your first app with Inferra’s two-file configuration">
-<meta property="og:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
-<meta property="og:url" content="https://inferralab.com/setup/">
-<meta name="twitter:title" content="Deploy your first app with Inferra’s two-file configuration">
-<meta name="twitter:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
-<meta property="og:image" content="https://inferralab.com/og.png">
+
+
+
+
+
+
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<meta name="description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<meta property="og:title" content="Deploy your first app with Inferra’s two-file configuration">
+<meta property="og:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<meta property="og:url" content="https://inferralab.com/setup/">
+<meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
-</head><body>
+<meta name="twitter:title" content="Deploy your first app with Inferra’s two-file configuration">
+<meta name="twitter:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<link rel="canonical" href="https://inferralab.com/setup/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Deploy your first app with Inferra\u2019s two-file configuration", "item": "https://inferralab.com/setup/"}]}</script></head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
 <nav id="nav-links" aria-label="Main navigation"><ul>
-<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+<li><a href="/ai/">AI assistants</a></li><li><a href="/templates/">Templates</a></li><li><a href="/migrate/heroku/">Migrate</a></li><li><a href="/agencies/">Agencies</a></li></ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="signup_started">Get started</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>Your first deployment</h1><p class="lead">Install the GitHub App, write org.yaml v2 and a branch file, then push. Inferra builds with buildpacks and reports the result on the commit. The CLI inspects and operates apps.</p></div>
@@ -87,16 +96,17 @@ inferra logs api --follow</code></pre><p>Replace YOUR_ORG with the name from <co
   - orders</code></pre><p>Commit org.yaml on the default branch and each binding on its branch. Every branch with that binding gets an independent database. Inferra supplies <code>ORDERS_URL</code> only to bound apps. Configure your Postgres client to use it; the HTTP example above does not query a database.</p><pre class="term"><code>inferra services
 inferra service status orders
 inferra db logs orders
-inferra env api</code></pre><p>Removing the last binding schedules cleanup. Read <a href="/security/#deletion">retention and restore limits</a> first.</p></section><section id="next"><h2>Next steps</h2><ul><li>Push a feature branch to create its own space. Each branch reserves its own quota.</li><li>Use <code>run.process: worker</code> with a Procfile worker process for a long-running background app.</li><li>Roll back with <code>inferra rollback api</code>; manual rollback uses current variables and secrets.</li><li>Connect your assistant using the <a href="/mcp/">MCP guide</a>.</li><li>Open Account → Billing to buy prepaid credits. The first $5 every month is free per account, with a card on file. At $0, deploys pause and data is kept for 7 days. <a href="/#pricing">Review credits pricing</a>.</li><li>Removing GitHub App repository access triggers cleanup. <a href="/download/#uninstall">Removing the local CLI</a> does not remove deployments.</li></ul></section><section id="troubleshooting"><h2>Troubleshoot the deployment</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Problem table"><table class="table"><thead><tr><th scope="col">Problem</th><th scope="col">What to check</th></tr></thead><tbody><tr><td>Invalid configuration</td><td>Check the named file and field in the commit error. V2 needs named relative app folders, declared apps and declared service bindings. Unknown fields are rejected.</td></tr><tr><td>Missing secret values</td><td>Set each named value in the dashboard or matching GitHub Environment, then run the selected-secret workflow if using GitHub.</td></tr><tr><td>No deployment</td><td>Confirm App access, valid org rules on the default branch and a matching app branch selection.</td></tr><tr><td>Failed build or health check</td><td>Read logs; check package.json, the Procfile process, the PORT listener and the health path.</td></tr><tr><td>Quota or credit rejection</td><td>Review branch quotas in org.yaml and add credits in Account → Billing.</td></tr><tr><td>Expired or revoked token</td><td>Create a new personal token and repeat login with the API address above.</td></tr></tbody></table></div></section>
+inferra env api</code></pre><p>Removing the last binding schedules cleanup. Read <a href="/security/#deletion">retention and restore limits</a> first.</p></section><section id="next"><h2>Next steps</h2><ul><li>Push a feature branch to create its own namespace. Each branch reserves its own quota.</li><li>Use <code>run.process: worker</code> with a Procfile worker process for a long-running background app.</li><li>Roll back with <code>inferra rollback api</code>; manual rollback uses current variables and secrets.</li><li>Connect your assistant using the <a href="/mcp/">MCP guide</a>.</li><li>Open Account → Billing to buy prepaid credits. The first $5 every month is free per account, with a card on file. At $0, deploys pause and data is kept for 7 days. <a href="/pricing/">Review credits pricing</a>.</li><li>Removing GitHub App repository access triggers cleanup. <a href="/download/#uninstall">Removing the local CLI</a> does not remove deployments.</li></ul></section><section id="troubleshooting"><h2>Troubleshoot the deployment</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Problem table"><table class="table"><thead><tr><th scope="col">Problem</th><th scope="col">What to check</th></tr></thead><tbody><tr><td>Invalid configuration</td><td>Check the named file and field in the commit error. V2 needs named relative app folders, declared apps and declared service bindings. Unknown fields are rejected.</td></tr><tr><td>Missing secret values</td><td>Set each named value in the dashboard or matching GitHub Environment, then run the selected-secret workflow if using GitHub.</td></tr><tr><td>No deployment</td><td>Confirm App access, valid org rules on the default branch and a matching app branch selection.</td></tr><tr><td>Failed build or health check</td><td>Read logs; check package.json, the Procfile process, the PORT listener and the health path.</td></tr><tr><td>Quota or credit rejection</td><td>Review branch quotas in org.yaml and add credits in Account → Billing.</td></tr><tr><td>Expired or revoked token</td><td>Create a new personal token and repeat login with the API address above.</td></tr></tbody></table></div></section>
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
-<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/pricing/">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
-<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<nav class="footer-resources" aria-label="More resources"><a href="/pricing/">Pricing</a><a href="/ai/">AI assistants</a><a href="/templates/">Templates</a><a href="/migrate/heroku/">Migrate</a><a href="/agencies/">Agencies</a><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
 <div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
+<script src="/analytics-config.js" defer></script>
 <script src="/site.js" defer></script>
 </body></html>

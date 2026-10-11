@@ -7,7 +7,8 @@
     const rates = { cpu: Number(calc.dataset.rateCpu), mem: Number(calc.dataset.rateMem), disk: Number(calc.dataset.rateDisk) };
     const inputs = [...calc.querySelectorAll('[data-value]')];
     const result = name => calc.querySelector(`[data-result="${name}"]`);
-    function update() {
+    let eventTimer;
+    function update(changed = false) {
       const values = Object.fromEntries(inputs.map(input => [input.dataset.value, Number(input.value) || 0]));
       const count = calc.dataset.mode === 'apps' ? values.apps * values.instances : 1;
       const cpu = count * values.cpu * rates.cpu;
@@ -17,6 +18,10 @@
       result('total').textContent = money(monthly);
       result('hourly').textContent = money(monthly / 730, 4) + ' per hour (before free usage)';
       result('free').textContent = `First $5 free each month per account: covers ${money(Math.min(5, monthly))}; ${money(Math.max(0, monthly - 5))} after free usage.`;
+      if (changed) {
+        clearTimeout(eventTimer);
+        eventTimer = setTimeout(() => window.inferraTrack?.('pricing_calculated', { calculator: calc.dataset.mode }), 600);
+      }
       result('breakdown').textContent = `CPU ${money(cpu)} + memory ${money(mem)} + storage ${money(disk)} / month`;
     }
     inputs.forEach(input => {
@@ -26,7 +31,7 @@
         const min = Number(source.min), max = Number(source.max), step = Number(source.step);
         const value = Math.min(max, Math.max(min, Math.round(Number(source.value) / step) * step));
         source.value = target.value = String(Number(value.toFixed(4)));
-        update();
+        update(true);
       }
       input.addEventListener('input', () => sync(input, range));
       input.addEventListener('change', () => {

@@ -1,5 +1,4 @@
-# PREVIEW: the site is not launched; nothing may be indexed yet.
-# At launch, replace this file with the launch version (allow all, plus GPTBot,
-# ClaudeBot, PerplexityBot, Google-Extended, and the sitemap line).
 User-agent: *
 Disallow: /
+# Preview remains unindexed until launch.
+Sitemap: https://inferralab.com/sitemap.xml

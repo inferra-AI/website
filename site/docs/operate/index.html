@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operate your apps · Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
-<link rel="canonical" href="https://inferralab.com/docs/operate/">
+
+
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,17 +16,26 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Operate your apps", "item": "https://inferralab.com/docs/operate/"}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
-<meta property="og:title" content="Operate your apps">
-<meta property="og:description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
-<meta property="og:url" content="https://inferralab.com/docs/operate/">
-<meta name="twitter:title" content="Operate your apps">
-<meta name="twitter:description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
-<meta property="og:image" content="https://inferralab.com/og.png">
+
+
+
+
+
+
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<meta name="description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
+<meta property="og:title" content="Operate your apps · Inferra">
+<meta property="og:description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
+<meta property="og:url" content="https://inferralab.com/docs/operate/">
+<meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Operate your apps · Inferra">
+<meta name="twitter:description" content="Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.">
+<link rel="canonical" href="https://inferralab.com/docs/operate/">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
@@ -34,14 +43,14 @@
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
 <nav id="nav-links" aria-label="Main navigation"><ul>
-<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+<li><a href="/ai/">AI assistants</a></li><li><a href="/templates/">Templates</a></li><li><a href="/migrate/heroku/">Migrate</a></li><li><a href="/agencies/">Agencies</a></li></ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="signup_started">Get started</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>Operate your apps</h1><p class="lead">Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.</p></div>
 <section id="ownership"><h2>Git owns what you declare; the dashboard and CLI operate</h2><p>For GitHub repositories, change declarations in Git and push. The API refuses direct edits with <code>managed by .inferra/org.yaml</code>, followed by the repository or GitHub Environment to edit. The message names org.yaml even when a v2 setting lives in a branch file.</p>
-<ul><li><strong>Apps and branches:</strong> declare app folders and eligible branches in <code>.inferra/org.yaml</code>. Git creates apps and branch spaces; direct app/space creation, deletion and source deployments are refused.</li><li><strong>Resources:</strong> declare services and their sizes and branch quotas in org.yaml. Declare app service bindings in the branch file. Manage service lifecycle and membership through those declarations.</li><li><strong>Instances:</strong> set <code>run.instances</code>, <code>run.cpu</code> and <code>run.memory</code> in the branch file. Direct scaling is refused.</li><li><strong>Members:</strong> edit org.yaml members; GitHub repository admins also have owner access. Direct member edits are refused.</li><li><strong>Environment values:</strong> v2 files can declare org, branch and app environment maps. GitHub Environment variables are also synchronized. For GitHub-owned values, use GitHub → Settings → Environments → the original branch name. Direct environment writes are refused.</li></ul><p>Secret names belong in the branch file; secret values can be written through the dashboard or the selected-secret GitHub workflow. Read <a href="/docs/org-yaml/">the configuration reference</a> and <a href="/setup/#environment">secret setup</a>.</p></section>
-<section id="target"><h2>Choose the app</h2><p>In the dashboard, open the repository org, its branch space, then the app. CLI examples below use an app folder named <code>api</code>. Set the target first:</p><pre class="term"><code>inferra login
+<ul><li><strong>Apps and branches:</strong> declare app folders and eligible branches in <code>.inferra/org.yaml</code>. Git creates apps and branch namespaces; direct app/namespace creation, deletion and source deployments are refused.</li><li><strong>Resources:</strong> declare services and their sizes and branch quotas in org.yaml. Declare app service bindings in the branch file. Manage service lifecycle and membership through those declarations.</li><li><strong>Instances:</strong> set <code>run.instances</code>, <code>run.cpu</code> and <code>run.memory</code> in the branch file. Direct scaling is refused.</li><li><strong>Members:</strong> edit org.yaml members; GitHub repository admins also have owner access. Direct member edits are refused.</li><li><strong>Environment values:</strong> v2 files can declare org, branch and app environment maps. GitHub Environment variables are also synchronized. For GitHub-owned values, use GitHub → Settings → Environments → the original branch name. Direct environment writes are refused.</li></ul><p>Secret names belong in the branch file; secret values can be written through the dashboard or the selected-secret GitHub workflow. Read <a href="/docs/org-yaml/">the configuration reference</a> and <a href="/setup/#environment">secret setup</a>.</p></section>
+<section id="target"><h2>Choose the app</h2><p>In the dashboard, open the repository org, its branch namespace, then the app. CLI examples below use an app folder named <code>api</code>. Set the target first:</p><pre class="term"><code>inferra login
 inferra target shop/main
 inferra apps
 inferra apps status api</code></pre></section>
@@ -56,7 +65,7 @@ inferra apps status api</code></pre></section>
 <section id="rollback"><h2>Roll back an image</h2><p>In the app overview, choose <strong>Roll back</strong> for the previous deployment, or open <strong>Deployments</strong> and choose <strong>Roll back</strong> on an earlier deployment that went live.</p><pre class="term"><code>inferra deployments api
 inferra rollback api
 inferra rollback api --to DEPLOYMENT_ID</code></pre><p>Rollback redeploys the earlier image. It keeps the current runtime configuration, environment and secret values; it does not restore an old configuration or database. The next eligible push deploys from the pushed commit again, subject to build selection and validation.</p></section>
-<section id="promote"><h2>Promote the tested image</h2><p>Promotion deploys the same image in another space without rebuilding, using the target app’s environment and secrets. Both spaces must be on the same cluster; the source deployment must have gone live, and you need developer access to both spaces.</p><p>The dashboard has <strong>Promote from…</strong> and <strong>Promote source → target</strong> controls in the earlier app view. The current tabbed app view does not expose these controls; use the CLI:</p><pre class="term"><code>inferra promote api --from staging --space main
+<section id="promote"><h2>Promote the tested image</h2><p>Promotion deploys the same image in another namespace without rebuilding, using the target app’s environment and secrets. Both namespaces must be on the same cluster; the source deployment must have gone live, and you need developer access to both namespaces.</p><p>The dashboard has <strong>Promote from…</strong> and <strong>Promote source → target</strong> controls in the earlier app view. The current tabbed app view does not expose these controls; use the CLI:</p><pre class="term"><code>inferra promote api --from staging --namespace main
 inferra promote api --from staging --to main --deployment DEPLOYMENT_ID</code></pre></section>
 <section id="lifecycle"><h2>Restart, stop and start</h2><p>Use the app header’s <strong>Restart</strong> or <strong>Stop</strong> button. A stopped app shows <strong>Start</strong>. Restart uses the same image. Stop removes running instances while keeping the URL, configuration and services. These operations require developer access.</p><pre class="term"><code>inferra restart api
 inferra stop api
@@ -71,12 +80,13 @@ inferra exec api --pod POD_NAME -- printenv PORT</code></pre><p>Exec requires de
 </main>
 <footer class="site"><div class="wrap">
 <div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
-<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/pricing/">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
 <nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
-<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<nav class="footer-resources" aria-label="More resources"><a href="/pricing/">Pricing</a><a href="/ai/">AI assistants</a><a href="/templates/">Templates</a><a href="/migrate/heroku/">Migrate</a><a href="/agencies/">Agencies</a><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
 <div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
+<script src="/analytics-config.js" defer></script>
 <script src="/site.js" defer></script>
 </body></html>
