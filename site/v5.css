@@ -192,3 +192,5 @@ footer.site.v5foot { background: #fff; border-top: 1px solid var(--line); paddin
   .v5 .btn { min-height: 44px; }
 }
 .v5 .vhero.left { text-align: left; } .v5 .vhero.left .lead { margin-left: 0; }
+.v5 .gh a.install { color: #fff; text-decoration: none; } .v5 .gh a.install:hover { filter: brightness(1.08); }
+.v5 .gh a.install { color: #fff; text-decoration: none; } .v5 .gh a.install:hover { filter: brightness(1.08); }
