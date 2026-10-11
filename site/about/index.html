@@ -41,8 +41,8 @@
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
-<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">About</p><h1>Bring your code. Every branch you choose runs live, with its own database and files, on a bill you prepaid.</h1><p class="lead">Inferra is a cloud for small teams that would rather ship than run a platform team.</p></div></section>
-<section class="band-off"><div class="in prose-wrap"><div class="prose">
+<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">About</p><h1>Bring your code. Every branch runs live with its own database and files.</h1><p class="lead">All on a bill you prepaid. Inferra is a cloud for small teams that would rather ship than run a platform team.</p></div></section>
+<section class="band-off"><div class="in story-grid"><div class="prose">
 <h2>Why we built Inferra</h2>
 <p>We've been the team that ships the product and runs the platform underneath it, at the same time. We know what that week looks like.</p>
 <p>Building the app is hard enough. Then came everything around it: one account for the API, another vendor for Postgres, another for file storage, another for preview environments, and a pipeline gluing them together with secrets copied by hand. Every new branch meant setup work. Every new teammate meant another round of access requests.</p>
@@ -51,7 +51,16 @@
 <p>We kept asking the same question: why does running an API, a worker and a database need a platform team?</p>
 <p>So we built the platform we wanted. Connect a repo, add two short files, push. We keep the servers, HTTPS certificates and patches up to date, so you don't have to. Every branch you choose runs live in its own private namespace, with its own database and files. You pay from prepaid credits for exactly what you reserve, so a runaway job can't spend more than you bought.</p>
 <p>We're a small, independent team, building in the open: status, prices and limits on the page, and what isn't done yet listed next to what is.</p>
-</div></div></section>
+</div>
+<figure class="diagram" aria-label="Before: five vendors and five bills. With Inferra: one repo, one prepaid bill.">
+<div class="before"><p class="lbl bad">Before</p><div class="boxes">
+<span class="peach"><b>App host</b>its own bill · $?</span><span class="sky"><b>Postgres vendor</b>its own bill · $?</span><span class="lilac"><b>File storage</b>its own bill · $?</span><span class="mint"><b>Preview tool</b>its own bill · $?</span><span class="lemon"><b>CI pipeline</b>its own bill · $?</span></div>
+<p class="glue">⤳ secrets copied by hand · five dashboards · five invoices</p></div>
+<div class="down" aria-hidden="true">↓</div>
+<div class="after"><p class="lbl ok">With Inferra</p><p class="flow"><code>your repo</code> → <b>Inferra</b></p>
+<div class="parts"><span>apps &amp; workers</span><span>Postgres</span><span>files</span><span>a preview per branch</span></div>
+<p class="one">One prepaid bill · patches and certificates handled</p></div>
+</figure></div></section>
 <section><div class="in">
 <p class="eyebrow">What we believe</p><h2>How we try to run Inferra.</h2>
 <div class="grid3">

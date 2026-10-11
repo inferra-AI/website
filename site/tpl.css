@@ -86,3 +86,22 @@
 .tpl .prose ul { margin:0 0 12px; padding-left:20px; }
 .tpl .prose .vs { margin:8px 0 16px; }
 @media (max-width:860px) { .tpl .prose-wrap { grid-template-columns:1fr; gap:24px; } .tpl .toc { position:static; } }
+/* About: story + before/after diagram */
+.tpl .story-grid { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:64px; align-items:start; }
+.tpl .diagram { position:sticky; top:96px; margin:0; display:grid; gap:12px; }
+.tpl .diagram .before { background:#fff; border:1px solid var(--line); border-radius:20px; padding:24px; }
+.tpl .diagram .after { background:var(--mint); border-radius:20px; padding:24px; }
+.tpl .diagram .lbl { font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; margin:0 0 12px; }
+.tpl .diagram .lbl.bad, .tpl .diagram .glue { color:var(--bad); } .tpl .diagram .lbl.ok, .tpl .diagram .one { color:var(--ok); }
+.tpl .diagram .boxes { display:flex; flex-wrap:wrap; gap:10px; }
+.tpl .diagram .boxes span { border-radius:12px; padding:10px 12px; font-size:12px; color:var(--muted); }
+.tpl .diagram .boxes b { display:block; font-size:13px; color:var(--text); }
+.tpl .diagram .boxes .peach { background:var(--peach); } .tpl .diagram .boxes .sky { background:var(--sky); } .tpl .diagram .boxes .lilac { background:var(--lilac); } .tpl .diagram .boxes .mint { background:var(--mint); } .tpl .diagram .boxes .lemon { background:var(--lemon); }
+.tpl .diagram .glue, .tpl .diagram .one { font-size:13px; font-weight:600; margin:12px 0 0; }
+.tpl .diagram .down { text-align:center; font-size:28px; color:var(--muted); line-height:1; }
+.tpl .diagram .flow { margin:0 0 12px; font-size:16px; }
+.tpl .diagram .flow code { background:#111216; color:#e9eaee; border-radius:999px; padding:6px 12px; font-size:13px; }
+.tpl .diagram .parts { display:flex; flex-wrap:wrap; gap:8px; }
+.tpl .diagram .parts span { background:#fff; border-radius:999px; padding:6px 10px; font-size:13px; font-weight:500; }
+@media (max-width:860px) { .tpl .story-grid { grid-template-columns:1fr; gap:32px; } .tpl .diagram { position:static; } }
+.tpl .diagram .flow { display:flex; align-items:center; gap:10px; flex-wrap:wrap; } .tpl .diagram .flow code { display:inline-block; width:auto; }
