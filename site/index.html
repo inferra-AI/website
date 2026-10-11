@@ -135,7 +135,6 @@ services:
 <div><div class="vk">THE INTERNET</div><b>Visitors → api</b><span>Public HTTPS. Anyone can open api's URL.</span></div>
 <div><div class="vk">YOUR APPS</div><b>api, worker → orders</b><span>Database connection, only for apps that list orders.</span></div>
 <div><div class="vk">YOUR DATA</div><b>orders · Postgres</b><span>No public endpoint. Blocked from the internet.</span></div></div>
-<p class="vsmall">Apps can call public services outside Inferra; private address ranges are blocked.</p>
 <div class="tablewrap"><table class="who"><thead><tr><th>What you wrote</th><th>What Inferra created</th><th>Who can reach it</th></tr></thead><tbody>
 <tr><td class="vmono">postgres: orders</td><td>Postgres 17 in each namespace, with backups</td><td>Only apps that list it</td></tr>
 <tr><td class="vmono">services: [orders]</td><td>ORDERS_URL given to api and worker</td><td>api and worker</td></tr>
