@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leave anytime: export your data from Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="How to take your code, database, files and configuration with you when you leave Inferra.">
+<link rel="canonical" href="https://inferralab.com/export/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Leave anytime: export your data from Inferra">
+<meta property="og:description" content="How to take your code, database, files and configuration with you when you leave Inferra.">
+<meta property="og:url" content="https://inferralab.com/export/">
+<meta name="twitter:title" content="Leave anytime: export your data from Inferra">
+<meta name="twitter:description" content="How to take your code, database, files and configuration with you when you leave Inferra.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/tpl.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">Leave anytime</p><h1>Your code, your data, your way out.</h1><p class="lead">Nothing about Inferra locks you in. Here's how to take everything with you, whenever you want.</p></div></section>
+<section class="band-off"><div class="in"><div class="grid2">
+<div class="card"><h3>1 · Your code</h3><p>It never left your GitHub repo. Inferra builds from it; it doesn't keep the only copy.</p></div>
+<div class="card"><h3>2 · Your configuration</h3><p>.inferra/org.yaml and the branch files are in your repo too. Remove them whenever you like.</p></div>
+<div class="card"><h3>3 · Your database</h3><p>Run pg_dump from an app bound to the database (Postgres is private, so it isn't reachable from your laptop). Copy the dump somewhere you control.</p></div>
+<div class="card"><h3>4 · Your files</h3><p>Copy bucket contents with any S3 tool, such as aws s3 sync, from an app bound to the bucket. Apps reach buckets through their own identity; there are no keys to hand out.</p></div>
+<div class="card"><h3>5 · Your secrets</h3><p>Secret values are write-only in Inferra, so they can't be read back. Keep the originals where you created them, such as GitHub environments or your password manager.</p></div>
+<div class="card"><h3>6 · Close the account</h3><p>Email <a href="mailto:support@inferralab.com">support@inferralab.com</a> from your account's address. We stop billing, refund your unused purchased credits, and delete your data 7 days later. See <a href="/refunds/">Refunds</a>.</p></div>
+</div>
+<p class="note">Need help moving out? <a href="/contact/">Contact us</a>; we'll help either way.</p>
+</div></section></main>
+<footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>

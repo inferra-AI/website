@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Migrate from Railway to Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="Move a Railway service and Postgres to Inferra in five steps: two config files, secrets, Postgres, then switch traffic.">
+<link rel="canonical" href="https://inferralab.com/migrate/railway/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="Migrate from Railway to Inferra">
+<meta property="og:description" content="Move a Railway service and Postgres to Inferra in five steps: two config files, secrets, Postgres, then switch traffic.">
+<meta property="og:url" content="https://inferralab.com/migrate/railway/">
+<meta name="twitter:title" content="Migrate from Railway to Inferra">
+<meta name="twitter:description" content="Move a Railway service and Postgres to Inferra in five steps: two config files, secrets, Postgres, then switch traffic.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="/w2.css">
+<link rel="stylesheet" href="/tpl.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Migrate from Railway to Inferra", "item": "https://inferralab.com/migrate/railway/"}]}</script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="tpl">
+<section class="tpl-hero"><div class="in">
+<p class="eyebrow">Migration guide · Railway</p>
+<h1>Move your app from Railway to Inferra.</h1><p class="lead">Keep your repo, start command and health check. Add two files, move your variables and Postgres. railway.json isn't read.</p>
+<ul class="pills"><li>5 steps</li><li>2 files to add</li><li>Your Railway app keeps running until you switch</li></ul>
+<p class="warn"><b>Before you start</b> Custom domains aren't available yet. This guide moves your app to an Inferra URL; switch only if that works for you.</p>
+<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/compare/railway/">Compare Inferra and Railway →</a></div>
+</div></section>
+<section class="band-sky"><div class="in">
+<p class="eyebrow">Before → after</p><h2>Your config, translated.</h2>
+<div class="ba">
+<div><p class="lbl">Today on Railway</p><div class="code"><div class="file"><span>railway.json</span><span>example</span></div><pre id="code-railway-json">{
+  "build": {"builder": "RAILPACK"},
+  "deploy": {"startCommand": "npm start",
+             "healthcheckPath": "/health"}
+}</pre></div></div>
+<div class="arrow" aria-hidden="true">→</div>
+<div><p class="lbl">On Inferra</p><div class="grid2"><div class="code"><div class="file"><span>.inferra/org.yaml</span><button type="button" data-copy="code-inferra-org-yaml">Copy</button></div><pre id="code-inferra-org-yaml">version: 2
+apps:
+  - folder: api
+    branches: [main, feature/*]
+services:
+  postgres:
+    - name: orders
+      storage: 10Gi</pre></div><div class="code"><div class="file"><span>.inferra/main.yaml</span><button type="button" data-copy="code-inferra-main-yaml">Copy</button></div><pre id="code-inferra-main-yaml">apps:
+  api:
+    run:
+      port: 3000
+    health:
+      path: /health
+    services: [orders]</pre></div></div></div>
+</div>
+<p class="note">Put the service in its own folder (here, api/). It gets its database address as ORDERS_URL. Your server must listen on 0.0.0.0 and the PORT it's given, and answer /health. Inferra reads these two files, not railway.json. Previews for feature/* branches use a .inferra/feature.yaml in that branch; start by copying main.yaml. <a href="/docs/org-yaml/">Configuration reference</a></p>
+</div></section>
+<section><div class="in">
+<p class="eyebrow">What changes</p><h2>Three things work differently.</h2><div class="grid3"><div class="card lilac"><h3>Railpack build</h3><p>Inferra detects the runtime with buildpacks; test that dependencies install.</p></div><div class="card peach"><h3>Start and health check</h3><p>Use package.json or a Procfile, and health.path.</p></div><div class="card mint"><h3>Project services and variables</h3><p>Declare services in org.yaml and bindings in main.yaml; add secret values separately.</p></div></div>
+</div></section>
+<section class="band-off"><div class="in">
+<p class="eyebrow">The move</p><h2>Five steps. Your Railway app keeps running until the last one.</h2>
+<ol class="tpl-steps"><li><b>Connect your repo</b><span>Install the Inferra GitHub App and pick the repo.</span></li><li><b>Add the two files</b><span>Commit .inferra/org.yaml and .inferra/main.yaml. Push to main.</span></li><li><b>Set your secrets</b><span>Commit only the names. Add the values in the dashboard.</span></li><li><b>Copy your database</b><span>Test a restore and check row counts. Then pause writes, take the final pg_dump and restore it from an app bound to orders (Postgres is private).</span></li><li><b>Switch your traffic</b><span>Keep writes frozen on Railway from the final copy until users are on the new URL, and stop its workers and schedulers. Check pages, sessions, jobs and data, then switch. To roll back after new writes, copy that data back first.</span></li></ol>
+<div class="code"><div class="file"><span>Copy the database</span><span>example</span></div><pre id="code-copy-the-database"># 1. On a machine that can reach your current database
+pg_dump --format=custom --no-owner --no-acl "$SOURCE_DATABASE_URL" > app.dump
+
+# 2. In an Inferra app bound to the database, with app.dump copied there
+pg_restore --no-owner --no-acl --exit-on-error --dbname="$ORDERS_URL" app.dump</pre></div>
+<p class="note">Postgres on Inferra is private, so run the restore from an app bound to the database. Move the dump over a route you control and never commit it. Check the Postgres version and extensions match before the final copy.</p>
+</div></section>
+<section class="band-lemon"><div class="in">
+<p class="eyebrow">Same app, monthly price</p><h2>Same size, monthly price.</h2>
+<div class="grid2 tpl-price">
+<div class="card"><div class="who">Railway · Hobby, same size used all month</div><div class="amt">about $10 / month</div><p>$5 plan including $5 of usage, plus about $5 beyond it at about $20 per vCPU-month and $10 per GB-month. <a href="https://docs.railway.com/reference/pricing/plans" rel="noopener">Railway plans</a></p></div>
+<div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MB</div><div class="amt">$4.94 / month</div><p>Compute only. Fits the $5 account-wide allowance only if you have no other usage. Card required.</p></div>
+</div><p class="note">Railway bills actual usage, so this assumes 0.25 vCPU and 512 MB are used all month. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/#pricing">Full pricing</a></p>
+</div></section>
+<section class="band-ink"><div class="in">
+<p class="eyebrow">Ready?</p><h2>Start with step one.</h2>
+<div class="btns"><a class="btn" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn ghost" href="/compare/railway/">Compare Inferra and Railway →</a></div>
+</div></section></main><footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-umami-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-umami-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-umami-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-umami-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<script src="/site.js" defer></script><script src="/analytics-config.js" defer></script><script src="/w2.js" defer></script></body></html>

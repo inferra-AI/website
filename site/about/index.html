@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Inferra</title>
+<meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
+<meta name="description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<link rel="canonical" href="https://inferralab.com/about/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/light.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Inferra">
+<meta property="og:title" content="About Inferra">
+<meta property="og:description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<meta property="og:url" content="https://inferralab.com/about/">
+<meta name="twitter:title" content="About Inferra">
+<meta name="twitter:description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<meta property="og:image" content="https://inferralab.com/og.png">
+<meta name="twitter:image" content="https://inferralab.com/og.png">
+<meta property="og:image:alt" content="Inferra: the Git-native cloud">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/tpl.css">
+</head><body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+<nav id="nav-links" aria-label="Main navigation"><ul>
+<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</div></header>
+<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">About</p><h1>Bring your code. Every branch you choose runs live, with its own database and files, on a bill you prepaid.</h1><p class="lead">Inferra is a cloud for small teams that would rather ship than run a platform team.</p></div></section>
+<section class="band-off"><div class="in prose-wrap"><div class="prose">
+<h2>Why we built Inferra</h2>
+<p>We've been the team that ships the product and runs the platform underneath it, at the same time. We know what that week looks like.</p>
+<p>Building the app is hard enough. Then came everything around it: one account for the API, another vendor for Postgres, another for file storage, another for preview environments, and a pipeline gluing them together with secrets copied by hand. Every new branch meant setup work. Every new teammate meant another round of access requests.</p>
+<p>And none of it stayed done. Servers needed patching, databases needed upgrades, certificates expired, and alerts arrived at odd hours. Keeping the infrastructure running became a second job next to building the product.</p>
+<p>Then the bills. Not one bill but several, each priced in its own units, each able to grow on its own. We learned what a job stuck in a loop costs from the invoice, after the fact.</p>
+<p>We kept asking the same question: why does running an API, a worker and a database need a platform team?</p>
+<p>So we built the platform we wanted. Connect a repo, add two short files, push. We keep the servers, HTTPS certificates and patches up to date, so you don't have to. Every branch you choose runs live in its own private namespace, with its own database and files. You pay from prepaid credits for exactly what you reserve, so a runaway job can't spend more than you bought.</p>
+<p>We're a small, independent team, building in the open: status, prices and limits on the page, and what isn't done yet listed next to what is.</p>
+</div></div></section>
+<section><div class="in">
+<p class="eyebrow">What we believe</p><h2>How we try to run Inferra.</h2>
+<div class="grid3">
+<div class="card lilac"><h3>Your bill can't surprise you</h3><p>You pay from prepaid credits for the size you reserve. Spend can't pass what you bought.</p></div>
+<div class="card mint"><h3>Git is the source of truth</h3><p>Two short files in your repo say what runs. Change a file, change what runs.</p></div>
+<div class="card peach"><h3>Honest about what's missing</h3><p>Custom domains, autoscaling and a SOC 2 audit are coming. We say so on every page that matters.</p></div>
+</div></div></section>
+<section class="band-off"><div class="in">
+<p class="eyebrow">Built in public</p><h2>Check our work.</h2>
+<div class="grid3">
+<div class="card"><h3>Live status</h3><p>Uptime checks from outside our cloud, with history.</p><p class="act"><a href="https://status.inferralab.com">status.inferralab.com →</a></p></div>
+<div class="card"><h3>Free CLI</h3><p>Download the command-line tool for logs, rollbacks and more.</p><p class="act"><a href="/download/">Download the CLI →</a></p></div>
+<div class="card"><h3>Public demo</h3><p>A real app on Inferra, read-only, no sign-up.</p><p class="act"><a href="/demo/">Open the demo →</a></p></div>
+</div>
+<p class="note">Inferra runs on AWS with Kubernetes, gVisor isolation and Paketo buildpacks. <mark class="ph">[Inferra Labs, Inc.]</mark> · <a href="/contact/">Contact</a></p>
+</div></section></main>
+<footer class="site"><div class="wrap">
+<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
+<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
+<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
+<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></footer>
+<!-- LAUNCH: production API host -->
+<script src="/site.js" defer></script>
+</body></html>
