@@ -27,6 +27,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
@@ -34,8 +35,10 @@
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
 <nav id="nav-links" aria-label="Main navigation"><ul>
-<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-event="install_app_click">Start free</a><!-- LAUNCH: production API host --></div></nav>
+<li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
+<li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
+<li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>CLI reference</h1><p class="lead">Commands and flags as printed by the CLI, grouped by task.</p></div>
@@ -711,14 +714,16 @@ Global Flags:
 Use &quot;inferra admin [command] --help&quot; for more information about a command.</code></pre></section>
 <section id="subcommands"><h2>Subcommands listed in the help</h2><p>The capture lists these child commands but does not include their individual flag help. Use <code>inferra help COMMAND SUBCOMMAND</code> to inspect the installed CLI before using them.</p><div class="table-scroll" tabindex="0" role="region" aria-label="CLI subcommands"><table class="table"><thead><tr><th scope="col">Command path</th><th scope="col">Purpose</th></tr></thead><tbody><tr><td><code>inferra apps status</code></td><td>Show the app state, URL and health conditions.</td></tr><tr><td><code>inferra orgs delete</code></td><td>Delete an org and its spaces and apps; requires owner access.</td></tr><tr><td><code>inferra invitations accept</code></td><td>Accept an org join request.</td></tr><tr><td><code>inferra invitations decline</code></td><td>Decline an org join request.</td></tr><tr><td><code>inferra db status</code></td><td>Inspect a managed database.</td></tr><tr><td><code>inferra db logs</code></td><td>Read managed database logs.</td></tr><tr><td><code>inferra service status</code></td><td>Inspect a managed service.</td></tr><tr><td><code>inferra service logs</code></td><td>Read managed service logs.</td></tr><tr><td><code>inferra completion bash</code></td><td>Generate shell completion for bash.</td></tr><tr><td><code>inferra completion fish</code></td><td>Generate shell completion for fish.</td></tr><tr><td><code>inferra completion powershell</code></td><td>Generate shell completion for PowerShell.</td></tr><tr><td><code>inferra completion zsh</code></td><td>Generate shell completion for zsh.</td></tr><tr><td><code>inferra admin accounts</code></td><td>Manage GitHub billing accounts as an operator.</td></tr><tr><td><code>inferra admin org</code></td><td>Inspect an org as an operator.</td></tr><tr><td><code>inferra admin orgs</code></td><td>Search orgs as an operator.</td></tr><tr><td><code>inferra admin quotas</code></td><td>List all plans, including private and retired plans.</td></tr><tr><td><code>inferra admin usage</code></td><td>Inspect platform-wide totals as an operator.</td></tr><tr><td><code>inferra admin whoami</code></td><td>Check whether your token is an operator token.</td></tr></tbody></table></div></section>
 </main>
-<footer class="site"><div class="wrap">
-<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
-<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
-<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
-<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
-<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+<footer class="site v5foot"><div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
+<nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
+<nav aria-label="Legal"><h2>Legal</h2><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/refunds/">Refunds</a><a href="/dpa/">DPA</a></nav>
+</div>
+<div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
 <!-- LAUNCH: production API host -->
 <script src="/site.js" defer></script>
-</body></html>
+<script src="/v5.js" defer></script></body></html>

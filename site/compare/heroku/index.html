@@ -30,13 +30,16 @@
 <link rel="stylesheet" href="/w2.css">
 <link rel="stylesheet" href="/tpl.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Compare", "item": "https://inferralab.com/compare/"}, {"@type": "ListItem", "position": 3, "name": "Inferra vs Heroku", "item": "https://inferralab.com/compare/heroku/"}]}</script>
+<link rel="stylesheet" href="/v5.css">
 </head><body><a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
 <nav id="nav-links" aria-label="Main navigation"><ul>
-<li><a href="/#product">Product</a></li><li><a href="/docs/">Docs</a></li><li><a href="/#pricing">Pricing</a></li><li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
+<li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
+<li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
+<li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
 <main id="main" class="tpl">
@@ -55,7 +58,7 @@
 <div class="grid2 tpl-price">
 <div class="card"><div class="who">Heroku · Basic dyno</div><div class="amt">$7 / month</div><p>One dyno. Postgres is a separate add-on, from $5/month for Essential-0. <a href="https://www.heroku.com/pricing" rel="noopener">Heroku pricing</a></p></div>
 <div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MB</div><div class="amt">$4.94 / month</div><p>Compute only. Fits the $5 account-wide allowance only if you have no other usage. Card required.</p></div>
-</div><p class="note">An illustration, not a performance guarantee: the two plans don't publish matching resource sizes. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/#pricing">Full pricing</a></p>
+</div><p class="note">An illustration, not a performance guarantee: the two plans don't publish matching resource sizes. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/pricing/">Full pricing</a></p>
 </div></section>
 <section><div class="in">
 <p class="eyebrow">Coming soon</p><h2>Missing pieces, coming soon.</h2><div class="grid3"><div class="card panel"><h3>Custom domains</h3><p>Today apps get an Inferra URL.</p></div><div class="card panel"><h3>Autoscaling</h3><p>Today you set instance counts in Git.</p></div><div class="card panel"><h3>SOC 2 audit</h3><p>An independent security audit of the platform.</p></div></div>
@@ -64,12 +67,14 @@
 <p class="eyebrow">Ready to move?</p><h2>Bring your Heroku app over.</h2>
 <div class="btns"><a class="btn" href="/migrate/heroku/" data-umami-event="migration_open">Read the Heroku migration guide →</a><a class="btn ghost" href="/demo/" data-umami-event="demo_open">Open the live demo →</a></div>
 <p class="note"><a class="more" href="/compare/">Also compare: Vercel · Render · Railway · Fly.io →</a></p>
-</div></section></main><footer class="site"><div class="wrap">
-<div class="footer-top"><div class="footer-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>The Git-native cloud.</p></div>
-<nav aria-label="Product"><h2>Product</h2><a href="/#product">Product</a><a href="/#pricing">Pricing</a><a href="https://github.com/inferra-AI/inferra-demo" data-umami-event="demo_repo_click">Demo repo</a><a href="https://status.inferralab.com">Status</a></nav>
-<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/operate/">Operate your apps</a><a href="/docs/observe/">Metrics and logs</a><a href="/docs/billing/">Credits and quotas</a><a href="/setup/" data-umami-event="setup_click">Setup guide</a><a href="https://github.com/inferra-AI/cli">CLI on GitHub</a><a href="https://api.dev.inferralab.dev/">Sign in</a></nav>
-<nav aria-label="Links"><h2>Links</h2><a href="https://status.inferralab.com">status.inferralab.com</a><a href="https://github.com/inferra-AI/cli">github.com/inferra-AI/cli</a><a href="https://github.com/inferra-AI/inferra-demo">github.com/inferra-AI/inferra-demo</a></nav></div>
-<nav class="footer-resources" aria-label="More resources"><a href="/download/" data-umami-event="download_click">Download</a><a href="/mcp/">MCP</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/changelog/">Changelog</a><a href="/llms.txt">llms.txt</a><a href="/privacy/">Privacy</a><a class="status-dot" href="https://status.inferralab.com" data-status data-umami-event="status_open"><span class="dot unknown"></span><span>System status</span></a></nav>
-<div class="footer-bottom"><span>© 2026 Inferra · inferralab.com</span><span>Prepaid credits · $5 of usage free every month.</span></div>
+</div></section></main><footer class="site v5foot"><div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
+<nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
+<nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
+<nav aria-label="Legal"><h2>Legal</h2><a href="/terms/">Terms</a><a href="/privacy/">Privacy</a><a href="/refunds/">Refunds</a><a href="/dpa/">DPA</a></nav>
+</div>
+<div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<script src="/site.js" defer></script><script src="/analytics-config.js" defer></script><script src="/w2.js" defer></script></body></html>
+<script src="/site.js" defer></script><script src="/analytics-config.js" defer></script><script src="/w2.js" defer></script><script src="/v5.js" defer></script></body></html>
