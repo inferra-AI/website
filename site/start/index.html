@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Start deploying with Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Connect your repository, use your monthly free allowance and redeem an eligible campaign code in your wallet.">
+<meta name="description" content="Connect your GitHub repository. Start with $5 of usage free each month, or buy prepaid credits for more capacity.">
 <link rel="canonical" href="https://inferralab.com/start/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -16,10 +16,10 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="Start deploying with Inferra">
-<meta property="og:description" content="Connect your repository, use your monthly free allowance and redeem an eligible campaign code in your wallet.">
+<meta property="og:description" content="Connect your GitHub repository. Start with $5 of usage free each month, or buy prepaid credits for more capacity.">
 <meta property="og:url" content="https://inferralab.com/start/">
 <meta name="twitter:title" content="Start deploying with Inferra">
-<meta name="twitter:description" content="Connect your repository, use your monthly free allowance and redeem an eligible campaign code in your wallet.">
+<meta name="twitter:description" content="Connect your GitHub repository. Start with $5 of usage free each month, or buy prepaid credits for more capacity.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -27,9 +27,11 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="/w2.css">
+
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Start deploying with Inferra", "item": "https://inferralab.com/start/"}]}</script>
 <link rel="stylesheet" href="/v5.css">
+<link rel="stylesheet" href="/tpl.css">
+<link rel="stylesheet" href="/w2.css">
 </head><body><a class="skip" href="#main">Skip to content</a>
 <div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
 <header class="nav"><div class="nav-inner">
@@ -41,7 +43,7 @@
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
 </ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
 </div></header>
-<main id="main" class="document wrap"><div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Start deploying with Inferra</h1><p class="lead">Connect your repository, use your monthly free allowance and redeem an eligible campaign code in your wallet.</p></div><section id="offer"><h2>Your monthly free allowance</h2><p id="offer-message" aria-live="polite">The first $5 of usage is free every month per account. A card is required.</p><p id="offer-note">Reserve resources within your allowance, or buy prepaid credits for more capacity.</p></section><section id="redeem"><h2>Get started and redeem a code</h2><ol><li><a href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="offer_signup">Sign up and install the Inferra GitHub App</a>.</li><li>Add a card and open <strong>Wallet → Redeem code</strong>.</li><li>If you have an offer code, enter it and confirm. The wallet checks eligibility and shows the credits added; amounts and availability come from the offer terms.</li><li>Connect your repository and follow <a href="/setup/">the setup guide</a>.</li></ol><p>Codes can expire or have eligibility rules. The wallet confirms redemption; this landing page cannot validate a code.</p><p>Pay for what you reserve from prepaid credits: CPU $16.19/vCPU-month, memory $1.78/GB-month, storage $0.104/GB-month. Postgres backups are $0.0299/GB-month, free for accounts that never bought credits. The first $5 of usage is free every month per account; a card is required. The bill cannot grow beyond what you prepaid.</p></section><section class="w2-ready"><h2>See Inferra in action</h2><p>Explore the public dashboard, read-only with no sign-up, or review reserved-resource pricing.</p><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open demo dashboard</a><a class="btn" href="/pricing/" data-umami-event="pricing_open">View pricing</a></div></section></main><footer class="site v5foot"><div class="wrap">
+<main id="main" class="document wrap"><div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Start deploying with Inferra</h1><p class="lead">Connect your GitHub repository. Start with $5 of usage free each month, or buy prepaid credits for more capacity.</p></div><section id="offer"><h2>Your monthly free allowance</h2><p id="offer-message" aria-live="polite">The first $5 of usage is free every month per account. A card is required.</p><p id="offer-note">Choose app sizes that fit the $5 allowance, or buy prepaid credits for more capacity.</p></section><section id="redeem"><h2>Deploy your first app</h2><ol><li><a href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="offer_signup">Sign up and install the Inferra GitHub App</a>.</li><li>Add a card. Open <strong>Wallet</strong> if you need to buy credits.</li><li>Connect your repository and follow <a href="/setup/">the setup guide</a>.</li></ol><p>Inferra builds your source with buildpacks when you push to a configured GitHub branch. Managed Postgres, a Redis-compatible Valkey cache and object storage are available. <a href="/docs/">Read the docs</a>.</p><p>Have an offer code? Open <strong>Wallet → Redeem code</strong>. The wallet confirms eligibility and the credit amount.</p><p>Pay for the CPU, memory and storage you set aside, using prepaid credits. Each month, one virtual CPU costs $16.19, each GB of memory costs $1.78, and each GB of storage costs $0.104. Smaller sizes cost less. Postgres backup storage costs $0.0299 per GB each month. Backups are free until your first credit purchase.</p><p>The first $5 of usage is free every month, shared across your account’s repositories. A card is required. Buy credits for more capacity. Your bill cannot exceed your prepaid credits. <a href="/pricing/">See pricing</a>.</p></section><section class="w2-ready"><h2>See Inferra in action</h2><p>Explore the public dashboard, read-only with no sign-up, or see what your setup costs.</p><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open demo dashboard</a><a class="btn" href="/pricing/" data-umami-event="pricing_open">View pricing</a></div></section></main><footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
 <div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
