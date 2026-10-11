@@ -10,8 +10,11 @@
 
   const render = (data) => {
     const comps = Object.values(data.components || {});
+    // Results older than 20 minutes aren't current: show them as unknown, never green.
+    const ageMin = data.updated ? Math.round((Date.now() - new Date(data.updated)) / 60000) : Infinity;
+    const stale = ageMin > 20;
     const allUp = comps.length > 0 && comps.every((c) => c.status === "up");
-    dots.forEach((d) => d.classList.add(allUp ? "vup" : "vwarn"));
+    if (!stale) dots.forEach((d) => d.classList.add(allUp ? "vup" : "vwarn"));
     if (!card) return;
     const rows = card.querySelector("[data-rows]");
     const today = new Date();
@@ -25,8 +28,8 @@
       name.className = "name";
       name.textContent = c.name;
       const state = document.createElement("span");
-      state.className = "state " + (c.status === "up" ? "vup" : c.status ? "vdown" : "");
-      state.textContent = c.status === "up" ? "Up" : c.status ? "Down" : "Unknown";
+      state.className = "state " + (stale ? "" : c.status === "up" ? "vup" : c.status ? "vdown" : "");
+      state.textContent = stale ? "Checks delayed" : c.status === "up" ? "Up" : c.status ? "Down" : "Unknown";
       name.append(state);
       const bars = document.createElement("div");
       bars.className = "bars";
