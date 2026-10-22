@@ -1,0 +1,12 @@
+version: 3
+name: website
+type: web
+port: 8080
+health:
+  path: /
+cpu: 0.5
+memory: 512Mi
+build:
+  env:
+    BP_WEB_SERVER: nginx
+    BP_WEB_SERVER_ROOT: site
