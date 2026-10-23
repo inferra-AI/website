@@ -32,7 +32,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inferra", "item": "https://inferralab.com/"}, {"@type": "ListItem", "position": 2, "name": "Migrate from Render to Inferra", "item": "https://inferralab.com/migrate/render/"}]}</script>
 <link rel="stylesheet" href="/v5.css">
 </head><body><a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -40,15 +40,15 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="tpl">
 <section class="tpl-hero"><div class="in">
 <p class="eyebrow">Migration guide · Render</p>
-<h1>Move your app from Render to Inferra.</h1><p class="lead">Keep your repo and your start command. Add two files, move your environment variables and Postgres. render.yaml isn't read.</p>
-<ul class="pills"><li>5 steps</li><li>2 files to add</li><li>Your Render app keeps running until you switch</li></ul>
+<h1>Move your app from Render to Inferra.</h1><p class="lead">Keep your repo and your start command. Add v3 config, move your environment variables and Postgres. render.yaml isn't read.</p>
+<ul class="pills"><li>5 steps</li><li>Config v3</li><li>Your Render app keeps running until you switch</li></ul>
 <p class="warn"><b>Before you start</b> Custom domains aren't available yet. This guide moves your app to an Inferra URL; switch only if that works for you.</p>
-<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/compare/render/">Compare Inferra and Render →</a></div>
+<div class="btns"><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/compare/render/">Compare Inferra and Render →</a></div>
 </div></section>
 <section class="band-sky"><div class="in">
 <p class="eyebrow">Before → after</p><h2>Your config, translated.</h2>
@@ -62,29 +62,26 @@
 databases:
   - name: orders</pre></div></div>
 <div class="arrow" aria-hidden="true">→</div>
-<div><p class="lbl">On Inferra</p><div class="grid2"><div class="code"><div class="file"><span>.inferra/org.yaml</span><button type="button" data-copy="code-inferra-org-yaml">Copy</button></div><pre id="code-inferra-org-yaml">version: 2
-apps:
-  - folder: api
-    branches: [main, feature/*]
-services:
-  postgres:
-    - name: orders
-      storage: 10Gi</pre></div><div class="code"><div class="file"><span>.inferra/main.yaml</span><button type="button" data-copy="code-inferra-main-yaml">Copy</button></div><pre id="code-inferra-main-yaml">apps:
-  api:
-    run:
-      port: 3000
-    health:
-      path: /health
-    services: [orders]</pre></div></div></div>
+<div><p class="lbl">On Inferra</p><div class="grid2"><div class="code"><div class="file"><span>.inferra/repo.yaml</span><button type="button" data-copy="code-inferra-org-yaml">Copy</button></div><pre id="code-inferra-org-yaml">version: 3
+branches:
+  main: {}
+  &quot;feature/*&quot;:
+    ttl: 7d
+    quota: {cpu: 0.5, memory: 1Gi, storage: 2Gi}</pre></div><div class="code"><div class="file"><span>api/.inferra/app.yaml</span><button type="button" data-copy="code-inferra-main-yaml">Copy</button></div><pre id="code-inferra-main-yaml">version: 3
+name: api
+type: web
+port: 3000
+health:
+  path: /health</pre></div></div></div>
 </div>
-<p class="note">Put the web service in its own folder (here, api/). It gets its database address as ORDERS_URL. Your server must listen on 0.0.0.0 and the PORT it's given, and answer /health. Inferra reads these two files, not render.yaml. Previews for feature/* branches use a .inferra/feature.yaml in that branch; start by copying main.yaml. <a href="/docs/org-yaml/">Configuration reference</a></p>
+<p class="note">Put the web service in its own folder (here, api/). After you configure and bind the account service, Inferra supplies its connection URL. Your server must listen on 0.0.0.0 and the PORT it's given, and answer /health. Inferra reads these two files, not render.yaml. Keep the app file at the same path on each deployed branch; put branch differences under branches: in app.yaml. Account services are configured separately; previews share data when attached to the same service. <a href="/docs/org-yaml/">Configuration reference</a></p>
 </div></section>
 <section><div class="in">
-<p class="eyebrow">What changes</p><h2>Three things work differently.</h2><div class="grid3"><div class="card lilac"><h3>Native runtime</h3><p>Buildpacks detect Node; put npm start in package.json or a Procfile.</p></div><div class="card peach"><h3>Background worker</h3><p>Use a separate app folder with run.process: worker.</p></div><div class="card mint"><h3>Blueprint database and disk</h3><p>Declare managed Postgres; persistent app disks don't map to apps.</p></div></div>
+<p class="note"><strong>Before copying data:</strong> create a private <code>&lt;account&gt;/.inferra</code> repository and grant the App access. On Paid, add a managed Postgres service in <code>services/orders.yaml</code> with <code>name: orders</code>, attach it to your app repository and main branch, and have a GitHub admin merge that service change first. Then add <code>services: {orders: readwrite}</code> to api/.inferra/app.yaml. The app receives ORDERS_URL. See <a href="/setup/#postgres">the complete service setup</a>. Trial native databases are rolling out; confirm availability first. Preview branches share data if attached to the same service.</p><p class="eyebrow">What changes</p><h2>Three things work differently.</h2><div class="grid3"><div class="card lilac"><h3>Native runtime</h3><p>Buildpacks detect Node; put npm start in package.json or a Procfile.</p></div><div class="card peach"><h3>Background worker</h3><p>Use a separate app folder with type: worker.</p></div><div class="card mint"><h3>Blueprint database and disk</h3><p>Declare managed Postgres; persistent app disks don't map to apps.</p></div></div>
 </div></section>
 <section class="band-off"><div class="in">
 <p class="eyebrow">The move</p><h2>Five steps. Your Render app keeps running until the last one.</h2>
-<ol class="tpl-steps"><li><b>Connect your repo</b><span>Install the Inferra GitHub App and pick the repo.</span></li><li><b>Add the two files</b><span>Commit .inferra/org.yaml and .inferra/main.yaml. Push to main.</span></li><li><b>Set your secrets</b><span>Commit only the names. Add the values in the dashboard.</span></li><li><b>Copy your database</b><span>Test a restore and check row counts. Then pause writes, take the final pg_dump and restore it from an app bound to orders (Postgres is private).</span></li><li><b>Switch your traffic</b><span>Keep writes frozen on Render from the final copy until users are on the new URL, and stop its workers and schedulers. Check pages, sessions, jobs and data, then switch. To roll back after new writes, copy that data back first.</span></li></ol>
+<ol class="tpl-steps"><li><b>Connect your repo</b><span>Install the Inferra GitHub App and pick the repo.</span></li><li><b>Add the app files</b><span>Commit .inferra/repo.yaml and api/.inferra/app.yaml. Push to main.</span></li><li><b>Set your secrets</b><span>Commit only the names. Add the values in the dashboard.</span></li><li><b>Copy your database</b><span>Test a restore and check row counts. Then pause writes, take the final pg_dump and restore it from an app bound to orders (Postgres is private).</span></li><li><b>Switch your traffic</b><span>Keep writes frozen on Render from the final copy until users are on the new URL, and stop its workers and schedulers. Check pages, sessions, jobs and data, then switch. To roll back after new writes, copy that data back first.</span></li></ol>
 <div class="code"><div class="file"><span>Copy the database</span><span>example</span></div><pre id="code-copy-the-database"># 1. On a machine that can reach your current database
 pg_dump --format=custom --no-owner --no-acl "$SOURCE_DATABASE_URL" > app.dump
 
@@ -96,15 +93,15 @@ pg_restore --no-owner --no-acl --exit-on-error --dbname="$ORDERS_URL" app.dump</
 <p class="eyebrow">Same app, monthly price</p><h2>Illustrative monthly compute price.</h2>
 <div class="grid2 tpl-price">
 <div class="card"><div class="who">Render · Starter instance</div><div class="amt">$7 / month</div><p>Plus a Pro workspace at $25/month if you want preview environments. <a href="https://render.com/pricing" rel="noopener">Render pricing</a></p></div>
-<div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MB</div><div class="amt">$4.94 / month</div><p>Compute only. Fits the $5 account-wide allowance only if you have no other usage. Card required.</p></div>
-</div><p class="note">An illustration, not a performance guarantee: CPU and memory allocations differ between the two. Inferra rates: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month. <a href="/pricing/">Full pricing</a></p>
+<div class="card pick"><div class="who">Inferra · 0.25 vCPU, 512 MiB</div><div class="amt">$25 / month</div><p>Paid is $25/month including $25 of usage. This production app uses $10/month before disk; other apps and services add usage.</p></div>
+</div><p class="note">An illustration, not a performance guarantee: CPU and memory allocations differ between the two. Inferra production rates: $20/vCPU-month, $10/GiB-month memory and $0.15/GiB-month disk. Development apps on Spot: $10/vCPU-month and $5/GiB-month memory; disk stays $0.15/GiB-month. Usage is priced per resource, per hour. <a href="/pricing/">Full pricing</a></p>
 </div></section>
 <section class="band-ink"><div class="in">
 <p class="eyebrow">Ready?</p><h2>Start with step one.</h2>
-<div class="btns"><a class="btn" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn ghost" href="/compare/render/">Compare Inferra and Render →</a></div>
+<div class="btns"><a class="btn" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn ghost" href="/compare/render/">Compare Inferra and Render →</a></div>
 </div></section></main><footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>

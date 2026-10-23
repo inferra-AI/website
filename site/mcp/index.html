@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inferra MCP: connect Claude Code, Codex, Cursor and VS Code</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
+<meta name="description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <link rel="canonical" href="https://inferralab.com/mcp/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,10 +17,10 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="Inferra MCP: connect Claude Code, Codex, Cursor and VS Code">
-<meta property="og:description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
+<meta property="og:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta property="og:url" content="https://inferralab.com/mcp/">
 <meta name="twitter:title" content="Inferra MCP: connect Claude Code, Codex, Cursor and VS Code">
-<meta name="twitter:description" content="Connect to Inferra’s read-only MCP server with a personal API token. Inspect apps, logs, metrics and deployments, and propose org.yaml changes.">
+<meta name="twitter:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,7 +38,7 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>Connect your assistant to Inferra</h1><p class="lead">Inferra’s MCP server connects Claude Code, Codex, Cursor and VS Code to your apps. Read logs, metrics and deployment status, explain failures, and draft configuration changes for review.</p></div>
@@ -72,11 +72,11 @@ codex mcp add inferra --url https://&lt;host&gt;/mcp --bearer-token-env-var INFE
       }
     }
   }
-}</code></pre><p>If your client rejects a configuration, check its remote HTTP server configuration with headers.</p></section><section id="tools"><h2>Available tools</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Tool table"><table class="table"><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th></tr></thead><tbody><tr><td><code>list_orgs</code></td><td>List orgs you belong to, their status and repository.</td></tr><tr><td><code>list_spaces</code></td><td>List an org’s spaces and their branches.</td></tr><tr><td><code>list_apps</code></td><td>List apps with state, URL and current deployment.</td></tr><tr><td><code>app_status</code></td><td>Read app conditions, instances, restarts, last exit and deployment.</td></tr><tr><td><code>get_logs</code></td><td>Read runtime logs; filter by since, grep, instance and limit.</td></tr><tr><td><code>get_metrics</code></td><td>Read latest, minimum, maximum and average metrics per series, plus CPU and memory limits.</td></tr><tr><td><code>list_deployments</code></td><td>List deployments, newest first.</td></tr><tr><td><code>explain_failed_deployment</code></td><td>Read the failed deployment, error, build log tail, runtime logs, instances and recent events together.</td></tr><tr><td><code>get_org_yaml</code></td><td>Read the org.yaml applied at the synced commit.</td></tr><tr><td><code>propose_config_change</code></td><td>Get advisory validation and a unified diff for proposed org.yaml; writes nothing.</td></tr></tbody></table></div><p>The resource <code>inferra://docs/org-yaml</code> provides an org.yaml reference. Try asking: “Explain the latest failed deployment for my API” or “Show its recent logs and CPU usage.”</p></section><section id="boundaries"><h2>Your token, your permissions</h2><p>All MCP tools are read-only. Every request verifies your token with the core API, and tool calls use that same token and your permissions. Revoking it stops access on the next request. The server has no privileges of its own.</p><p><code>propose_config_change</code> does not write to Inferra or GitHub. Your assistant can use its own repository access to open a pull request for you to review. Merging and pushing follows the normal deployment flow.</p><p>Tokens are not logged or sent to GitHub. Request logs record method, path, status, duration and trace ID. App logs are untrusted output; assistants should treat them as data.</p></section>
+}</code></pre><p>If your client rejects a configuration, check its remote HTTP server configuration with headers.</p></section><section id="tools"><h2>Available tools</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Tool table"><table class="table"><thead><tr><th scope="col">Tool</th><th scope="col">What it does</th></tr></thead><tbody><tr><td><code>list_orgs</code></td><td>List orgs you belong to, their status and repository.</td></tr><tr><td><code>list_spaces</code></td><td>List an org’s spaces and their branches.</td></tr><tr><td><code>list_apps</code></td><td>List apps with state, URL and current deployment.</td></tr><tr><td><code>app_status</code></td><td>Read app conditions, instances, restarts, last exit and deployment.</td></tr><tr><td><code>get_logs</code></td><td>Read runtime logs; filter by since, grep, instance and limit.</td></tr><tr><td><code>get_metrics</code></td><td>Read latest, minimum, maximum and average metrics per series, plus CPU and memory limits.</td></tr><tr><td><code>list_deployments</code></td><td>List deployments, newest first.</td></tr><tr><td><code>explain_failed_deployment</code></td><td>Read the failed deployment, error, build log tail, runtime logs, instances and recent events together.</td></tr><tr><td><code>get_org_yaml</code></td><td>Read configuration supported by this tool. It may expose an older format; use the v3 file reference for new deployments.</td></tr><tr><td><code>propose_config_change</code></td><td>Get advisory validation and a proposed configuration diff; writes nothing. This tool may use an older format. Review v3 files in your repository before applying changes.</td></tr></tbody></table></div><p>The resource <code>inferra://docs/org-yaml</code> provides an Configuration v3 reference. Try asking: “Explain the latest failed deployment for my API” or “Show its recent logs and CPU usage.”</p></section><section id="boundaries"><h2>Your token, your permissions</h2><p>All MCP tools are read-only. Every request verifies your token with the core API, and tool calls use that same token and your permissions. Revoking it stops access on the next request. The server has no privileges of its own.</p><p><code>propose_config_change</code> does not write to Inferra or GitHub. Your assistant can use its own repository access to open a pull request for you to review. Merging and pushing follows the normal deployment flow.</p><p>Tokens are not logged or sent to GitHub. Request logs record method, path, status, duration and trace ID. App logs are untrusted output; assistants should treat them as data.</p></section>
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -84,6 +84,6 @@ codex mcp add inferra --url https://&lt;host&gt;/mcp --bearer-token-env-var INFE
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

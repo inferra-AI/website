@@ -9,8 +9,8 @@
     const codes = Array.isArray(config?.offerCodes) ? config.offerCodes : [];
     if (/^[A-Za-z0-9_-]{1,64}$/.test(candidate) && codes.includes(candidate)) {
       offer = candidate;
-      document.getElementById('offer-message').textContent = `Have code ${offer}? Check it in your wallet.`;
-      document.getElementById('offer-note').textContent = 'Redeem it in your wallet after signing up. The wallet confirms eligibility and the credit amount.';
+      document.getElementById('offer-message').textContent = `Have code ${offer}? Ask us about eligibility.`;
+      document.getElementById('offer-note').textContent = 'Email support@inferralab.com with the code to check eligibility and terms before signing up.';
     }
   }
   const trackOffer = () => {

@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,24 +38,24 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>Operate your apps</h1><p class="lead">Git declares your apps and resources. Use the dashboard and CLI to operate the workloads already running.</p></div>
-<section id="ownership"><h2>Git owns what you declare; the dashboard and CLI operate</h2><p>For GitHub repositories, change declarations in Git and push. The API refuses direct edits with <code>managed by .inferra/org.yaml</code>, followed by the repository or GitHub Environment to edit. The message names org.yaml even when a v2 setting lives in a branch file.</p>
-<ul><li><strong>Apps and branches:</strong> declare app folders and eligible branches in <code>.inferra/org.yaml</code>. Git creates apps and branch spaces; direct app/space creation, deletion and source deployments are refused.</li><li><strong>Resources:</strong> declare services and their sizes and branch quotas in org.yaml. Declare app service bindings in the branch file. Manage service lifecycle and membership through those declarations.</li><li><strong>Instances:</strong> set <code>run.instances</code>, <code>run.cpu</code> and <code>run.memory</code> in the branch file. Direct scaling is refused.</li><li><strong>Members:</strong> edit org.yaml members; GitHub repository admins also have owner access. Direct member edits are refused.</li><li><strong>Environment values:</strong> v2 files can declare org, branch and app environment maps. GitHub Environment variables are also synchronized. For GitHub-owned values, use GitHub → Settings → Environments → the original branch name. Direct environment writes are refused.</li></ul><p>Secret names belong in the branch file; secret values can be written through the dashboard or the selected-secret GitHub workflow. Read <a href="/docs/org-yaml/">the configuration reference</a> and <a href="/setup/#environment">secret setup</a>.</p></section>
+<section id="ownership"><h2>Git owns configuration</h2><p>Change configuration in Git and push. The dashboard and CLI inspect and operate the apps you declared.</p><ul><li>Branches, repo teams, shared env and branch resource quotas: .inferra/repo.yaml on the default branch.</li><li>Build, run settings, sizing and service bindings: each app folder’s .inferra/app.yaml from the deployed branch.</li><li>Account quotas, repo allocations and team defaults: account.yaml at the root of the private &lt;account&gt;/.inferra repository.</li><li>Account services: services/*.yaml in that private repository. A GitHub admin must merge changes there.</li></ul><p>Secret names belong in repo.yaml or app.yaml. Supply values through the dashboard, <code>inferra secrets set APP NAME</code> or selected-secret GitHub sync. See <a href="/setup/#environment">secret setup</a>.</p></section>
+
 <section id="target"><h2>Choose the app</h2><p>In the dashboard, open the repository org, its branch space, then the app. CLI examples below use an app folder named <code>api</code>. Set the target first:</p><pre class="term"><code>inferra login
 inferra target shop/main
 inferra apps
 inferra apps status api</code></pre></section>
-<section id="scale"><h2>Scale by changing the branch file</h2><p>Open the app overview and choose <strong>Scale app</strong>. For a GitHub org, the current dialog says scaling is managed by org.yaml; it does not link to a GitHub line. Open the repository yourself and edit <code>.inferra/main.yaml</code> for main:</p><pre class="term"><code>apps:
-  api:
-    run:
-      instances:
-        min: 2
-        max: 2
-      cpu: &quot;0.5&quot;
-      memory: 512Mi</code></pre><p>Commit and push that branch. Make sure the org.yaml quota covers the reservation. Autoscaling is not active; max does not turn it on. There is no scaling command in the captured CLI help. Inspect the result with <code>inferra instances api</code>.</p></section>
+<section id="scale"><h2>Scale by changing app.yaml</h2><p>Edit api/.inferra/app.yaml. For a fixed-size app:</p><pre class="term"><code>version: 3
+name: api
+type: web
+port: 3000
+instances: 2
+cpu: 0.5
+memory: 512Mi</code></pre><p>Commit and push the branch. Check its repo.yaml resource quota, account allocation and billing. Inspect the result with <code>inferra instances api</code>. For supported autoscaling, use a scale map instead of instances; request-based scaling with min above zero is not implemented.</p></section>
+
 <section id="rollback"><h2>Roll back an image</h2><p>In the app overview, choose <strong>Roll back</strong> for the previous deployment, or open <strong>Deployments</strong> and choose <strong>Roll back</strong> on an earlier deployment that went live.</p><pre class="term"><code>inferra deployments api
 inferra rollback api
 inferra rollback api --to DEPLOYMENT_ID</code></pre><p>Rollback redeploys the earlier image. It keeps the current runtime configuration, environment and secret values; it does not restore an old configuration or database. The next eligible push deploys from the pushed commit again, subject to build selection and validation.</p></section>
@@ -64,9 +64,10 @@ inferra promote api --from staging --to main --deployment DEPLOYMENT_ID</code></
 <section id="lifecycle"><h2>Restart, stop and start</h2><p>Use the app header’s <strong>Restart</strong> or <strong>Stop</strong> button. A stopped app shows <strong>Start</strong>. Restart uses the same image. Stop removes running instances while keeping the URL, configuration and services. These operations require developer access.</p><pre class="term"><code>inferra restart api
 inferra stop api
 inferra start api</code></pre></section>
-<section id="values"><h2>Set secrets and inspect names</h2><p>Open the app’s <strong>Settings</strong> tab. Under Secrets, choose <strong>Set value</strong> for a missing value or <strong>Replace</strong> for an existing value. The dashboard requests a restart so running instances receive the new value. Declare runtime secret names in the branch file. Values are never returned by secret read APIs.</p><p>The captured CLI lists names but has no secret-value write command:</p><pre class="term"><code>inferra env api
+<section id="values"><h2>Set secrets and inspect names</h2><p>Open the app’s <strong>Settings</strong> tab. Under Secrets, choose <strong>Set value</strong> for a missing value or <strong>Replace</strong> for an existing value. The dashboard requests a restart so running instances receive the new value. Declare runtime secret names in repo.yaml or app.yaml. Values are never returned by secret read APIs.</p><p>The CLI lists names and can set values from stdin:</p><pre class="term"><code>inferra env api
 inferra env api --reveal
-inferra secrets api</code></pre><p><code>--reveal</code> requires developer access and reveals only ordinary environment values. Managed-service connection values remain hidden. Settings lists environment and secret names.</p></section>
+inferra secrets api
+printf %s "$API_KEY" | inferra secrets set api API_KEY</code></pre><p><code>--reveal</code> requires developer access and reveals only ordinary environment values. Managed-service connection values remain hidden. Settings lists environment and secret names.</p></section>
 <section id="inspect"><h2>Logs, metrics and exec</h2><p>Open the app’s <strong>Logs</strong> or <strong>Metrics</strong> tab. See <a href="/docs/observe/">Metrics and logs</a> for chart and live-log controls. The current dashboard has no exec terminal; use the CLI to run a command in a ready instance:</p><pre class="term"><code>inferra logs api --follow
 inferra metrics api --since 6h
 inferra exec api -- sh
@@ -74,7 +75,7 @@ inferra exec api --pod POD_NAME -- printenv PORT</code></pre><p>Exec requires de
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -82,6 +83,6 @@ inferra exec api --pod POD_NAME -- printenv PORT</code></pre><p>Exec requires de
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

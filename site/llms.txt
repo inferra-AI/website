@@ -1,69 +1,35 @@
 # Inferra
 
-> A platform for real production applications. Just bring your code. Inferra runs your APIs, web apps and background workers, with no servers, clusters or Dockerfiles to maintain.
+Deploy apps from GitHub. Website: https://inferralab.com/
+API and CLI default: https://api.inferralab.com
 
-Inferra runs builds, servers, HTTPS, patching, restarts, rolling deploys, logs and metrics. Website: https://inferralab.com/. Platform API: https://api.dev.inferralab.dev. Product facts reviewed on 2026-10-10 (core code rc20; CLI help rc25).
+## Configuration v3
+- inferra init writes v3: .inferra/repo.yaml, the app folder's .inferra/app.yaml and an optional GitHub environment-sync workflow. It does not write account.yaml.
+- repo.yaml comes from the default branch and selects branches, repo teams, shared env and branch quotas. app.yaml comes from the deployed branch and defines build, run, health and service bindings. Both start with version: 3. Root apps use .inferra/app.yaml; monorepos can use api/.inferra/app.yaml and worker/.inferra/app.yaml.
+- With no branches map, only the default branch runs. With a nonempty map, list main explicitly if you want it to run. Exact names win, then the longest pattern; equal-length matches fail. feature/* does not match feature/team/login. Pattern TTL counts from the last accepted push.
+- Account services use services/*.yaml at the root of the private GitHub <account>/.inferra repository. Grant the App access. Optional account.yaml sets all three quota values and lists every connected repo with all three quota values. An admin merges account service changes first, then app teams add bindings by name and access in app.yaml.
+- Attached previews share service data. Create a separately named service for isolated preview data. data: shared is not available yet and does not provide isolation. Removing a branch does not delete account-owned managed services.
+- Declare only secret names in YAML. Set values in the dashboard or pipe them to inferra secrets set APP NAME; optionally sync selected GitHub secrets. Never commit values. GitHub-managed secrets are read-only in Inferra; remove from the current owner before transferring ownership.
+- Workers use type: worker without an HTTP port or health check. Scheduled jobs use type: job with schedule. Custom image services are not available yet. Native databases are rolling out; confirm availability before depending on them.
 
-## Configuration and deployment
-- Git pushes deploy source. Each repository is an org, each eligible branch has its own namespace, and apps are named repository folders.
-- Two-file configuration: .inferra/org.yaml version 2 declares apps, branch selections, platform domains, service resources, members, shared env and quotas. Read from the default branch only.
-- Branch files define build/run/health/deploy settings, service bindings, env and secret names. Read from that branch's exact pushed commit. Missing files use platform defaults.
-- main uses .inferra/main.yaml; feature/* uses .inferra/feature.yaml from each matched branch; literal feature/special uses .inferra/feature/special.yaml. Prefixless patterns use .inferra/branch.yaml. Exact matches win, then longest pattern and lexical order.
-- Version 1 files still work. inferra init currently writes v1; write the two v2 files by hand. Workflow-only generation supports v2 branch lists and patterns.
-- Buildpacks, no Dockerfile: Node.js, Python, Go, Java, Ruby, PHP, .NET, static sites and Procfile apps. Select run.process: worker for a long-running background worker with no public route. Autoscaling is not active.
-- Each branch has independent bound services; unbound declarations do not provision instances. Managed Postgres supports backups and restore to any point in the past 7 days. Bring your own Docker image (BYOD), such as MongoDB or RabbitMQ, with environment settings and secrets; these services are not backed up. The Redis-compatible cache has no persistent storage, backups or restore. Custom OCI service images use private TCP endpoints and restricted gVisor workloads.
-- Env precedence: app > branch > org. Secrets are names in YAML, encrypted values in the dashboard or selected-secret GitHub workflow. GitHub Environments use original branch names, including slashes. Missing values fail the commit check.
-- Deleting a branch removes its namespace asynchronously. Pattern-branch services delete immediately; named branches retain Postgres restore eligibility and bucket data for 7 days.
+## Trial and Paid
+- Trial: $15 credit or 14 days, whichever comes first. Card required; Stripe verifies it without charging. One trial per card. Unused credit expires. Apps on Spot; native Postgres, native Valkey and S3 buckets allowed, no other AWS services. A trial change is refused only if it would use remaining credit in under a day.
+- At trial end apps stop and native services scale to zero. Data, config and URLs are kept for 30 days; subscribing within that window resumes automatically. Then everything is deleted; repo config is never touched.
+- Paid: $25/month including $25 of usage. Extra usage is additional; unused included usage does not roll over. Paid starts on the subscribe date with full charge and included usage; trial credit is dropped. No annual billing. USA customers only for now.
+- Native usage is priced per resource, per hour. Production on-demand: $20/vCPU-month, $10/GiB-month memory, $0.15/GiB-month disk. Development Spot apps: $10/vCPU-month and $5/GiB-month memory; disk stays $0.15/GiB-month. Development on-demand uses production rates. Native databases are billed once per service file at on-demand rates, regardless of attached branches. AWS services are priced separately; SQS and DynamoDB on-demand are coming soon, not sold yet.
+- Example: 1 vCPU and 2 GiB production app uses $40/month before disk; Paid total is $40. $18 usage costs $25. The calculators show native production estimates and the $25 minimum, not AWS service prices.
+- Extra usage charged mid-month and at month-end; month-end includes the next $25 subscription payment in the same card charge. $100 unbilled total triggers an immediate charge at most once a day, settling everything unbilled. Threshold locked for 3 months, then support can arrange a change. It is not a YAML setting.
+- Separate $100/day UTC usage cap; no monthly spending limit. Running apps keep running at the cap. New apps, services and cost-adding changes are blocked, and metered AWS access pauses until 00:00 UTC.
+- Failed payment: days 0–7 keep running while retried; no cost-adding changes. Emails on days 0, 3, 6. Day 8 apps stop; RDS and ElastiCache snapshotted then deleted; RabbitMQ/Kafka deleted with messages lost; S3/SQS/DynamoDB/native disks kept. Paying during days 8–30 restores databases from snapshots and recreates RabbitMQ/Kafka empty. Everything deleted day 30; warning emails 7 days and 1 day before.
+- Cancel: runs to paid month end, then 30-day hold, then deletion. No refunds for used usage. $25 refunded on request within 7 days if usage under $5. A dispute stops the account.
 
-## Credits pricing
-- No plans, subscriptions or app limits. You pay for what apps and services reserve, charged hourly from prepaid credits: CPU $16.19 per vCPU-month, memory $1.78 per GB-month, storage $0.104 per GB-month (Postgres disks, bucket size, service disks). Postgres backups are measured at $0.0299 per GB-month and are free for accounts that have never bought credits. Bandwidth, S3 requests and build minutes are not charged.
-- Reserved = each app's CPU and memory times its maximum instances, plus each service's declared size. Buckets reserve their storage size only; that size is also the write limit.
-- Branch quotas in org.yaml quotas: (keyed by exact branch names or patterns; cpu, memory, storage) are the most a branch can reserve across apps and services, not the price. Each matching branch has its own quota. Missing entries use platform defaults.
-- $5 of usage free every month per account, shared across all its repos. A card on file is required; never charged unless the customer buys credits. One free allowance per card.
-- Pushes that raise a reservation must fit the branch quota and be paid ahead: paid accounts need credits covering at least 7 days at the new total; accounts without credits must stay at or below $5 a month. Refused changes fail the commit check and leave existing reservations running.
-- At $0, new deploys pause immediately. After a 3-day grace period, workloads pause; data is kept for 7 days. Top up to resume. Optional auto top-up is off by default.
-- Example: main with api (250m, 512Mi, 2 instances), worker (250m, 256Mi), Postgres (250m, 256Mi, 10Gi) and a 20Gi bucket reserves 1 vCPU, 1.5 GB, 30 GB = $21.98 a month.
-
-## Security and MCP
-- Every app runs isolated with gVisor. Each branch has a private network; services accept connections only from bound apps. Apps can connect to services on the public internet using credentials stored as secrets. Fixed outbound IP addresses are shared by all apps on the platform and listed in the docs/dashboard for allowlisting. Private ranges and cloud metadata are blocked; connections to private networks in your own cloud are coming later.
-- Every successful build is submitted for scanning. Core accepts digest-bound pass/warn/block verdicts; no verdict can deploy with a not-scanned warning by default. v1 alone accepts scan: {block: critical}; high and the v2 scan field are rejected. Blocking policy waits up to two minutes. Core delegates vulnerability matching and does not verify OSV as a source. Secret values are not returned by read APIs.
-- The remote MCP server uses Streamable HTTP and the user's personal API token, verified on every request. Revoked tokens fail on the next request. All tools are read-only.
-- Clients: Claude Code, Codex, Cursor and VS Code. Connection examples use https://<host>/mcp; replace the host with the MCP server address.
-- Tools: list_orgs, list_spaces, list_apps, app_status, get_logs, get_metrics, list_deployments, explain_failed_deployment, get_org_yaml, propose_config_change.
-- propose_config_change returns advisory validation and a unified diff; it writes nothing. The assistant uses its own repo access to open a reviewable PR. Resource: inferra://docs/org-yaml.
-- The CLI inspects and operates apps; it does not deploy source.
-
-## Operating and observing apps
-- Git owns app/branch declarations, services and bindings, quotas, instances and sizing, members and environment configuration. Direct configuration writes in GitHub orgs are refused as managed by .inferra/org.yaml; GitHub Environment values are edited in GitHub.
-- Rollback changes the image only and keeps current environment/secrets; subsequent eligible pushes deploy from the new commit. Promotion copies an image without rebuilding, within the same cluster and with developer access to both namespaces.
-- Restart, stop/start, secret-value writes, name inspection, logs, metrics and exec are allowed with the appropriate role. Captured CLI supports secret-name listing, not secret-value writes. Current dashboard has no exec terminal or promotion control in its tabbed app view.
-- Scale by editing branch-file run.instances, cpu and memory and pushing. Current GitHub Scale app dialog explains Git ownership; it has no GitHub line link.
-- Metrics ranges: 15m, 1h, 6h, 24h, 7d. Auto refresh: Off, 15s, 30s, 1m; pauses while zoomed. Wheel, drag-select, Shift-drag, pinch and keyboard zoom/pan; Reset zoom resumes the moving range.
-- CPU/memory show instance lines when available and a configured memory limit line when samples allow it. HTTP requests, p50/p95 latency and 5xx charts appear with data; otherwise charts are omitted, or No metrics available appears.
-- Live logs follow at the bottom; scrolling upward pauses following, and Jump to latest resumes. CLI: inferra logs APP --follow; inferra metrics APP --since 168h for seven days.
-
-## Guides and references
-- [Setup](https://inferralab.com/setup/): two-file flow, secrets, commit checks and Postgres.
-- [Download the CLI](https://inferralab.com/download/): releases and SHA-256 checksums.
-- [Credits pricing](https://inferralab.com/#pricing)
-- [Documentation](https://inferralab.com/docs/)
-- [org.yaml and branch files](https://inferralab.com/docs/org-yaml/)
-- [CLI reference](https://inferralab.com/docs/cli/)
-- [Connect an assistant with MCP](https://inferralab.com/mcp/)
-- [App SSO](https://inferralab.com/docs/sso/)
-- [Release notes](https://inferralab.com/changelog/)
-- [Comparison](https://inferralab.com/compare/)
-- [Security and data handling](https://inferralab.com/security/)
-- [Website privacy](https://inferralab.com/privacy/)
-- [Demo repository and video](https://inferralab.com/demo/)
-
-- [Operate your apps](https://inferralab.com/docs/operate/): Git ownership and runtime operations.
-- [Metrics and logs](https://inferralab.com/docs/observe/): ranges, zoom and live logs.
-- [Credits and quotas for developers](https://inferralab.com/docs/billing/): reservations, wallet and usage.
-
-## Plain-language definitions
-- How are apps isolated? Each app runs isolated with gVisor: it talks to a small screening kernel instead of the server’s real kernel. This isolation prevents a compromised app from reaching the host or other customers.
-- What is a background worker? A background worker is a long-running process with no public web address, such as a queue consumer. Set run.process: worker in your branch file to run one.
-- Homepage calculators estimate total account reservations or app count × per-app CPU/memory × instances, plus total storage. Hourly estimates use monthly prices divided by 730; the first $5 of usage is free each month per account.
-
-- [Customer journey](https://inferralab.com/#product): five steps illustrated with real public demo screenshots, plus the dashboard video.
+## Help and references
+- Support, billing, restore or migration help: support@inferralab.com. Never send credentials.
+- [Setup](https://inferralab.com/setup/)
+- [Configuration v3](https://inferralab.com/docs/org-yaml/)
+- [Billing](https://inferralab.com/docs/billing/)
+- [CLI](https://inferralab.com/docs/cli/)
+- [Pricing](https://inferralab.com/pricing/)
+- [Security](https://inferralab.com/security/)
+- [Full page reference](https://inferralab.com/llms-full.txt)
+- [Terms](https://inferralab.com/terms/): draft awaiting owner/legal approval.

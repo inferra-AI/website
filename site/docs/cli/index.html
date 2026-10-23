@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,26 +38,17 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Documentation</p><h1>CLI reference</h1><p class="lead">Commands and flags as printed by the CLI, grouped by task.</p></div>
 <section id="getting-started"><h2>Start here</h2><p>GitHub pushes deploy source. The CLI inspects apps and operates running workloads. Choose a target with <code>inferra target ORG/SPACE</code>; use <code>--org</code> and <code>--space</code> to override it for one command. Commands also accept the global flags printed below.</p><pre class="term"><code>inferra login
 inferra target shop/main
 inferra apps
-inferra logs api --follow</code></pre><p>This reference preserves every command and flag in the supplied CLI help capture. Some help still describes plans or v1 services; credits mode uses the wallet, and v2 declares services in org.yaml with bindings in branch files. Read <a href="/docs/billing/">credits and quotas</a> and <a href="/docs/org-yaml/">the v2 reference</a> for those distinctions.</p></section>
-<section id="v2"><h2>Init currently writes version 1</h2><p><code>inferra init</code> currently generates the version-1 org file. To use v2, write these two files yourself, with your source in a named folder such as <code>api/</code>:</p><p><code>.inferra/org.yaml</code> on the default branch:</p><pre class="term"><code>version: 2
-apps:
-  - folder: api
-    branches: [main]</code></pre><p><code>.inferra/main.yaml</code> on main:</p><pre class="term"><code>apps:
-  api:
-    run:
-      instances:
-        min: 1
-        max: 1
-      cpu: &quot;0.25&quot;
-      memory: 256Mi</code></pre><p>Commit both and push. See <a href="/docs/org-yaml/">the configuration reference</a> for services, secrets and more branches. <code>--workflow-only</code> generates a workflow from an existing org.yaml; it does not convert a v1 file to v2.</p></section>
-<nav aria-label="CLI reference sections"><ul><li><a href="#global">Command list and global flags</a></li><li><a href="#session">Login, targeting and repository setup</a></li><li><a href="#inspect">Inspect accounts, orgs and apps</a></li><li><a href="#operate">Operate workloads and inspect configuration</a></li><li><a href="#observe">Logs and metrics</a></li><li><a href="#services">Services, buildpacks and plan compatibility</a></li><li><a href="#tools">Help, completion and version</a></li><li><a href="#staff">Staff commands</a></li></ul></nav><section id="global"><h2>Command list and global flags</h2><h3 id="command-root">inferra</h3><p>Find the available commands and global flags.</p><pre class="term"><code>$ inferra --help
+inferra logs api --follow</code></pre><p>Use config v3 for new repositories. <code>inferra init</code> generates repo.yaml, app.yaml and an optional environment-sync workflow. Services live in the private account repository. See <a href="/docs/org-yaml/">configuration v3</a> and <a href="/docs/billing/">Trial and Paid billing</a>. Use <code>inferra COMMAND --help</code> for the flags in your installed version.</p></section>
+<section id="v2"><h2>Init writes config v3</h2><p>Run <code>inferra init</code> for a root app, or <code>inferra init --app-dir api</code> for an app folder. It writes <code>.inferra/repo.yaml</code>, the folder’s <code>.inferra/app.yaml</code> and <code>.github/workflows/inferra-env.yml</code>. Both YAML config files use version: 3. Only selected branches run. It does not write account.yaml; that belongs at the root of the private &lt;account&gt;/.inferra repository. Services use services/*.yaml there. <code>--workflow-only</code> uses the existing v3 repo file.</p></section>
+
+<nav aria-label="CLI reference sections"><ul><li><a href="#global">Command list and global flags</a></li><li><a href="#session">Login, targeting and repository setup</a></li><li><a href="#inspect">Inspect accounts, orgs and apps</a></li><li><a href="#operate">Operate workloads and inspect configuration</a></li><li><a href="#observe">Logs and metrics</a></li><li><a href="#services">Services and buildpacks</a></li><li><a href="#tools">Help, completion and version</a></li><li><a href="#staff">Staff commands</a></li></ul></nav><section id="global"><h2>Command list and global flags</h2><h3 id="command-root">inferra</h3><p>Find the available commands and global flags.</p><pre class="term"><code>$ inferra --help
 Inferra deploys repositories connected through the Inferra GitHub App.
 Use the CLI to inspect apps and operate running workloads.
 Start with: inferra init, commit the generated files, and push to GitHub.
@@ -84,7 +75,7 @@ Available Commands:
   login       Log in with a personal token from the web UI (like cf login)
   logout      Remove the saved token from this machine
   logs        Show recent logs, or follow them with -f
-  members     List org members and their roles (GitHub admins and org.yaml members)
+  members     List org members and their roles (GitHub admins and configured teams)
   metrics     Show an app&#x27;s CPU, memory, requests and latency over time
   org         Show an org&#x27;s plan, quota usage, owners and spaces (like cf org; change plans in the web UI)
   orgs        List your GitHub repository orgs and their plans
@@ -181,25 +172,10 @@ Global Flags:
       --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
-      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-init">inferra init</h3><p>Create starter Inferra repository configuration</p><pre class="term"><code>$ inferra init --help
-Create starter Inferra repository configuration
-
-Usage:
-  inferra init [flags]
-
-Flags:
-      --force                overwrite existing generated files
-  -h, --help                 help for init
-      --name string          app name (defaults to the folder name)
-  -p, --path string          repository folder (default &quot;.&quot;)
-      --secret stringArray   GitHub secret name to sync (repeat for each name; defaults to none)
-      --workflow-only        generate only the workflow using existing .inferra/org.yaml spaces
-
-Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
-      --json           print machine-readable JSON
-      --org string     org (overrides the saved target and $INFERRA_ORG)
-      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-init">inferra init</h3><p>Detect the app and generate v3 configuration. Files are kept unless replacement is explicitly requested; review all generated changes.</p><pre class="term"><code>inferra init
+inferra init --app-dir api
+inferra init --app-dir worker --name worker
+inferra init --workflow-only --force --secret API_KEY</code></pre><p>Use --path to select a repository folder and --branch to select its default branch key. --account-path reads a local account repository to check whether the app repo is listed, without writing it. Existing older configurations need migration first: <code>inferra init --migrate --account ACCOUNT --repo REPO</code>. Back up data and review the migration before applying it.</p></section>
 <section id="inspect"><h2>Inspect accounts, orgs and apps</h2><h3 id="command-accounts">inferra accounts</h3><p>List GitHub accounts and their shared resource usage</p><pre class="term"><code>$ inferra accounts --help
 List GitHub accounts and their shared resource usage
 
@@ -322,8 +298,8 @@ Global Flags:
       --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
-      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-members">inferra members</h3><p>List org members and their roles (GitHub admins and org.yaml members)</p><pre class="term"><code>$ inferra members --help
-List org members and their roles (GitHub admins and org.yaml members)
+      --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre><h3 id="command-members">inferra members</h3><p>List org members and their roles (GitHub admins and configured teams)</p><pre class="term"><code>$ inferra members --help
+List org members and their roles (GitHub admins and configured teams)
 
 Usage:
   inferra members [flags]
@@ -532,14 +508,7 @@ Global Flags:
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)</code></pre></section>
-<section id="services"><h2>Services, buildpacks and plan compatibility</h2><h3 id="command-services">inferra services</h3><p>Declare managed services (postgres, redis, bucket) under each app&#x27;s</p><pre class="term"><code>$ inferra services --help
-Declare managed services (postgres, redis, bucket) under each app&#x27;s
-&quot;services:&quot; in .inferra/org.yaml, then push to GitHub. Apps in the same space
-that declare the same service name share it. Removing the last declaration
-schedules deletion according to the service&#x27;s retention policy.
-Use &quot;inferra service status NAME&quot; to inspect a service.
-
-Usage:
+<section id="services"><h2>Services and buildpacks</h2><h3 id="command-services">inferra services</h3><p>List services available to the targeted apps. Configure services in services/*.yaml at the root of the private &lt;account&gt;/.inferra repository. Merge the service change as a GitHub admin first, then request bindings in app.yaml. Removing an app binding revokes access; unbind all apps before removing a service file.</p><pre class="term"><code>Usage:
   inferra services [flags]
 
 Flags:
@@ -716,7 +685,7 @@ Use &quot;inferra admin [command] --help&quot; for more information about a comm
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -724,6 +693,6 @@ Use &quot;inferra admin [command] --help&quot; for more information about a comm
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

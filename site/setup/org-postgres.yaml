@@ -1,13 +1,12 @@
-version: 2
-apps:
-  - folder: api
-    branches:
-      - main
-      - feature/*
-services:
-  postgres:
-    - name: orders
-      version: "17.2"
-      cpu: "0.25"
-      memory: 256Mi
-      storage: 1Gi
+# Paid account example. Save as services/orders.yaml at the root of
+# the private <account>/.inferra repository; replace shop with your app repo.
+version: 3
+name: orders
+type: postgres
+hosting: managed
+size: db.t4g.micro
+storage: 20Gi
+engine_version: "17"
+attach:
+  shop:
+    branches: [main]
