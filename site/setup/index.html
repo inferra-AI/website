@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deploy your first app with Inferra’s two-file configuration</title>
+<title>Deploy your first app with config v3</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<meta name="description" content="Connect GitHub, add repo.yaml and app.yaml, set secrets and push. Add account services separately when you need them.">
 <link rel="canonical" href="https://inferralab.com/setup/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -13,14 +13,13 @@
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/light.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Deploy an app from GitHub with Inferra", "description": "Configure org.yaml v2 and branch files, push and inspect deployment.", "step": [{"@type": "HowToStep", "name": "Prepare a repository", "text": "Use a named app folder and a repository admin who can install the App.", "url": "https://inferralab.com/setup/#prerequisites"}, {"@type": "HowToStep", "name": "Install and sign in", "text": "Install the App and CLI; log in with https://api.dev.inferralab.dev.", "url": "https://inferralab.com/setup/#install"}, {"@type": "HowToStep", "name": "Write two configuration files", "text": "Write org.yaml v2 on the default branch and a file for each branch’s settings.", "url": "https://inferralab.com/setup/#configuration"}, {"@type": "HowToStep", "name": "Set secrets", "text": "Declare secret names and set values in the dashboard or matching branch GitHub Environment.", "url": "https://inferralab.com/setup/#environment"}, {"@type": "HowToStep", "name": "Push", "text": "Push the default branch first, then eligible branches.", "url": "https://inferralab.com/setup/#push"}, {"@type": "HowToStep", "name": "Inspect checks", "text": "Read configuration and deployment results and open the live URL.", "url": "https://inferralab.com/setup/#checks"}, {"@type": "HowToStep", "name": "Bind Postgres", "text": "Declare Postgres in org.yaml and bind it in each branch file.", "url": "https://inferralab.com/setup/#postgres"}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="Deploy your first app with Inferra’s two-file configuration">
-<meta property="og:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<meta property="og:description" content="Connect GitHub, add repo.yaml and app.yaml, set secrets and push. Add account services separately when you need them.">
 <meta property="og:url" content="https://inferralab.com/setup/">
 <meta name="twitter:title" content="Deploy your first app with Inferra’s two-file configuration">
-<meta name="twitter:description" content="Install the GitHub App, write org.yaml v2 and branch files, set secrets, push code and bind an independent Postgres database per branch.">
+<meta name="twitter:description" content="Connect GitHub, add repo.yaml and app.yaml, set secrets and push. Add account services separately when you need them.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -28,9 +27,10 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/v5.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Deploy an app from GitHub with Inferra", "description": "Use config v3: repo.yaml and app.yaml. Push to GitHub, inspect deployment and add account services separately.", "step": [{"@type": "HowToStep", "name": "Prepare a repository", "text": "A root app or named app folder and a repository admin who can install the App.", "url": "https://inferralab.com/setup/#prerequisites"}, {"@type": "HowToStep", "name": "Install and sign in", "text": "Install the App. Optionally install the CLI and log in at https://api.inferralab.com.", "url": "https://inferralab.com/setup/#install"}, {"@type": "HowToStep", "name": "Create v3 configuration", "text": "inferra init writes v3 repo.yaml and app.yaml, plus an optional environment workflow; it does not write account.yaml.", "url": "https://inferralab.com/setup/#configuration"}, {"@type": "HowToStep", "name": "Set secrets", "text": "Declare secret names and supply values through Inferra or selected-secret GitHub sync.", "url": "https://inferralab.com/setup/#environment"}, {"@type": "HowToStep", "name": "Push", "text": "Push the default branch to establish repo rules, then selected branches.", "url": "https://inferralab.com/setup/#push"}, {"@type": "HowToStep", "name": "Inspect deployment", "text": "Read configuration and app deployment statuses separately; find the app address in the dashboard.", "url": "https://inferralab.com/setup/#checks"}, {"@type": "HowToStep", "name": "Add account services", "text": "Create the private account repository, grant App access and merge service config as an admin first, then app bindings.", "url": "https://inferralab.com/setup/#postgres"}]}</script>
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,63 +38,62 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
-<div class="document-head"><p class="eyebrow">Inferra · Reference</p><h1>Your first deployment</h1><p class="lead">Install the GitHub App, write org.yaml v2 and a branch file, then push. Inferra builds with buildpacks and reports the result on the commit. The CLI inspects and operates apps.</p></div>
-<nav class="toc" aria-label="On this page"><a href="#prerequisites">Prerequisites</a><a href="#configuration">Configuration</a><a href="#environment">Secrets</a><a href="#checks">Commit checks</a><a href="#postgres">Postgres</a><a href="#troubleshooting">Troubleshooting</a></nav><section id="prerequisites"><h2>1. Have a repository and its admin ready</h2><p>You need Git, a GitHub repository you can push to, and a repository admin who can install the Inferra GitHub App. Organization policy may require an owner’s approval. Keep the app in a named folder such as <code>api/</code>; v2 does not accept the repository root as an app folder.</p><pre class="term" id="admin-request"><code>Please install the Inferra GitHub App on OWNER/REPO:
-https://api.dev.inferralab.dev/v1/github/install
-Please create GitHub Environments named after our branches,
-and add MY_GITHUB_LOGIN as a developer in .inferra/org.yaml.
-Setup guide: https://inferralab.com/setup/</code></pre><button class="btn copy-button" data-copy="admin-request">Copy admin request</button></section><section id="install"><h2>2. Install the App and CLI</h2><p><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install">Install the GitHub App</a> and choose your repository. Follow the <a href="/download/">CLI download and checksum instructions</a>. Sign in with GitHub in the dashboard and create a personal token under Settings → Tokens, then paste it at the CLI prompt:</p><pre class="term"><code>inferra login --api https://api.dev.inferralab.dev</code></pre><p>The CLI saves this API address after login.</p></section><section id="configuration"><h2>3. Create the app and the two files</h2><p><code>inferra init --name api</code> currently writes a supported v1 configuration, or write the two files by hand for v2 as shown here. Create <code>api/package.json</code>:</p><pre class="term"><code>{
-  &quot;name&quot;: &quot;inferra-first-app&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;private&quot;: true,
-  &quot;scripts&quot;: { &quot;start&quot;: &quot;node server.js&quot; }
-}</code></pre><p>Create <code>api/server.js</code>:</p><pre class="term"><code>const http = require(&#x27;node:http&#x27;);
+<div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Deploy your first app with config v3</h1><p class="lead">Connect GitHub, add repo.yaml and app.yaml, set secrets and push. Add account services separately when you need them.</p></div>
+<section id="prerequisites"><h2>1. Prepare your repository</h2><p>You need a GitHub repository you can push to and a repository admin who can install the Inferra GitHub App. An organization owner may need to approve it. A root app is supported; a monorepo can use api/ and worker/ folders.</p><p>Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Usage beyond that is extra; unused included usage does not roll over. Available to USA customers only for now.</p><pre class="term"><code>Please install the Inferra GitHub App on OWNER/REPO:
+https://api.inferralab.com/v1/github/install
+Please grant our GitHub team developer access in .inferra/repo.yaml.
+Setup guide: https://inferralab.com/setup/</code></pre></section>
+<section id="install"><h2>2. Connect GitHub; optionally install the CLI</h2><p><a href="https://api.inferralab.com/v1/github/install">Install the GitHub App</a> and choose the app repository. The CLI is optional for your first deployment: you can write the files below and use the dashboard. To use it, follow <a href="/download/">the download instructions</a>, sign in to the dashboard, create a personal token in Settings → Tokens and paste it at the prompt:</p><pre class="term"><code>inferra login --api https://api.inferralab.com</code></pre><p>This is also the CLI’s default API address. An older saved login or INFERRA_API can override it. Never pass a token value as a command-line argument.</p></section>
+<section id="configuration"><h2>3. Add your app and config v3 files</h2><p>For an existing app, <code>inferra init</code> writes v3: <code>.inferra/repo.yaml</code>, the app folder’s <code>.inferra/app.yaml</code>, and an optional GitHub environment-sync workflow. For api/, run <code>inferra init --app-dir api</code>. It does not create <code>account.yaml</code>. Review generated files before committing. Alternatively, use this complete small Node example.</p><p>Create <code>api/package.json</code>:</p><pre class="term"><code>{&quot;name&quot;:&quot;first-app&quot;,&quot;version&quot;:&quot;1.0.0&quot;,&quot;private&quot;:true,&quot;scripts&quot;:{&quot;start&quot;:&quot;node server.js&quot;}}</code></pre><p>Create <code>api/server.js</code>:</p><pre class="term"><code>const http = require(&#x27;node:http&#x27;);
 http.createServer((req, res) =&gt; {
   res.writeHead(200, { &#x27;Content-Type&#x27;: &#x27;application/json&#x27; });
   res.end(JSON.stringify({ ok: true }));
-}).listen(Number(process.env.PORT || 8080), &#x27;0.0.0.0&#x27;);</code></pre><p>Create <code>.inferra/org.yaml</code>:</p><pre class="term"><code>version: 2
-apps:
-  - folder: api
-    branches:
-      - main
-      - feature/*</code></pre><p><a href="/setup/org.yaml" download>Download this org.yaml</a>. Create <code>.inferra/main.yaml</code>:</p><pre class="term"><code>apps:
-  api:
-    run:
-      process: web
-      port: 8080
-    health:
-      path: /health</code></pre><p>Buildpacks detect Node from package.json. The example responds with HTTP 200 at <code>/health</code>. To use the same settings for <code>feature/*</code>, copy main.yaml to <code>.inferra/feature.yaml</code>. Each branch reads its own copy at its pushed commit. Without that file, Inferra uses defaults. Each matched branch gets independent apps and bound services.</p><p>Add members at the top level, for example <code>members: {YOUR_GITHUB_LOGIN: developer}</code>. Set quotas there too; see the <a href="/docs/org-yaml/">two-file reference</a>.</p></section><section id="environment"><h2>4. Set secret names and values</h2><p>Create GitHub Environments named after the original branches: <code>main</code>, or <code>feature/login</code> including its slash. Declare secret names in the branch file, at branch or app level:</p><pre class="term"><code>secrets:
-  - API_KEY
-apps:
-  api:
-    run:
-      process: web
-      port: 8080
-    secrets:
-      - JWT_SIGNING_KEY</code></pre><p>Set encrypted values in the dashboard or in the matching GitHub Environment. The GitHub App cannot read secret values. For GitHub values, generate the selected-secret workflow for your existing v2 org file:</p><pre class="term"><code>inferra init --workflow-only --force --secret API_KEY --secret JWT_SIGNING_KEY</code></pre><p>Review the generated workflow before replacing an existing one. Only listed secrets leave GitHub; none are sent by default. Workflow-only generation understands v2 branch lists and patterns and selects the current branch’s GitHub Environment. Check its API URL is <code>https://api.dev.inferralab.dev</code>. Each app receives only its declared runtime secrets and bound-service credentials. Missing required values fail the commit check and name the missing secrets.</p><p>Put ordinary runtime defaults in org.yaml <code>env</code> or branch/app <code>env</code>. App env overrides branch env, which overrides org env. Never commit secret values.</p></section><section id="push"><h2>5. Commit and push</h2><p>Push the default branch first to establish org rules. For a repository whose default branch is main:</p><pre class="term"><code>git add api/package.json api/server.js .inferra/org.yaml .inferra/main.yaml .inferra/feature.yaml
+}).listen(Number(process.env.PORT || 3000), &#x27;0.0.0.0&#x27;);</code></pre><p>Create <code>.inferra/repo.yaml</code> on the default branch. For the smallest setup:</p><pre class="term"><code>version: 3</code></pre><p>Create <code>api/.inferra/app.yaml</code>:</p><pre class="term"><code>version: 3
+name: api
+type: web
+port: 3000
+health:
+  path: /health</code></pre><p>Buildpacks detect Node from package.json. This server answers /health with HTTP 200. Only the default branch runs with the minimal repo file. For a root app, put the app file at <code>.inferra/app.yaml</code>. <a href="/setup/org.yaml" download="repo.yaml">Download the v3 repo starter</a>.</p></section>
+<section id="environment"><h2>4. Set secrets safely</h2><p>Declare runtime secret names in repo.yaml or app.yaml; keep values out of Git. For example, add this to the app file:</p><pre class="term"><code>secrets: [API_KEY]</code></pre><p>Set the value in the dashboard or pipe it to the CLI:</p><pre class="term"><code>printf %s &quot;$API_KEY&quot; | inferra secrets set api API_KEY</code></pre><p>For optional GitHub sync, create GitHub Environments named after deployed branches, such as main and feature/login. The App cannot read GitHub secret values. Generate a workflow that sends only the selected secrets:</p><pre class="term"><code>inferra init --workflow-only --force --secret API_KEY</code></pre><p>Review the workflow before replacing one. Check that it targets https://api.inferralab.com. Each secret has one owner: GitHub-synced values are read-only in Inferra, and the workflow cannot overwrite Inferra-owned secrets. Remove a secret from its current owner before moving it. Missing values leave deployment waiting until supplied. Ordinary values resolve from repo env, repo branch env, app env, then app branch env, with later values winning.</p></section>
+<section id="push"><h2>5. Commit and push</h2><p>For a default branch named main:</p><pre class="term"><code>git add api/package.json api/server.js .inferra/repo.yaml api/.inferra/app.yaml
 git commit -m &quot;Configure Inferra app&quot;
-git push -u origin main</code></pre><p>Then push eligible branches. Org rules always come from the default branch; branch settings come from the exact pushed commit.</p></section><section id="checks"><h2>6. Read the commit and open the app</h2><p>Read configuration and app deployment checks separately. Configuration success does not mean the app is live. Invalid files and missing secrets appear on the commit check; failed builds and deployments link to their evidence. Unchanged apps can remain live without rebuilding.</p><pre class="term"><code>inferra orgs
+git push -u origin main</code></pre><p>Repo rules come from the default branch. App settings come from the branch being deployed.</p></section>
+<section id="checks"><h2>6. Check deployment and open the app</h2><p>On GitHub, read <code>inferra/config</code> and <code>inferra/deploy/api</code> separately. Valid configuration does not mean the build is live. Use the dashboard’s app page for its address and deployment progress, or inspect it with the CLI:</p><pre class="term"><code>inferra orgs
 inferra target YOUR_ORG/main
 inferra apps status api
-inferra logs api
-inferra logs api --follow</code></pre><p>Replace YOUR_ORG with the name from <code>inferra orgs</code>. Open the live HTTPS address shown on the commit or by app status.</p></section><section id="postgres"><h2>7. Add Postgres</h2><p>Declare the service in org.yaml:</p><pre class="term"><code>services:
-  postgres:
-    - name: orders
-      version: &quot;17.2&quot;
-      cpu: &quot;0.25&quot;
-      memory: 256Mi
-      storage: 1Gi</code></pre><p><a href="/setup/org-postgres.yaml" download>Download org.yaml with Postgres</a>. Choose a version from the approved catalog. Under <code>apps.api</code> in each branch file that needs the database, add:</p><pre class="term"><code>services:
-  - orders</code></pre><p>Commit org.yaml on the default branch and each binding on its branch. Every branch with that binding gets an independent database. Inferra supplies <code>ORDERS_URL</code> only to bound apps. Configure your Postgres client to use it; the HTTP example above does not query a database.</p><pre class="term"><code>inferra services
-inferra service status orders
-inferra db logs orders
-inferra env api</code></pre><p>Removing the last binding schedules cleanup. Read <a href="/security/#deletion">retention and restore limits</a> first.</p></section><section id="next"><h2>Next steps</h2><ul><li>Push a feature branch to create its own space. Each branch reserves its own quota.</li><li>Use <code>run.process: worker</code> with a Procfile worker process for a long-running background app.</li><li>Roll back with <code>inferra rollback api</code>; manual rollback uses current variables and secrets.</li><li>Connect your assistant using the <a href="/mcp/">MCP guide</a>.</li><li>Open Account → Billing to buy prepaid credits. The first $5 every month is free per account, with a card on file. At $0, deploys pause and data is kept for 7 days. <a href="/pricing/">Review credits pricing</a>.</li><li>Removing GitHub App repository access triggers cleanup. <a href="/download/#uninstall">Removing the local CLI</a> does not remove deployments.</li></ul></section><section id="troubleshooting"><h2>Troubleshoot the deployment</h2><div class="table-scroll" tabindex="0" role="region" aria-label="Problem table"><table class="table"><thead><tr><th scope="col">Problem</th><th scope="col">What to check</th></tr></thead><tbody><tr><td>Invalid configuration</td><td>Check the named file and field in the commit error. V2 needs named relative app folders, declared apps and declared service bindings. Unknown fields are rejected.</td></tr><tr><td>Missing secret values</td><td>Set each named value in the dashboard or matching GitHub Environment, then run the selected-secret workflow if using GitHub.</td></tr><tr><td>No deployment</td><td>Confirm App access, valid org rules on the default branch and a matching app branch selection.</td></tr><tr><td>Failed build or health check</td><td>Read logs; check package.json, the Procfile process, the PORT listener and the health path.</td></tr><tr><td>Quota or credit rejection</td><td>Review branch quotas in org.yaml and add credits in Account → Billing.</td></tr><tr><td>Expired or revoked token</td><td>Create a new personal token and repeat login with the API address above.</td></tr></tbody></table></div></section>
+inferra deployments api
+inferra logs api --follow</code></pre><p>Use the repository name shown by inferra orgs for YOUR_ORG.</p></section>
+<section id="postgres"><h2>7. Add account services</h2><p>For account services, create a <strong>private</strong> GitHub repository named exactly <code>&lt;account&gt;/.inferra</code> and grant the Inferra GitHub App access. Put <code>account.yaml</code> and <code>services/*.yaml</code> at its root, not inside another .inferra directory. <code>account.yaml</code> is optional for a service-only setup. If present, list every connected app repository and provide all three quota values for the account and each repo.</p><p>For a <strong>Paid</strong> account, create <code>services/orders.yaml</code> in that private repository. This example attaches to application repository <code>shop</code> on <code>main</code>; replace both names with yours.</p><pre class="term"><code>version: 3
+name: orders
+type: postgres
+hosting: managed
+size: db.t4g.micro
+storage: 20Gi
+engine_version: &quot;17&quot;
+attach:
+  shop:
+    branches: [main]</code></pre><p>Have a GitHub admin of the private account repository merge the service change first. Then add the binding to <code>api/.inferra/app.yaml</code> in the application repository:</p><pre class="term"><code>version: 3
+name: api
+type: web
+port: 3000
+health:
+  path: /health
+services:
+  orders: readwrite</code></pre><p>Inferra supplies <code>ORDERS_URL</code> to the bound app. Never commit passwords. A binding grants access to an existing attached service; it does not create one. Multiple attached branches share the same data. For separate preview data, create a separately named service and attach it only to previews; <code>data: shared</code> does not create isolated data and is not available yet.</p><p>Trial accounts can use native Postgres, native Valkey and S3 buckets, but cannot use managed RDS. Native databases are rolling out; confirm availability with <a href="mailto:support@inferralab.com">support@inferralab.com</a> before depending on them. Custom image services are not available yet. SQS and DynamoDB on-demand are coming soon.</p></section>
+<section id="next"><h2>Previews and workers</h2><p>To run previews, replace the minimal repo file with this, using your actual default branch name:</p><pre class="term"><code>version: 3
+branches:
+  main: {}
+  &quot;feature/*&quot;:
+    ttl: 7d
+    quota: {cpu: 0.5, memory: 1Gi, storage: 2Gi}</code></pre><p>A nonempty branches map must include the default branch if you want it to run. feature/* matches feature/login, but not feature/team/login. Preview apps have separate spaces; attached account services can share production data. Each preview adds usage and can exhaust trial credit faster. TTL expires a preview 7 days after its last accepted push. Branch removal does not delete account-owned managed services.</p><p>For a worker, create worker/.inferra/app.yaml with <code>version: 3</code>, <code>type: worker</code> and <code>process: worker</code>; omit HTTP port and health settings. See <a href="/docs/org-yaml/">the v3 reference</a> and <a href="/docs/billing/">billing</a>.</p></section>
+<section id="troubleshooting"><h2>Troubleshooting</h2><p>No deploy? Check GitHub App access, accepted repo rules on the default branch and a matching branch entry. Invalid config? Read the named field in the commit status; unknown fields fail validation. Missing secrets? Supply each value through its owner. Failed health check? Check logs, the start command, 0.0.0.0 listener, PORT and health path. Quota or billing rejection? Review repo quotas and account billing. For help or restore requests, email <a href="mailto:support@inferralab.com">support@inferralab.com</a>.</p></section>
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -102,6 +101,6 @@ inferra env api</code></pre><p>Removing the last binding schedules cleanup. Read
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

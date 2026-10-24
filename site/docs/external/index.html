@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -39,12 +39,12 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap"><div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Connect to external databases and APIs</h1><p class="lead">Your apps can reach databases and APIs anywhere on the public internet. Allowlist our outbound IP addresses, keep credentials in secrets, and connect over verified TLS.</p></div>
 <section id="network"><h2>What your app can reach</h2><p>Apps reach any public address and port, including external databases, SMTP and APIs. Private address ranges and cloud metadata endpoints are blocked, so private networks in your own cloud aren't reachable yet. Custom services that need the internet must declare <code>internet: true</code>.</p></section>
 <section id="allowlist"><h2>Allowlist our outbound IP addresses</h2><p>If your provider asks for an IP allowlist, copy the <b>Outbound IP addresses</b> from the dashboard Help menu or your organization's overview page, run <code>inferra network</code>, or request <code>GET /v1/platform/network</code>. Allowlist every published address.</p><p><b>These addresses are shared by every app on the platform.</b> An allowlist doesn't identify your app, so always require credentials as well.</p></section>
-<section id="credentials"><h2>Keep credentials in secrets</h2><p>Declare secret names in the branch file's <code>secrets</code> and set their values in the dashboard, or send them from GitHub (see <a href="/setup/#environment">setup, step 4</a>). Never commit passwords, keys or connection strings with passwords in them.</p></section>
+<section id="credentials"><h2>Keep credentials in secrets</h2><p>Declare secret names in app.yaml’s <code>secrets</code> and set their values in the dashboard, or send them from GitHub (see <a href="/setup/#environment">setup, step 4</a>). Never commit passwords, keys or connection strings with passwords in them.</p></section>
 <section id="tls"><h2>TLS certificates</h2><p>Always connect over TLS with verification on. What you need depends on who signed the database server's certificate.</p><p>If your app needs a certificate authority (CA) it doesn't already trust, there are three ways to provide it:</p>
 <div class="table-scroll" tabindex="0" role="region" aria-label="Ways to provide a CA"><table class="table"><thead><tr><th scope="col">Way</th><th scope="col">Works today</th><th scope="col">Use it when</th></tr></thead><tbody>
 <tr><td>CA file in your repo + an environment variable</td><td>Yes</td><td>The CA is public (most provider bundles)</td></tr>
@@ -58,7 +58,7 @@
 </tbody></table></div>
 <h3>A provider CA for one connection</h3><pre><code>certs/rds-global-bundle.pem        # downloaded from the provider
 DATABASE_URL=postgres://…?sslmode=verify-full&amp;sslrootcert=certs/rds-global-bundle.pem</code></pre><p>Paths are relative to the app folder at runtime. Check the provider's docs for the current bundle and when it rotates.</p>
-<h3>A provider CA for the whole app</h3><p>To trust the CA in every library, not just one connection string, set your language's standard variable in the branch file's <code>env</code>. The app's files live under <code>/workspace</code> at runtime.</p>
+<h3>A provider CA for the whole app</h3><p>To trust the CA in every library, not just one connection string, set your language's standard variable in app.yaml’s <code>env</code>. The app's files live under <code>/workspace</code> at runtime.</p>
 <pre><code>apps:
   api:
     env:
@@ -82,7 +82,7 @@ exec npm start</code></pre>
 <section id="later"><h2>Coming later</h2><ul><li>Secrets as files, for certificates and keys.</li><li>Private connections to networks in your own cloud.</li></ul></section></main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -90,6 +90,6 @@ exec npm start</code></pre>
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

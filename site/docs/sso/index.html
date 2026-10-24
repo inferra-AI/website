@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,7 +38,7 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Adding SSO to your app</h1><p class="lead">Your app signs its own users in, with any library or identity service you like. Inferra gives it a stable HTTPS address, outbound access to the identity provider, secrets and a shared session store.</p></div>
@@ -51,18 +51,18 @@
 <h3>1. Register your app with the identity provider</h3><p>Use your app's address, shown on its commit check and in the dashboard, as the redirect (callback) URL, for example <code>https://YOUR-APP-ADDRESS/auth/callback</code>. Each preview branch has its own address: register the ones you need, or use a separate client for previews.</p>
 <h3>2. Keep the client ID and secret out of your code</h3><p>Put the client ID in branch or app <code>env</code>, declare the client secret’s name in <code>secrets</code>, and set its value in the dashboard (or send it from GitHub with <code>inferra init --workflow-only --secret NAME</code>; see <a href="/setup/#environment">setup, step 4</a>). Your app reads both from its environment.</p>
 <h3>3. Tell your framework it runs behind HTTPS</h3><p>Inferra's gateway terminates HTTPS and forwards plain HTTP to your app on <code>$PORT</code>, with <code>X-Forwarded-Proto: https</code>. Turn on your framework's "trust proxy" setting so redirect URLs and secure cookies use <code>https://</code>; otherwise the identity provider rejects the callback.</p>
-<h3>4. Share sessions between instances</h3><p>With more than one instance, keep sessions in a shared store. Declare a cache in <code>org.yaml</code> and bind it to the app in the branch file, then point your session library at the URL Inferra injects (see the <a href="/docs/org-yaml/">org.yaml reference</a>), or use signed, stateless session cookies.</p>
+<h3>4. Share sessions between instances</h3><p>With more than one instance, keep sessions in a shared store. Declare a Valkey service in services/*.yaml in your private account repository and bind it in app.yaml, then point your session library at the URL Inferra injects (see the <a href="/docs/org-yaml/">Configuration v3 reference</a>), or use signed, stateless session cookies.</p>
 <h3>5. SAML certificates and keys</h3><p>Store the certificate and private key as secrets (multi-line values are fine). If your library needs file paths, write them to a temporary file at startup; first-class secrets-as-files is coming.</p></section>
 <section id="later"><h2>Coming later</h2><ul>
 
 <li><strong>Secrets as files</strong>, for libraries that read certificates and keys from disk.</li>
-<li><strong>Protect with SSO</strong>: put sign-in in front of an app with a few lines in <code>org.yaml</code>, no code, for internal tools. Planned.</li>
+<li><strong>Protect with SSO</strong>: put sign-in in front of an app through configuration, no code, for internal tools. Planned.</li>
 <li><strong>Private networking</strong> to reach directories inside your own network.</li>
 </ul></section>
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -70,6 +70,6 @@
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

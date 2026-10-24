@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -38,7 +38,7 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Download the CLI</h1><p class="lead">Git pushes create deployments; the CLI inspects and operates them.</p></div>
@@ -116,7 +116,7 @@ try {
 }
 $env:Path = &quot;$dest;$env:Path&quot;
 inferra version
-Write-Output &quot;Add this directory to your user PATH: $dest&quot;</code></pre></section><section id="installer"><h2>Optional shell installer</h2><p>For macOS and Linux, this downloads the detected archive and checksums.txt from the pinned GitHub release, verifies SHA-256, and installs without sudo. It requires curl, tar and either sha256sum or shasum. The default destination is <code>$HOME/.local/bin</code>; override it with <code>INFERRA_INSTALL_DIR</code>.</p><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh | sh</code></pre><p>Read the full script below, or <a href="/install.sh">download it for inspection</a>. The default is the manifest’s preview version, not GitHub’s “latest” release.</p><h3>The complete installer</h3><!-- LAUNCH: production API host --><pre class="term"><code>#!/bin/sh
+Write-Output &quot;Add this directory to your user PATH: $dest&quot;</code></pre></section><section id="installer"><h2>Optional shell installer</h2><p>For macOS and Linux, this downloads the detected archive and checksums.txt from the pinned GitHub release, verifies SHA-256, and installs without sudo. It requires curl, tar and either sha256sum or shasum. The default destination is <code>$HOME/.local/bin</code>; override it with <code>INFERRA_INSTALL_DIR</code>.</p><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh | sh</code></pre><p>Read the full script below, or <a href="/install.sh">download it for inspection</a>. The default is the manifest’s preview version, not GitHub’s “latest” release.</p><h3>The complete installer</h3><pre class="term"><code>#!/bin/sh
 set -eu
 
 # Generated default from site/download/release.json; prereleases are not latest.
@@ -180,16 +180,16 @@ mv -f &quot;$staged&quot; &quot;$install_dir/inferra&quot;
 printf &#x27;Installed Inferra %s to %s/inferra\n&#x27; &quot;$version&quot; &quot;$install_dir&quot;
 printf &#x27;Add this directory to PATH in your shell profile: %s\n&#x27; &quot;$install_dir&quot;
 # LAUNCH: production API host
-printf &#x27;%s\n&#x27; &#x27;Next: inferra login --api https://api.dev.inferralab.dev&#x27;</code></pre><h3>Pin a version or destination</h3><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh -o install.sh
+printf &#x27;%s\n&#x27; &#x27;Next: inferra login --api https://api.inferralab.com&#x27;</code></pre><h3>Pin a version or destination</h3><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh -o install.sh
 INFERRA_VERSION=0.4.0-rc.17 INFERRA_INSTALL_DIR=&quot;$HOME/.local/bin&quot; sh install.sh</code></pre><p><code>INFERRA_VERSION</code> accepts a version with or without the leading <code>v</code>. Use an existing release with matching archives and checksums. An unavailable version, missing checksum tool or checksum mismatch stops installation.</p></section><section id="update"><h2>Update and sign in</h2><p>Repeat the manual installation for the desired release, or rerun the installer. It replaces only the executable. Version pinning stays explicit; there is no automatic “latest” lookup.</p><pre class="term"><code>inferra version
-inferra login --api https://api.dev.inferralab.dev</code></pre><!-- LAUNCH: production API host --><p>Use api.dev.inferralab.dev at login; the CLI saves it. Continue with <a href="/setup/">the setup guide</a>.</p></section><section id="uninstall"><h2>Uninstall the local CLI</h2><p>Log out before removing the binary. For the default macOS/Linux destination:</p><pre class="term"><code>inferra logout
+inferra login --api https://api.inferralab.com</code></pre><p>Use api.dev.inferralab.dev at login; the CLI saves it. Continue with <a href="/setup/">the setup guide</a>.</p></section><section id="uninstall"><h2>Uninstall the local CLI</h2><p>Log out before removing the binary. For the default macOS/Linux destination:</p><pre class="term"><code>inferra logout
 rm -f &quot;$HOME/.local/bin/inferra&quot;</code></pre><p>For the Windows destination used above:</p><pre class="term"><code>inferra logout
 Remove-Item (Join-Path $env:LOCALAPPDATA &#x27;Inferra\bin\inferra.exe&#x27;)</code></pre><p>If you chose another install directory, remove its inferra executable instead. Remove the PATH entry you added if the directory is no longer needed. This does not delete deployed apps, the GitHub App installation, or your platform account. Logout clears the saved local login; revoke the personal token in Settings → Tokens if it should no longer work anywhere.</p></section>
 <!-- DOWNLOAD:END -->
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -197,6 +197,6 @@ Remove-Item (Join-Path $env:LOCALAPPDATA &#x27;Inferra\bin\inferra.exe&#x27;)</c
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>

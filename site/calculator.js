@@ -14,9 +14,9 @@
       const mem = count * values.mem * rates.mem;
       const disk = values.disk * rates.disk;
       const monthly = cpu + mem + disk;
-      result('total').textContent = money(monthly);
-      result('hourly').textContent = money(monthly / 730, 4) + ' per hour (before free usage)';
-      result('free').textContent = `First $5 free each month per account: covers ${money(Math.min(5, monthly))}; ${money(Math.max(0, monthly - 5))} after free usage.`;
+      result('total').textContent = money(Math.max(25, monthly));
+      result('hourly').textContent = money(monthly / 730, 4) + ' per hour of resource usage';
+      result('free').textContent = `Resource usage ${money(monthly)}/month. Paid includes $25 of usage: ${money(Math.max(0, monthly - 25))} extra; estimated Paid total ${money(Math.max(25, monthly))}/month.`;
       result('breakdown').textContent = `CPU ${money(cpu)} + memory ${money(mem)} + storage ${money(disk)} / month`;
     }
     inputs.forEach(input => {

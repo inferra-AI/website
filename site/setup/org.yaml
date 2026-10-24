@@ -1,6 +1,7 @@
-version: 2
-apps:
-  - folder: api
-    branches:
-      - main
-      - feature/*
+# Save as .inferra/repo.yaml in your application repository.
+version: 3
+branches:
+  main: {}
+  "feature/*":
+    ttl: 7d
+    quota: {cpu: 0.5, memory: 1Gi, storage: 2Gi}

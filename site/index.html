@@ -5,15 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>App, API and Postgres hosting from Git | Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Push to GitHub and your app is live: web apps, APIs, workers and Postgres built from your repo, a private namespace per branch, and prepaid credits that cap your bill. $5 of usage free every month, card required.">
+<meta name="description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <link rel="canonical" href="https://inferralab.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="Push to GitHub. Your app is live. | Inferra">
-<meta property="og:description" content="Push to GitHub and your app is live: web apps, APIs, workers and Postgres built from your repo, a private namespace per branch, and prepaid credits that cap your bill. $5 of usage free every month, card required.">
+<meta property="og:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta property="og:url" content="https://inferralab.com/">
 <meta name="twitter:title" content="Push to GitHub. Your app is live. | Inferra">
-<meta name="twitter:description" content="Push to GitHub and your app is live: web apps, APIs, workers and Postgres built from your repo, a private namespace per branch, and prepaid credits that cap your bill. $5 of usage free every month, card required.">
+<meta name="twitter:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -22,17 +22,17 @@
 <link rel="stylesheet" href="/styles.css">
 <link rel="stylesheet" href="/light.css">
 <link rel="stylesheet" href="/v5.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://inferralab.com/#org", "name": "Inferra", "description": "Push to GitHub and your app is live. Bring your code. Inferra runs your APIs, web apps and background workers, with no servers, clusters or Dockerfiles to maintain.", "url": "https://inferralab.com/", "logo": "https://inferralab.com/favicon.svg", "sameAs": ["https://github.com/inferra-AI"]}, {"@type": "SoftwareApplication", "name": "Inferra", "description": "Push to GitHub and your app is live. Bring your code. Inferra runs your APIs, web apps and background workers, with no servers, clusters or Dockerfiles to maintain.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Linux, macOS, Windows (CLI)", "url": "https://inferralab.com/", "publisher": {"@id": "https://inferralab.com/#org"}, "offers": [{"@type": "Offer", "name": "Free monthly usage", "price": "0", "priceCurrency": "USD", "description": "The first $5 of usage every month is free; then prepaid credits at simple per-unit prices."}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://inferralab.com/#org", "name": "Inferra", "description": "Push to GitHub and your app is live. Bring your code. Inferra runs your APIs, web apps and background workers, with no servers, clusters or Dockerfiles to maintain.", "url": "https://inferralab.com/", "logo": "https://inferralab.com/favicon.svg", "sameAs": ["https://github.com/inferra-AI"]}, {"@type": "SoftwareApplication", "name": "Inferra", "description": "Push to GitHub and your app is live. Bring your code. Inferra runs your APIs, web apps and background workers, with no servers, clusters or Dockerfiles to maintain.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Linux, macOS, Windows (CLI)", "url": "https://inferralab.com/", "publisher": {"@id": "https://inferralab.com/#org"}, "offers": [{"@type": "Offer", "name": "Paid", "price": "25", "priceCurrency": "USD", "description": "Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over."}]}]}</script>
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What counts as a worker?", "acceptedAnswer": {"@type": "Answer", "text": "A background worker is a process with no public web address, such as a queue consumer or scheduler. Set run.process: worker in your branch file to run one. It stays on and restarts if it crashes."}}, {"@type": "Question", "name": "Can my app call services outside Inferra?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Apps reach databases and APIs anywhere on the public internet over verified TLS. Allowlist our fixed outbound IP addresses (shared by all apps) and keep credentials in secrets. How to connect, including TLS certificates"}}, {"@type": "Question", "name": "Can I run MongoDB or RabbitMQ?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Bring your own Docker image as a service, with environment settings and secrets. Those services aren't backed up; choose managed Postgres if you need backups and restore to any point in the last 7 days."}}, {"@type": "Question", "name": "What happens when credits hit $0?", "acceptedAnswer": {"@type": "Answer", "text": "New deploys pause at once. After a 3-day grace period, apps pause. Your data is kept for 7 days, and adding credits brings everything back. Your card is only charged when you buy credits."}}, {"@type": "Question", "name": "How do I leave?", "acceptedAnswer": {"@type": "Answer", "text": "Whenever you like. Your code is already in your repo; copy your database with pg_dump and your files with any S3 tool. Leave anytime"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What counts as a worker?", "acceptedAnswer": {"@type": "Answer", "text": "A background worker is a process with no public web address, such as a queue consumer or scheduler. Set type: worker in app.yaml to run one. It stays on and restarts if it crashes."}}, {"@type": "Question", "name": "Can my app call services outside Inferra?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Apps reach databases and APIs anywhere on the public internet over verified TLS. Allowlist our fixed outbound IP addresses (shared by all apps) and keep credentials in secrets. How to connect, including TLS certificates →"}}, {"@type": "Question", "name": "Can I run MongoDB or RabbitMQ?", "acceptedAnswer": {"@type": "Answer", "text": "Managed RabbitMQ is available on Paid when enabled. Custom image services such as MongoDB are not available yet. You can connect to an external database over verified TLS."}}, {"@type": "Question", "name": "What happens when the trial ends?", "acceptedAnswer": {"@type": "Answer", "text": "Apps stop and native services scale to zero. Data, config and URLs are kept for 30 days. Subscribe to Paid within that time and everything resumes automatically. After 30 days everything is deleted; your repository config stays untouched. See payment failure and cancellation terms."}}, {"@type": "Question", "name": "How do I leave?", "acceptedAnswer": {"@type": "Answer", "text": "Whenever you like. Your code is already in your repo; copy your database with pg_dump and your files with any S3 tool. Leave anytime →"}}]}</script>
 </head>
 <body class="v5page">
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -40,46 +40,39 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="v5">
 <section class="vhero"><div class="in">
 <p class="eyebrow">Git-native app hosting</p>
 <h1>Push to GitHub.<br>Your app is live.</h1>
 <p class="lead">APIs, workers, web apps and Postgres, built and run from your repo. Each branch gets its own namespace.</p>
-<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open the live demo →</a></div>
-<p class="vsmall">$5 of usage free every month · card required</p>
+<div class="btns"><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="https://api.inferralab.com/demo" data-umami-event="demo_open">Open the live demo →</a></div>
+<p class="vsmall">$15 trial credit · up to 14 days · card required</p>
 <div class="hero-visual">
-<div class="files"><div class="code"><div class="file"><span>.inferra/org.yaml</span><button type="button" data-copy="hero-org">Copy</button></div><pre id="hero-org">version: 2
-apps:
-  - folder: api
-    branches: [main, feature/*]
-  - folder: worker
-    branches: [main, feature/*]
-services:
-  postgres:
-    - name: orders
-      storage: 10Gi</pre></div><div class="code"><div class="file"><span>.inferra/main.yaml</span><button type="button" data-copy="hero-main">Copy</button></div><pre id="hero-main">apps:
-  api:
-    run:
-      port: 3000
-      instances: { min: 2, max: 2 }
-    services: [orders]
-  worker:
-    run: { process: worker }
-    services: [orders]</pre></div></div>
+<div class="files"><div class="code"><div class="file"><span>.inferra/repo.yaml</span><button type="button" data-copy="hero-org">Copy</button></div><pre id="hero-org">version: 3
+branches:
+  main: {}
+  &quot;feature/*&quot;:
+    ttl: 7d
+    quota: {cpu: 0.5, memory: 1Gi, storage: 2Gi}</pre></div><div class="code"><div class="file"><span>api/.inferra/app.yaml</span><button type="button" data-copy="hero-main">Copy</button></div><pre id="hero-main">version: 3
+name: api
+type: web
+port: 3000
+health:
+  path: /health</pre></div></div>
 <div class="mid" aria-hidden="true"><span class="push">$ git push</span><span class="arrow">→</span>built, no Dockerfile</div>
-<div class="run"><div class="head"><span>main · acme/backend</span><span class="vlive">live</span></div><div class="row"><div class="top"><span>api</span><span class="vpill">Running</span></div><div class="sub"><a href="https://api-acme.inferralab.app" rel="nofollow">api-acme.inferralab.app ↗</a></div></div><div class="row"><div class="top"><span>worker</span><span class="vpill">Running</span></div><div class="sub">no public URL</div></div><div class="row"><div class="top"><span>orders · Postgres 17</span><span class="vpill">Healthy</span></div><div class="sub">private · 10 GB</div></div><div class="row"><div class="top"><span>uploads · bucket</span><span class="vpill">Ready</span></div><div class="sub">private · 20 GB</div></div><div class="foot">Commit 3f2a9c1 → built → deployed, rolling → live</div></div>
+<div class="run"><div class="head"><span>Illustration · main</span><span class="vlive">live</span></div><div class="row"><div class="top"><span>api</span><span class="vpill">Running</span></div><div class="sub">Open its HTTPS address in the dashboard</div></div><div class="foot">Push → build → deploy → live</div></div>
 </div>
-<p class="caption"><a href="https://api.dev.inferralab.dev/demo">Real config from the public demo. See it running →</a></p>
+<p class="caption">The files above deploy api; workers and account services need their own config. <a href="/setup/#postgres">Add services</a> · <a href="https://api.inferralab.com/demo">Explore the public demo →</a></p>
 </div></section>
 
-<section class="numbers" aria-label="The public demo in numbers"><div class="in">
-<div><div class="vk">Apps running</div><div class="v">2</div><div class="s">api and worker</div></div>
-<div><div class="vk">Reserved</div><div class="v">$21.98 / mo</div><div class="s">main namespace</div></div>
-<div><div class="vk">Last deploy</div><div class="v">367d1b7</div><div class="s">rolling, 2 of 2 instances</div></div>
-<div><div class="vk">Credits left</div><div class="v">$43.10</div><div class="s">about 59 days</div></div>
-<div class="s"><a href="https://api.dev.inferralab.dev/demo">From the public demo →</a></div>
+<section class="numbers" aria-label="Paid pricing examples"><div class="in">
+<div><div class="vk">Usage in a paid month</div><div class="v">$18</div><div class="s">Paid total: $25</div></div>
+<div><div class="vk">Usage in a paid month</div><div class="v">$40</div><div class="s">Paid total: $40</div></div>
+<div><div class="vk">Trial</div><div class="v">$15 credit</div><div class="s">or 14 days, whichever comes first</div></div>
+<div><div class="vk">To start</div><div class="v">Card required</div><div class="s">one trial per card</div></div>
+<div class="s"><a href="/pricing/">Pricing and payment timing →</a></div>
 </div></section>
 
 <section id="product"><div class="in">
@@ -107,68 +100,48 @@ services:
 <p class="eyebrow">From repo to running</p><h2>Deploy from Git in four steps.</h2><p class="lead">You keep using Git. Inferra does the rest.</p>
 <div class="vsteps">
 <div class="vstep"><div class="text"><div class="num">1</div><h3>Connect your repo</h3><p>Install the Inferra GitHub App and pick the repo. One click, read-only.</p></div>
-<div class="vis card lilac"><div class="gh"><div class="crumb">github.com › Install Inferra</div><b>Install Inferra on acme</b><p class="vsmall">Inferra reads your code and posts commit checks. It never writes to your repo.</p><span class="repo on">☑ acme/backend</span><span class="repo">☐ acme/website</span><a class="install" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click" aria-label="Install the Inferra GitHub App">Install</a></div></div></div>
-<div class="vstep"><div class="text"><div class="num">2</div><h3>Add two files</h3><p>org.yaml says which branches to watch and what to run. main.yaml says how main runs.</p></div>
-<div class="vis card"><div class="grid2"><div class="code"><div class="file"><span>.inferra/org.yaml</span><button type="button" data-copy="step-org">Copy</button></div><pre id="step-org">version: 2
-apps:
-  - folder: api
-    branches: [main, feature/*]
-  - folder: worker
-    branches: [main, feature/*]
-services:
-  postgres:
-    - name: orders
-      storage: 10Gi</pre></div><div class="code"><div class="file"><span>.inferra/main.yaml</span><button type="button" data-copy="step-main">Copy</button></div><pre id="step-main">apps:
-  api:
-    run:
-      port: 3000
-      instances: { min: 2, max: 2 }
-    services: [orders]
-  worker:
-    run: { process: worker }
-    services: [orders]</pre></div></div></div></div>
+<div class="vis card lilac"><div class="gh"><div class="crumb">github.com › Install Inferra</div><b>Install Inferra on acme</b><p class="vsmall">Inferra reads your code and posts commit checks. It never writes to your repo.</p><span class="repo on">☑ acme/backend</span><span class="repo">☐ acme/website</span><a class="install" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click" aria-label="Install the Inferra GitHub App">Install</a></div></div></div>
+<div class="vstep"><div class="text"><div class="num">2</div><h3>Add two app files</h3><p>repo.yaml selects the branches that run. Each app.yaml describes how one app builds and runs.</p></div>
+<div class="vis card"><div class="grid2"><div class="code"><div class="file"><span>.inferra/repo.yaml</span><button type="button" data-copy="step-org">Copy</button></div><pre id="step-org">version: 3
+branches:
+  main: {}
+  &quot;feature/*&quot;:
+    ttl: 7d
+    quota: {cpu: 0.5, memory: 1Gi, storage: 2Gi}</pre></div><div class="code"><div class="file"><span>api/.inferra/app.yaml</span><button type="button" data-copy="step-main">Copy</button></div><pre id="step-main">version: 3
+name: api
+type: web
+port: 3000
+health:
+  path: /health</pre></div></div></div></div>
 <div class="vstep"><div class="text"><div class="num">3</div><h3>Commit and push</h3><p>Every new commit on a watched branch deploys itself. A failed build never replaces what's live.</p></div>
-<div class="vis card peach"><div class="vterm"><div>$ git add .inferra</div><div>$ git commit -m "Run on Inferra"</div><div class="dim">[main 3f2a9c1] Run on Inferra · 2 files changed</div><div>$ git push</div><div class="dim">To github.com/acme/backend  main -&gt; main</div></div>
+<div class="vis card peach"><div class="vterm"><div>$ git add .inferra api/.inferra</div><div>$ git commit -m "Run on Inferra"</div><div class="dim">[main 3f2a9c1] Run on Inferra · 2 files changed</div><div>$ git push</div><div class="dim">To github.com/acme/backend  main -&gt; main</div></div>
 <div class="timeline"><span class="t">Commit 3f2a9c1</span>→<span class="t">Built · 1 m 42 s</span>→<span class="t">Deployed · rolling</span>→<span class="vpill">Live</span></div></div></div>
-<div class="vstep"><div class="text"><div class="num">4</div><h3>It's live</h3><p>Your API, worker and Postgres run on their own private network. Only apps that list orders can reach it.</p></div>
+<div class="vstep"><div class="text"><div class="num">4</div><h3>It's live</h3><p>The two files above deploy your API. For a worker or database, add its app or account service config separately. <a href="/setup/#postgres">Add an account service</a> before requesting an app binding.</p></div>
 <div class="vis card mint"><div class="lanes">
 <div><div class="vk">THE INTERNET</div><b>Visitors → api</b><span>Public HTTPS. Anyone can open api's URL.</span></div>
 <div><div class="vk">YOUR APPS</div><b>api, worker → orders</b><span>Database connection, only for apps that list orders.</span></div>
 <div><div class="vk">YOUR DATA</div><b>orders · Postgres</b><span>No public endpoint. Blocked from the internet.</span></div></div>
 <div class="tablewrap"><table class="who"><thead><tr><th>What you wrote</th><th>What Inferra created</th><th>Who can reach it</th></tr></thead><tbody>
-<tr><td class="vmono">postgres: orders</td><td>Postgres 17 in each namespace, with backups</td><td>Only apps that list it</td></tr>
-<tr><td class="vmono">services: [orders]</td><td>ORDERS_URL given to api and worker</td><td>api and worker</td></tr>
-<tr><td class="vmono">branches: [main, feature/*]</td><td>A namespace per matched branch</td><td>Visitors reach api only</td></tr></tbody></table></div></div></div>
+<tr><td class="vmono">services/orders.yaml</td><td>One account service shared by attached branches</td><td>Only apps that list it</td></tr>
+<tr><td class="vmono">services: {orders: readwrite}</td><td>ORDERS_URL given to api and worker</td><td>api and worker</td></tr>
+<tr><td class="vmono">branches: {main: {}, "feature/*": {ttl: 7d}}</td><td>A namespace per matched branch</td><td>Visitors reach api only</td></tr></tbody></table></div></div></div>
 </div></div></section>
 
 <section class="band-ink tour"><div class="in">
 <p class="eyebrow">See the whole flow</p><h2>A quick tour of Inferra.</h2><p class="lead">Follow one push through the dashboard: build, deploy, metrics, logs, roll back.</p>
-<div class="meta"><a class="btn" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open the live demo →</a><span class="vsmall">Video · 1:49</span></div>
+<div class="meta"><a class="btn" href="https://api.inferralab.com/demo" data-umami-event="demo_open">Open the live demo →</a><span class="vsmall">Video · 1:49</span></div>
 <video controls playsinline preload="metadata" poster="/assets/journey/app.webp" width="1440" height="900" aria-label="Inferra dashboard tour: one push, commit to live"><source src="/demo/inferra-demo.mp4" type="video/mp4">Your browser can't play this video. <a href="/demo/inferra-demo.mp4">Download the tour</a>.</video>
 </div></section>
 
 <section id="pricing"><div class="in">
-<p class="eyebrow">Pricing</p><h2>Prepaid hosting: pay for what you reserve.</h2><p class="lead">$5 of usage free every month. Card required. Prepaid credits cap the bill.</p>
-<div class="price-grid">
-<div class="receipt"><p class="vsmall">A real setup, priced</p>
-<div class="r"><span>api · 2 instances · 0.25 vCPU · 512 MB</span><b>$9.88</b></div>
-<div class="r"><span>worker · 0.25 vCPU · 256 MB</span><b>$4.49</b></div>
-<div class="r"><span>Postgres orders · 10 GB</span><b>$5.53</b></div>
-<div class="r"><span>Bucket uploads · 20 GB</span><b>$2.08</b></div>
-<div class="total">$21.98 / month</div>
-<p class="vsmall">Postgres backups: $0.0299 per GB-month, free until your account first buys credits.</p>
-<a class="more" href="/pricing/">Price your own →</a></div>
-<div class="side">
-<div class="card lemon"><b>Rates</b><p>$16.19 per vCPU · $1.78 per GB memory · $0.104 per GB storage, monthly.</p></div>
-<div class="card sky"><b>Capped</b><p>Spend never goes past the credits you bought.</p></div>
-<div class="card pink"><b>At $0</b><p>New deploys pause immediately. Apps pause after 3 days. Data kept 7 days.</p></div>
-<div class="card mint"><b>Previews</b><p>feature/login adds about $14.96 / mo, only while the branch is open.</p></div>
-</div></div></div></section>
+<p class="eyebrow">Pricing</p><h2>Try it, then pay for what you use.</h2><p class="lead">Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.</p>
+<div class="grid3"><div class="card mint"><h3>Trial</h3><p>$15 credit or 14 days, whichever comes first. A card is required; verification charges nothing. Apps, native Postgres, native Valkey and S3 buckets. Native databases are rolling out.</p></div><div class="card sky"><h3>Paid</h3><p>$25/month including $25 of usage. For example, $18 usage costs $25; $40 usage costs $40. Included usage does not roll over.</p></div><div class="card lilac"><h3>Payment timing</h3><p>Extra usage is billed mid-month and at month-end. An unbilled total of $100 is charged immediately, at most once a day. Month-end includes the next $25 subscription payment.</p></div></div><p>Production: $20/vCPU-month, $10/GiB-month memory and $0.15/GiB-month disk. Development Spot apps: $10/vCPU-month and $5/GiB-month memory; disk stays $0.15/GiB-month. Native databases are billed once per service file at on-demand rates. AWS services are priced separately.</p><p>The default $100/day usage cap resets at 00:00 UTC. At the cap, running apps keep running; new cost-adding changes are blocked and metered AWS access pauses. Available to USA customers only for now. <a href="/pricing/">Full pricing and billing details →</a></p>
+</div></section>
 
 <section class="band-off fit"><div class="in">
 <p class="eyebrow">Before you start</p><h2>Is Inferra a fit?</h2>
 <div class="grid2">
-<div class="card mint"><h3>Fits</h3><ul class="ticks vok"><li>Web apps, APIs and static sites</li><li>Background workers</li><li>Microservices on a private network</li><li>Postgres, cache and S3 buckets</li><li>Your own Docker services (MongoDB, RabbitMQ)</li><li>External databases and APIs over verified TLS, from fixed outbound IPs</li><li>A preview per matched branch</li></ul></div>
+<div class="card mint"><h3>Fits</h3><ul class="ticks vok"><li>Web apps, APIs and static sites</li><li>Background workers</li><li>Microservices on a private network</li><li>Postgres, cache and S3 buckets</li><li>Managed RabbitMQ on Paid; external services over TLS</li><li>External databases and APIs over verified TLS, from fixed outbound IPs</li><li>A preview per matched branch</li></ul></div>
 <div class="card"><h3>Coming soon</h3><ul class="ticks vsoon"><li>Autoscaling</li><li>SOC 2 audit</li><li>Custom domains</li></ul></div>
 </div>
 <div class="links"><a href="/compare/heroku/">A Heroku alternative for small teams. Compare with Heroku, Vercel and Render →</a><a href="/migrate/heroku/">Moving from Heroku or Vercel? Read the migration guide →</a></div>
@@ -190,19 +163,19 @@ services:
 </div></section>
 
 <section class="faq"><div class="in">
-<p class="eyebrow">Questions</p><h2>Questions about running your app.</h2><details><summary>What counts as a worker?</summary><p>A background worker is a process with no public web address, such as a queue consumer or scheduler. Set <code>run.process: worker</code> in your branch file to run one. It stays on and restarts if it crashes.</p></details><details><summary>Can my app call services outside Inferra?</summary><p>Yes. Apps reach databases and APIs anywhere on the public internet over verified TLS. Allowlist our fixed outbound IP addresses (shared by all apps) and keep credentials in secrets. <a href="/docs/external/">How to connect, including TLS certificates →</a></p></details><details><summary>Can I run MongoDB or RabbitMQ?</summary><p>Yes. Bring your own Docker image as a service, with environment settings and secrets. Those services aren't backed up; choose managed Postgres if you need backups and restore to any point in the last 7 days.</p></details><details><summary>What happens when credits hit $0?</summary><p>New deploys pause at once. After a 3-day grace period, apps pause. Your data is kept for 7 days, and adding credits brings everything back. Your card is only charged when you buy credits.</p></details><details><summary>How do I leave?</summary><p>Whenever you like. Your code is already in your repo; copy your database with <code>pg_dump</code> and your files with any S3 tool. <a href="/export/">Leave anytime →</a></p></details>
+<p class="eyebrow">Questions</p><h2>Questions about running your app.</h2><details><summary>What counts as a worker?</summary><p>A background worker is a process with no public web address, such as a queue consumer or scheduler. Set <code>type: worker</code> in app.yaml to run one. It stays on and restarts if it crashes.</p></details><details><summary>Can my app call services outside Inferra?</summary><p>Yes. Apps reach databases and APIs anywhere on the public internet over verified TLS. Allowlist our fixed outbound IP addresses (shared by all apps) and keep credentials in secrets. <a href="/docs/external/">How to connect, including TLS certificates →</a></p></details><details><summary>Can I run MongoDB or RabbitMQ?</summary><p>Managed RabbitMQ is available on Paid when enabled. Custom image services such as MongoDB are not available yet. You can connect to an external database over verified TLS.</p></details><details><summary>What happens when the trial ends?</summary><p>Apps stop and native services scale to zero. Data, config and URLs are kept for 30 days. Subscribe to Paid within that time and everything resumes automatically. After 30 days everything is deleted; your repository config stays untouched. <a href="/docs/billing/">See payment failure and cancellation terms</a>.</p></details><details><summary>How do I leave?</summary><p>Whenever you like. Your code is already in your repo; copy your database with <code>pg_dump</code> and your files with any S3 tool. <a href="/export/">Leave anytime →</a></p></details>
 </div></section>
 
 <section class="band-off"><div class="in">
 <p class="eyebrow">Get started</p><h2>Ready to deploy your app?</h2>
 <div class="start-grid">
-<div class="card mint"><h3>Do it yourself</h3><ol><li>Install the GitHub App</li><li>Add .inferra/org.yaml and .inferra/main.yaml</li><li>Commit and push</li></ol><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/setup/">Read the setup guide</a></div></div>
+<div class="card mint"><h3>Do it yourself</h3><ol><li>Install the GitHub App</li><li>Add .inferra/repo.yaml and api/.inferra/app.yaml</li><li>Commit and push</li></ol><div class="btns"><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/setup/">Read the setup guide</a></div></div>
 <div class="card lilac"><h3>Set up with your AI assistant</h3><p>Your assistant uses its own repository access to edit files and open a pull request.</p><div class="badges"><span>Claude Code</span><span>Cursor</span><span>Codex</span><span>VS Code</span></div><ol><li>Paste our setup prompt into your assistant</li><li>It writes the two files and opens a pull request</li><li>Merge it. Our MCP reads status and logs; it writes nothing</li></ol><div class="btns"><a class="btn primary" href="/ai/">Get the setup prompt</a><a class="btn" href="/mcp/">How it works →</a></div></div>
 </div></div></section>
 </main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>

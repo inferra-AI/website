@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Inferra</title>
 <meta name="robots" content="noindex, nofollow"><!-- PREVIEW: remove at launch -->
-<meta name="description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<meta name="description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <link rel="canonical" href="https://inferralab.com/about/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -17,10 +17,10 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Inferra">
 <meta property="og:title" content="About Inferra">
-<meta property="og:description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<meta property="og:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta property="og:url" content="https://inferralab.com/about/">
 <meta name="twitter:title" content="About Inferra">
-<meta name="twitter:description" content="Why Inferra exists and what we believe: simple deploys from Git, prepaid billing, and honesty about what's missing.">
+<meta name="twitter:description" content="Deploy from GitHub with config v3. Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over.">
 <meta property="og:image" content="https://inferralab.com/og.png">
 <meta name="twitter:image" content="https://inferralab.com/og.png">
 <meta property="og:image:alt" content="Inferra: the Git-native cloud">
@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="/v5.css">
 </head><body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="preview-banner" role="note">Platform links point at our development environment.</div><!-- PREVIEW: remove at launch -->
+
 <header class="nav"><div class="nav-inner">
 <a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
@@ -39,9 +39,9 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><!-- LAUNCH: production API host --></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
-<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">About</p><h1>Bring your code. Every branch runs live with its own database and files.</h1><p class="lead">All on a bill you prepaid. Inferra is a cloud for small teams that would rather ship than run a platform team.</p></div></section>
+<main id="main" class="tpl"><section class="tpl-hero"><div class="in"><p class="eyebrow">About</p><h1>Bring your code. Run the branches you choose; attach account services when needed.</h1><p class="lead">Trial first, then $25/month including $25 of usage. Inferra is a cloud for small teams that would rather ship than run a platform team.</p></div></section>
 <section class="band-off"><div class="in story-grid"><div class="prose">
 <h2>Why we built Inferra</h2>
 <p>We've been the team that ships the product and runs the platform underneath it, at the same time. We know what that week looks like.</p>
@@ -49,22 +49,22 @@
 <p>And none of it stayed done. Servers needed patching, databases needed upgrades, certificates expired, and alerts arrived at odd hours. Keeping the infrastructure running became a second job next to building the product.</p>
 <p>Then the bills. Not one bill but several, each priced in its own units, each able to grow on its own. We learned what a job stuck in a loop costs from the invoice, after the fact.</p>
 <p>We kept asking the same question: why does running an API, a worker and a database need a platform team?</p>
-<p>So we built the platform we wanted. Connect a repo, add two short files, push. We keep the servers, HTTPS certificates and patches up to date, so you don't have to. Every branch you choose runs live in its own private namespace, with its own database and files. You pay from prepaid credits for exactly what you reserve, so a runaway job can't spend more than you bought.</p>
+<p>So we built the platform we wanted. Connect a repo, add two short files, push. We keep the servers, HTTPS certificates and patches up to date, so you don't have to. Every branch you choose runs live in its own space. Attached branches share account service data. Paid is $25/month including $25 of usage. Additional usage is extra; unused included usage does not roll over. The default daily usage cap is $100 per UTC day. At the cap, running apps keep running; new cost-adding changes are blocked and metered AWS access pauses until 00:00 UTC. There is no monthly spending limit.</p>
 <p>We're a small, independent team, building in the open: status, prices and limits on the page, and what isn't done yet listed next to what is.</p>
 </div>
-<figure class="diagram" aria-label="Before: five vendors and five bills. With Inferra: one repo, one prepaid bill.">
+<figure class="diagram" aria-label="Before: five vendors and five bills. With Inferra: one repo, one account bill.">
 <div class="before"><p class="lbl bad">Before</p><div class="boxes">
 <span class="peach"><b>App host</b>its own bill · $?</span><span class="sky"><b>Postgres vendor</b>its own bill · $?</span><span class="lilac"><b>File storage</b>its own bill · $?</span><span class="mint"><b>Preview tool</b>its own bill · $?</span><span class="lemon"><b>CI pipeline</b>its own bill · $?</span></div>
 <p class="glue">⤳ secrets copied by hand · five dashboards · five invoices</p></div>
 <div class="down" aria-hidden="true">↓</div>
 <div class="after"><p class="lbl ok">With Inferra</p><p class="flow"><code>your repo</code> → <b>Inferra</b></p>
 <div class="parts"><span>apps &amp; workers</span><span>Postgres</span><span>files</span><span>a preview per branch</span></div>
-<p class="one">One prepaid bill · patches and certificates handled</p></div>
+<p class="one">One account bill · patches and certificates handled</p></div>
 </figure></div></section>
 <section><div class="in">
 <p class="eyebrow">What we believe</p><h2>How we try to run Inferra.</h2>
 <div class="grid3">
-<div class="card lilac"><h3>Your bill can't surprise you</h3><p>You pay from prepaid credits for the size you reserve. Spend can't pass what you bought.</p></div>
+<div class="card lilac"><h3>Published rates and a daily cap</h3><p>The default daily usage cap is $100 per UTC day. At the cap, running apps keep running; new cost-adding changes are blocked and metered AWS access pauses until 00:00 UTC. There is no monthly spending limit.</p></div>
 <div class="card mint"><h3>Git is the source of truth</h3><p>Two short files in your repo say what runs. Change a file, change what runs.</p></div>
 <div class="card peach"><h3>Honest about what's missing</h3><p>Custom domains, autoscaling and a SOC 2 audit are coming. We say so on every page that matters.</p></div>
 </div></div></section>
@@ -79,7 +79,7 @@
 </div></section></main>
 <footer class="site v5foot"><div class="wrap">
 <div class="foot-grid">
-<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Prepaid credits · $5 of usage free every month.</p></div>
+<div class="foot-brand"><a class="logo" href="/" aria-label="Inferra home"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="7" fill="var(--accent)"/><path d="M8 16v5m6-10v10m6-15v15" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>Inferra</a><p>Push to GitHub. Your app is live. Trial: $15 credit, up to 14 days, card required. Paid: $25/month including $25 of usage.</p></div>
 <nav aria-label="Product"><h2>Product</h2><a href="/pricing/">Pricing</a><a href="/templates/">Templates</a><a href="/ai/">AI assistants</a><a href="/demo/">Demo</a><a href="https://status.inferralab.com"><span class="vdot" data-status-dot></span>Status</a></nav>
 <nav aria-label="Developers"><h2>Developers</h2><a href="/docs/">Docs</a><a href="/docs/external/">External services</a><a href="/migrate/heroku/">Migrate from Heroku</a><a href="/migrate/vercel/">Migrate from Vercel</a><a href="/download/">CLI</a><a href="/changelog/">Changelog</a></nav>
 <nav aria-label="Company"><h2>Company</h2><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/security/">Security</a><a href="/compare/">Compare</a><a href="/export/">Leave anytime</a></nav>
@@ -87,6 +87,6 @@
 </div>
 <div class="foot-bottom"><span>© 2026 Inferra · inferralab.com</span><span><a href="mailto:support@inferralab.com">support@inferralab.com</a></span></div>
 </div></footer>
-<!-- LAUNCH: production API host -->
+
 <script src="/site.js" defer></script>
 <script src="/v5.js" defer></script></body></html>
