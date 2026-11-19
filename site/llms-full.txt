@@ -1,7 +1,7 @@
 # Inferra
 
 Deploy apps from GitHub. Website: https://inferralab.com/
-API and CLI default: https://api.inferralab.com
+API and CLI default: https://api.dev.inferralab.dev
 
 ## Configuration v3
 - inferra init writes v3: .inferra/repo.yaml, the app folder's .inferra/app.yaml and an optional GitHub environment-sync workflow. It does not write account.yaml.
@@ -53,7 +53,7 @@ You need a GitHub repository you can push to and a repository admin who can inst
 Start with $15 of trial credit or 14 days, whichever comes first. Card required; one trial per card. Paid is $25/month including $25 of usage. Usage beyond that is extra; unused included usage does not roll over. Available to USA customers only for now.
 
 Please install the Inferra GitHub App on OWNER/REPO:
-https://api.inferralab.com/v1/github/install
+https://api.dev.inferralab.dev/v1/github/install
 Please grant our GitHub team developer access in .inferra/repo.yaml.
 Setup guide: https://inferralab.com/setup/
 
@@ -61,7 +61,7 @@ Setup guide: https://inferralab.com/setup/
 
 Install the GitHub App and choose the app repository. The CLI is optional for your first deployment: you can write the files below and use the dashboard. To use it, follow the download instructions, sign in to the dashboard, create a personal token in Settings → Tokens and paste it at the prompt:
 
-inferra login --api https://api.inferralab.com
+inferra login --api https://api.dev.inferralab.dev
 
 This is also the CLI’s default API address. An older saved login or INFERRA_API can override it. Never pass a token value as a command-line argument.
 
@@ -110,7 +110,7 @@ For optional GitHub sync, create GitHub Environments named after deployed branch
 
 inferra init --workflow-only --force --secret API_KEY
 
-Review the workflow before replacing one. Check that it targets https://api.inferralab.com. Each secret has one owner: GitHub-synced values are read-only in Inferra, and the workflow cannot overwrite Inferra-owned secrets. Remove a secret from its current owner before moving it. Missing values leave deployment waiting until supplied. Ordinary values resolve from repo env, repo branch env, app env, then app branch env, with later values winning.
+Review the workflow before replacing one. Check that it targets https://api.dev.inferralab.dev. Each secret has one owner: GitHub-synced values are read-only in Inferra, and the workflow cannot overwrite Inferra-owned secrets. Remove a secret from its current owner before moving it. Missing values leave deployment waiting until supplied. Ordinary values resolve from repo env, repo branch env, app env, then app branch env, with later values winning.
 
 5. Commit and push
 
@@ -452,7 +452,7 @@ Available Commands:
   whoami      Show who the current token belongs to and your orgs
 
 Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
   -h, --help           help for inferra
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
@@ -492,7 +492,7 @@ Flags:
       --token string   personal token; "-" reads it from stdin (preferred over passing the value)
 
 Global Flags:
-      --api string   API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string   API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json         print machine-readable JSON
 
 inferra logout
@@ -509,7 +509,7 @@ Flags:
   -h, --help   help for logout
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -528,7 +528,7 @@ Flags:
   -h, --help   help for whoami
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -550,7 +550,7 @@ Flags:
   -h, --help   help for target
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -582,7 +582,7 @@ Flags:
   -h, --help   help for accounts
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -601,7 +601,7 @@ Flags:
   -h, --help   help for account
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -627,7 +627,7 @@ Flags:
   -h, --help   help for orgs
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -648,7 +648,7 @@ Flags:
   -h, --help   help for org
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -667,7 +667,7 @@ Flags:
   -h, --help   help for spaces
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -693,7 +693,7 @@ Flags:
   -h, --help   help for apps
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -714,7 +714,7 @@ Flags:
   -h, --help   help for instances
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -733,7 +733,7 @@ Flags:
   -h, --help   help for deployments
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -752,7 +752,7 @@ Flags:
   -h, --help   help for members
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -776,7 +776,7 @@ Flags:
   -h, --help   help for invitations
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -799,7 +799,7 @@ Flags:
       --since string   only newer events, e.g. "24h" or an RFC 3339 time
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -819,7 +819,7 @@ Flags:
       --platform   show platform-wide totals (operator only)
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -840,7 +840,7 @@ Flags:
   -h, --help   help for restart
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -859,7 +859,7 @@ Flags:
   -h, --help   help for stop
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -878,7 +878,7 @@ Flags:
   -h, --help   help for start
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -898,7 +898,7 @@ Flags:
       --to string   deployment id to roll back to
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -922,7 +922,7 @@ Flags:
       --to string           target space (default: the currently targeted space)
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -942,7 +942,7 @@ Flags:
       --pod string   pod name (defaults to the first ready pod)
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -963,7 +963,7 @@ Flags:
       --reveal   show values
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -982,7 +982,7 @@ Flags:
   -h, --help   help for secrets
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1008,7 +1008,7 @@ Flags:
       --since string   only newer lines, e.g. "15m" or an RFC 3339 time
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1028,7 +1028,7 @@ Flags:
       --since string   how far back, e.g. 15m, 6h, 7d is 168h (default "1h")
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1046,7 +1046,7 @@ Flags:
   -h, --help   help for services
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1069,7 +1069,7 @@ Flags:
   -h, --help   help for service
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1094,7 +1094,7 @@ Flags:
   -h, --help   help for db
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1115,7 +1115,7 @@ Flags:
   -h, --help   help for buildpacks
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1137,7 +1137,7 @@ Flags:
   -h, --help   help for quotas
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1159,7 +1159,7 @@ Flags:
   -h, --help   help for quota
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1181,7 +1181,7 @@ Flags:
   -h, --help   help for help
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1207,7 +1207,7 @@ Flags:
   -h, --help   help for completion
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1228,7 +1228,7 @@ Flags:
   -h, --help   help for version
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)
@@ -1262,7 +1262,7 @@ Flags:
   -h, --help   help for admin
 
 Global Flags:
-      --api string     API URL (default from $INFERRA_API, saved login, or https://api.inferralab.com)
+      --api string     API URL (default from $INFERRA_API, saved login, or https://api.dev.inferralab.dev)
       --json           print machine-readable JSON
       --org string     org (overrides the saved target and $INFERRA_ORG)
       --space string   space (overrides the saved target and $INFERRA_SPACE)

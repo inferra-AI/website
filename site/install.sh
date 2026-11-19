@@ -61,4 +61,4 @@ chmod 755 "$staged"
 mv -f "$staged" "$install_dir/inferra"
 printf 'Installed Inferra %s to %s/inferra\n' "$version" "$install_dir"
 printf 'Add this directory to PATH in your shell profile: %s\n' "$install_dir"
-printf '%s\n' 'Next: inferra login --api https://api.inferralab.com'
+printf '%s\n' 'Next: inferra login --api https://api.dev.inferralab.dev'

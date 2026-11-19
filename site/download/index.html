@@ -38,7 +38,7 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="document wrap">
 <div class="document-head"><p class="eyebrow">Inferra · Guide</p><h1>Download the CLI</h1><p class="lead">Git pushes create deployments; the CLI inspects and operates them.</p></div>
@@ -180,9 +180,9 @@ mv -f &quot;$staged&quot; &quot;$install_dir/inferra&quot;
 printf &#x27;Installed Inferra %s to %s/inferra\n&#x27; &quot;$version&quot; &quot;$install_dir&quot;
 printf &#x27;Add this directory to PATH in your shell profile: %s\n&#x27; &quot;$install_dir&quot;
 # LAUNCH: production API host
-printf &#x27;%s\n&#x27; &#x27;Next: inferra login --api https://api.inferralab.com&#x27;</code></pre><h3>Pin a version or destination</h3><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh -o install.sh
+printf &#x27;%s\n&#x27; &#x27;Next: inferra login --api https://api.dev.inferralab.dev&#x27;</code></pre><h3>Pin a version or destination</h3><pre class="term"><code>curl -fsSL https://inferralab.com/install.sh -o install.sh
 INFERRA_VERSION=0.4.0-rc.97 INFERRA_INSTALL_DIR=&quot;$HOME/.local/bin&quot; sh install.sh</code></pre><p><code>INFERRA_VERSION</code> accepts a version with or without the leading <code>v</code>. Use an existing release with matching archives and checksums. An unavailable version, missing checksum tool or checksum mismatch stops installation.</p></section><section id="update"><h2>Update and sign in</h2><p>Repeat the manual installation for the desired release, or rerun the installer. It replaces only the executable. Version pinning stays explicit; there is no automatic “latest” lookup.</p><pre class="term"><code>inferra version
-inferra login --api https://api.inferralab.com</code></pre><p>Use api.dev.inferralab.dev at login; the CLI saves it. Continue with <a href="/setup/">the setup guide</a>.</p></section><section id="uninstall"><h2>Uninstall the local CLI</h2><p>Log out before removing the binary. For the default macOS/Linux destination:</p><pre class="term"><code>inferra logout
+inferra login --api https://api.dev.inferralab.dev</code></pre><p>Use api.dev.inferralab.dev at login; the CLI saves it. Continue with <a href="/setup/">the setup guide</a>.</p></section><section id="uninstall"><h2>Uninstall the local CLI</h2><p>Log out before removing the binary. For the default macOS/Linux destination:</p><pre class="term"><code>inferra logout
 rm -f &quot;$HOME/.local/bin/inferra&quot;</code></pre><p>For the Windows destination used above:</p><pre class="term"><code>inferra logout
 Remove-Item (Join-Path $env:LOCALAPPDATA &#x27;Inferra\bin\inferra.exe&#x27;)</code></pre><p>If you chose another install directory, remove its inferra executable instead. Remove the PATH entry you added if the directory is no longer needed. This does not delete deployed apps, the GitHub App installation, or your platform account. Logout clears the saved local login; revoke the personal token in Settings → Tokens if it should no longer work anywhere.</p></section>
 <!-- DOWNLOAD:END -->

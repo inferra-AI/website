@@ -1,7 +1,7 @@
 # Inferra
 
 Deploy apps from GitHub. Website: https://inferralab.com/
-API and CLI default: https://api.inferralab.com
+API and CLI default: https://api.dev.inferralab.dev
 
 ## Configuration v3
 - inferra init writes v3: .inferra/repo.yaml, the app folder's .inferra/app.yaml and an optional GitHub environment-sync workflow. It does not write account.yaml.
