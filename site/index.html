@@ -40,14 +40,14 @@
 <li><a href="/#product">Product</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/docs/">Docs</a></li><li><a href="/templates/">Templates</a></li><li><a href="/ai/">AI assistants</a></li>
 <li class="nav-more"><details><summary>Migrate</summary><div class="nav-menu"><a href="/migrate/heroku/">From Heroku</a><a href="/migrate/vercel/">From Vercel</a><a href="/migrate/render/">From Render</a><a href="/migrate/railway/">From Railway</a><a href="/compare/">Compare platforms</a></div></details></li>
 <li><a href="/demo/">Demo</a></li><li><a href="https://status.inferralab.com">Status</a></li>
-</ul><div class="nav-actions"><a class="signin" href="https://api.inferralab.com/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
+</ul><div class="nav-actions"><a class="signin" href="https://api.dev.inferralab.dev/" data-umami-event="signin_click">Sign in</a><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a></div></nav>
 </div></header>
 <main id="main" class="v5">
 <section class="vhero"><div class="in">
 <p class="eyebrow">Git-native app hosting</p>
 <h1>Push to GitHub.<br>Your app is live.</h1>
 <p class="lead">APIs, workers, web apps and Postgres, built and run from your repo. Each branch gets its own namespace.</p>
-<div class="btns"><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="https://api.inferralab.com/demo" data-umami-event="demo_open">Open the live demo →</a></div>
+<div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open the live demo →</a></div>
 <p class="vsmall">$15 trial credit · up to 14 days · card required</p>
 <div class="hero-visual">
 <div class="files"><div class="code"><div class="file"><span>.inferra/repo.yaml</span><button type="button" data-copy="hero-org">Copy</button></div><pre id="hero-org">version: 3
@@ -64,7 +64,7 @@ health:
 <div class="mid" aria-hidden="true"><span class="push">$ git push</span><span class="arrow">→</span>built, no Dockerfile</div>
 <div class="run"><div class="head"><span>Illustration · main</span><span class="vlive">live</span></div><div class="row"><div class="top"><span>api</span><span class="vpill">Running</span></div><div class="sub">Open its HTTPS address in the dashboard</div></div><div class="foot">Push → build → deploy → live</div></div>
 </div>
-<p class="caption">The files above deploy api; workers and account services need their own config. <a href="/setup/#postgres">Add services</a> · <a href="https://api.inferralab.com/demo">Explore the public demo →</a></p>
+<p class="caption">The files above deploy api; workers and account services need their own config. <a href="/setup/#postgres">Add services</a> · <a href="https://api.dev.inferralab.dev/demo">Explore the public demo →</a></p>
 </div></section>
 
 <section class="numbers" aria-label="Paid pricing examples"><div class="in">
@@ -100,7 +100,7 @@ health:
 <p class="eyebrow">From repo to running</p><h2>Deploy from Git in four steps.</h2><p class="lead">You keep using Git. Inferra does the rest.</p>
 <div class="vsteps">
 <div class="vstep"><div class="text"><div class="num">1</div><h3>Connect your repo</h3><p>Install the Inferra GitHub App and pick the repo. One click, read-only.</p></div>
-<div class="vis card lilac"><div class="gh"><div class="crumb">github.com › Install Inferra</div><b>Install Inferra on acme</b><p class="vsmall">Inferra reads your code and posts commit checks. It never writes to your repo.</p><span class="repo on">☑ acme/backend</span><span class="repo">☐ acme/website</span><a class="install" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click" aria-label="Install the Inferra GitHub App">Install</a></div></div></div>
+<div class="vis card lilac"><div class="gh"><div class="crumb">github.com › Install Inferra</div><b>Install Inferra on acme</b><p class="vsmall">Inferra reads your code and posts commit checks. It never writes to your repo.</p><span class="repo on">☑ acme/backend</span><span class="repo">☐ acme/website</span><a class="install" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click" aria-label="Install the Inferra GitHub App">Install</a></div></div></div>
 <div class="vstep"><div class="text"><div class="num">2</div><h3>Add two app files</h3><p>repo.yaml selects the branches that run. Each app.yaml describes how one app builds and runs.</p></div>
 <div class="vis card"><div class="grid2"><div class="code"><div class="file"><span>.inferra/repo.yaml</span><button type="button" data-copy="step-org">Copy</button></div><pre id="step-org">version: 3
 branches:
@@ -129,7 +129,7 @@ health:
 
 <section class="band-ink tour"><div class="in">
 <p class="eyebrow">See the whole flow</p><h2>A quick tour of Inferra.</h2><p class="lead">Follow one push through the dashboard: build, deploy, metrics, logs, roll back.</p>
-<div class="meta"><a class="btn" href="https://api.inferralab.com/demo" data-umami-event="demo_open">Open the live demo →</a><span class="vsmall">Video · 1:49</span></div>
+<div class="meta"><a class="btn" href="https://api.dev.inferralab.dev/demo" data-umami-event="demo_open">Open the live demo →</a><span class="vsmall">Video · 1:49</span></div>
 <video controls playsinline preload="metadata" poster="/assets/journey/app.webp" width="1440" height="900" aria-label="Inferra dashboard tour: one push, commit to live"><source src="/demo/inferra-demo.mp4" type="video/mp4">Your browser can't play this video. <a href="/demo/inferra-demo.mp4">Download the tour</a>.</video>
 </div></section>
 
@@ -169,7 +169,7 @@ health:
 <section class="band-off"><div class="in">
 <p class="eyebrow">Get started</p><h2>Ready to deploy your app?</h2>
 <div class="start-grid">
-<div class="card mint"><h3>Do it yourself</h3><ol><li>Install the GitHub App</li><li>Add .inferra/repo.yaml and api/.inferra/app.yaml</li><li>Commit and push</li></ol><div class="btns"><a class="btn primary" href="https://api.inferralab.com/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/setup/">Read the setup guide</a></div></div>
+<div class="card mint"><h3>Do it yourself</h3><ol><li>Install the GitHub App</li><li>Add .inferra/repo.yaml and api/.inferra/app.yaml</li><li>Commit and push</li></ol><div class="btns"><a class="btn primary" href="https://api.dev.inferralab.dev/v1/github/install" data-umami-event="install_app_click">Connect your repo</a><a class="btn" href="/setup/">Read the setup guide</a></div></div>
 <div class="card lilac"><h3>Set up with your AI assistant</h3><p>Your assistant uses its own repository access to edit files and open a pull request.</p><div class="badges"><span>Claude Code</span><span>Cursor</span><span>Codex</span><span>VS Code</span></div><ol><li>Paste our setup prompt into your assistant</li><li>It writes the two files and opens a pull request</li><li>Merge it. Our MCP reads status and logs; it writes nothing</li></ol><div class="btns"><a class="btn primary" href="/ai/">Get the setup prompt</a><a class="btn" href="/mcp/">How it works →</a></div></div>
 </div></div></section>
 </main>
