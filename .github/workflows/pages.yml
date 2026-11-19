@@ -29,8 +29,8 @@ jobs:
       - name: Assemble the public page
         run: |
           mkdir -p out
-          cp -r public/. out/
-          cp -r site/fonts site/favicon.svg site/og.png site/install.sh out/
+          # Owner 2026-11-19: publish the full site (was: the public/ teaser only).
+          cp -r site/. out/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
